@@ -1,6 +1,6 @@
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Award, ExternalLink, CheckCircle2 } from "lucide-react";
+import { ExternalLink, CheckCircle2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const Certifications = () => {
@@ -9,31 +9,31 @@ const Certifications = () => {
       title: "Data Literacy Certificate",
       issuer: "DataCamp",
       date: "2024",
-      link: "https://www.datacamp.com/certificate/data-literacy",
+      link: "https://www.datacamp.com/skill-verification/DL0036111502330",
     },
     {
       title: "SQL (Basic)",
       issuer: "HackerRank",
       date: "2023",
-      link: "https://www.hackerrank.com/certificates/basic-sql",
+      link: "https://www.hackerrank.com/certificates/156c52c3c5eb",
     },
     {
       title: "SQL (Intermediate)",
       issuer: "HackerRank",
       date: "2023",
-      link: "https://www.hackerrank.com/certificates/intermediate-sql",
+      link: "https://www.hackerrank.com/certificates/69fcd8d44d04",
     },
     {
       title: "SQL (Advanced)",
       issuer: "HackerRank",
       date: "2023",
-      link: "https://www.hackerrank.com/certificates/advanced-sql",
+      link: "https://www.hackerrank.com/certificates/b39216ae474c",
     },
     {
       title: "Data Analytics Essentials",
       issuer: "Cisco",
       date: "2023",
-      link: "https://www.cisco.com/c/en/us/training-events/training-certifications/certifications/data-analytics.html",
+      link: "https://www.credly.com/badges/42868f31-690d-423e-b812-c7c92024a5b5/public_url",
     },
   ];
 
