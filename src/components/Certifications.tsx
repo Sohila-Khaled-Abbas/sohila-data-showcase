@@ -1,39 +1,39 @@
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Award, ExternalLink } from "lucide-react";
+import { Award, ExternalLink, CheckCircle2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const Certifications = () => {
   const certifications = [
     {
-      title: "Google Data Analytics Professional Certificate",
-      issuer: "Google",
-      date: "2023",
-      link: "https://www.coursera.org/professional-certificates/google-data-analytics",
-    },
-    {
-      title: "IBM Data Science Professional Certificate",
-      issuer: "IBM",
-      date: "2022",
-      link: "https://www.coursera.org/professional-certificates/ibm-data-science",
-    },
-    {
-      title: "Advanced SQL for Data Scientists",
+      title: "Data Literacy Certificate",
       issuer: "DataCamp",
-      date: "2022",
-      link: "https://www.datacamp.com/courses/advanced-sql",
+      date: "2024",
+      link: "https://www.datacamp.com/certificate/data-literacy",
     },
     {
-      title: "Machine Learning Specialization",
-      issuer: "Stanford Online & DeepLearning.AI",
-      date: "2021",
-      link: "https://www.coursera.org/specializations/machine-learning-introduction",
+      title: "SQL (Basic)",
+      issuer: "HackerRank",
+      date: "2023",
+      link: "https://www.hackerrank.com/certificates/basic-sql",
     },
     {
-      title: "Data Visualization with Tableau",
-      issuer: "Tableau",
-      date: "2021",
-      link: "https://www.tableau.com/learn/training/elearning",
+      title: "SQL (Intermediate)",
+      issuer: "HackerRank",
+      date: "2023",
+      link: "https://www.hackerrank.com/certificates/intermediate-sql",
+    },
+    {
+      title: "SQL (Advanced)",
+      issuer: "HackerRank",
+      date: "2023",
+      link: "https://www.hackerrank.com/certificates/advanced-sql",
+    },
+    {
+      title: "Data Analytics Essentials",
+      issuer: "Cisco",
+      date: "2023",
+      link: "https://www.cisco.com/c/en/us/training-events/training-certifications/certifications/data-analytics.html",
     },
   ];
 
@@ -46,12 +46,12 @@ const Certifications = () => {
           </span>
         </h2>
 
-        <div className="max-w-4xl mx-auto space-y-6">
+        <div className="max-w-4xl mx-auto space-y-4">
           {certifications.map((cert, index) => (
-            <Card key={index} className="shadow-md border-none">
+            <Card key={index} className="shadow-md border-none transition-colors hover:bg-gray-50">
               <CardHeader className="flex flex-row items-center justify-between py-4">
-                <div className="flex items-center">
-                  <Award className="h-5 w-5 mr-3 text-purple-600" />
+                <div className="flex items-center gap-3">
+                  <CheckCircle2 className="h-5 w-5 text-green-500" />
                   <CardTitle className="text-lg">{cert.title}</CardTitle>
                 </div>
                 <Button variant="ghost" size="sm" asChild className="ml-2">
