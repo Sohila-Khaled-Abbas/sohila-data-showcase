@@ -1,29 +1,66 @@
 
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Code, BarChart2, Wrench, MessageCircle } from "lucide-react";
+import { 
+  Code, 
+  BarChart2, 
+  Database, 
+  Library, 
+  Terminal, 
+  Wrench, 
+  Users 
+} from "lucide-react";
 
 const Skills = () => {
   const skillCategories = [
     {
-      name: "Programming",
+      name: "Programming & Querying",
       icon: <Code className="h-6 w-6 text-purple-600" />,
-      skills: ["Python", "SQL", "R", "JavaScript", "HTML/CSS"],
+      skills: ["SQL", "Python", "R"],
     },
     {
-      name: "Visualization",
+      name: "Data Visualization",
       icon: <BarChart2 className="h-6 w-6 text-blue-600" />,
-      skills: ["Tableau", "Power BI", "Matplotlib", "Seaborn", "Plotly", "D3.js"],
+      skills: ["Excel (Pivot Tables, Charts, Macros)", "Power BI", "Tableau"],
     },
     {
-      name: "Tools",
-      icon: <Wrench className="h-6 w-6 text-emerald-600" />,
-      skills: ["Excel", "Google Analytics", "Jupyter Notebook", "Git", "MongoDB", "PostgreSQL"],
+      name: "Databases",
+      icon: <Database className="h-6 w-6 text-green-600" />,
+      skills: ["PostgreSQL", "MySQL", "SQL Server", "Google BigQuery"],
+    },
+    {
+      name: "Libraries & Frameworks",
+      icon: <Library className="h-6 w-6 text-amber-600" />,
+      skills: [
+        "Pandas",
+        "NumPy",
+        "Matplotlib",
+        "Seaborn",
+        "BeautifulSoup",
+        "Selenium",
+        "Scrapy"
+      ],
+    },
+    {
+      name: "Tools & Technologies",
+      icon: <Terminal className="h-6 w-6 text-pink-600" />,
+      skills: ["Jupyter Notebook", "Git", "Docker"],
+    },
+    {
+      name: "Other Technical Skills",
+      icon: <Wrench className="h-6 w-6 text-indigo-600" />,
+      skills: [
+        "Data Cleaning",
+        "Data Validation",
+        "EDA",
+        "Dashboarding",
+        "Reporting Automation"
+      ],
     },
     {
       name: "Soft Skills",
-      icon: <MessageCircle className="h-6 w-6 text-amber-600" />,
-      skills: ["Data Storytelling", "Problem Solving", "Communication", "Presentation", "Team Collaboration", "Critical Thinking"],
+      icon: <Users className="h-6 w-6 text-cyan-600" />,
+      skills: ["Data Storytelling", "Analytical Thinking", "Collaboration"],
     },
   ];
 
@@ -36,20 +73,20 @@ const Skills = () => {
           </span>
         </h2>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto">
           {skillCategories.map((category, index) => (
-            <Card key={index} className="shadow-md overflow-hidden border-none">
-              <CardContent className="pt-6">
+            <Card key={index} className="shadow-md overflow-hidden border-none hover:shadow-lg transition-shadow duration-300">
+              <CardContent className="p-6">
                 <div className="flex items-center gap-3 mb-4">
                   {category.icon}
-                  <h3 className="text-xl font-semibold">{category.name}</h3>
+                  <h3 className="text-xl font-semibold text-gray-800">{category.name}</h3>
                 </div>
                 <div className="flex flex-wrap gap-2">
                   {category.skills.map((skill, skillIndex) => (
                     <Badge
                       key={skillIndex}
                       variant="outline"
-                      className="bg-white border border-gray-200 text-gray-800 hover:bg-gray-100"
+                      className="bg-white border border-gray-200 text-gray-700 hover:bg-gray-50"
                     >
                       {skill}
                     </Badge>
