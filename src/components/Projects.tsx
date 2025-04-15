@@ -7,24 +7,24 @@ import { Github, ExternalLink } from "lucide-react";
 const Projects = () => {
   const projects = [
     {
-      title: "Customer Segmentation Analysis",
-      description: "Utilized K-means clustering to segment customers based on purchasing behavior, resulting in targeted marketing strategies that increased customer engagement by 25%.",
-      tools: ["Python", "Scikit-learn", "Matplotlib", "Pandas"],
-      githubLink: "https://github.com/username/customer-segmentation",
+      title: "Wuzzuf Job Market Analysis Dashboard",
+      description: "Extracted and analyzed 200+ job listings using BeautifulSoup and Selenium. Visualized trends in Power BI.",
+      tools: ["Power BI", "Python", "BeautifulSoup", "Selenium"],
+      githubLink: "https://github.com/Sohila-Khaled-Abbas/Wuzzuf-Job-Market-Analysis",
       liveLink: "#",
     },
     {
-      title: "Sales Forecast Dashboard",
-      description: "Created an interactive Power BI dashboard for sales forecasting, incorporating time series analysis that helped improve inventory management and reduce costs by 15%.",
-      tools: ["Power BI", "DAX", "SQL", "Excel"],
-      githubLink: "https://github.com/username/sales-dashboard",
+      title: "Social Media Advertising Dashboard",
+      description: "Cleaned and analyzed ad performance data to identify top-performing platforms.",
+      tools: ["Power BI", "Python"],
+      githubLink: "https://github.com/Sohila-Khaled-Abbas/Social-Media-Advertising-Dashboard",
       liveLink: "#",
     },
     {
-      title: "Twitter Sentiment Analysis",
-      description: "Developed a natural language processing model to analyze customer sentiment from Twitter data, providing valuable insights for product development and customer service improvements.",
-      tools: ["Python", "NLTK", "Tensorflow", "Tweepy"],
-      githubLink: "https://github.com/username/twitter-sentiment",
+      title: "HR Analytics Dashboard",
+      description: "Built an HR dashboard monitoring 100+ employee KPIs, reducing reporting time by 30%.",
+      tools: ["Power BI", "DAX"],
+      githubLink: "https://github.com/Sohila-Khaled-Abbas/HR-Analytics-Dashboard",
       liveLink: "#",
     },
   ];
@@ -40,7 +40,7 @@ const Projects = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
           {projects.map((project, index) => (
-            <Card key={index} className="shadow-lg border-none hover:shadow-xl transition-shadow duration-300">
+            <Card key={index} className="shadow-lg border-none">
               <CardHeader className="pb-0">
                 <CardTitle className="text-xl">{project.title}</CardTitle>
               </CardHeader>
@@ -77,3 +77,4 @@ const Projects = () => {
 };
 
 export default Projects;
+
