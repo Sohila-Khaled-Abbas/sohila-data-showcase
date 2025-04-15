@@ -1,0 +1,92 @@
+
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { Button } from "@/components/ui/button";
+import { Label } from "@/components/ui/label";
+import { Mail, Linkedin, Github } from "lucide-react";
+
+const Contact = () => {
+  return (
+    <section id="contact" className="py-16 bg-white">
+      <div className="container mx-auto px-4">
+        <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">
+          <span className="bg-gradient-to-r from-purple-600 to-blue-500 bg-clip-text text-transparent">
+            Get In Touch
+          </span>
+        </h2>
+
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-5xl mx-auto">
+          {/* Contact Form */}
+          <Card className="shadow-lg border-none">
+            <CardHeader>
+              <CardTitle>Send Me a Message</CardTitle>
+              <CardDescription>
+                I'll get back to you as soon as possible.
+              </CardDescription>
+            </CardHeader>
+            <CardContent>
+              <form className="space-y-4">
+                <div>
+                  <Label htmlFor="name">Name</Label>
+                  <Input id="name" placeholder="Your name" />
+                </div>
+                <div>
+                  <Label htmlFor="email">Email</Label>
+                  <Input id="email" type="email" placeholder="your.email@example.com" />
+                </div>
+                <div>
+                  <Label htmlFor="message">Message</Label>
+                  <Textarea id="message" placeholder="Your message" rows={5} />
+                </div>
+                <Button type="submit" className="w-full bg-purple-600 hover:bg-purple-700">
+                  Send Message
+                </Button>
+              </form>
+            </CardContent>
+          </Card>
+
+          {/* Contact Information */}
+          <Card className="shadow-lg border-none bg-gradient-to-br from-purple-500 to-blue-600 text-white">
+            <CardHeader>
+              <CardTitle className="text-white">Contact Information</CardTitle>
+              <CardDescription className="text-white text-opacity-90">
+                Reach out through these channels
+              </CardDescription>
+            </CardHeader>
+            <CardContent className="space-y-6">
+              <div className="flex items-center space-x-3">
+                <Mail className="h-5 w-5 flex-shrink-0" />
+                <a href="mailto:sohila.khaled@example.com" className="hover:underline">
+                  sohila.khaled@example.com
+                </a>
+              </div>
+              
+              <div className="flex items-center space-x-3">
+                <Linkedin className="h-5 w-5 flex-shrink-0" />
+                <a href="https://www.linkedin.com/in/sohilakhaled" target="_blank" rel="noreferrer" className="hover:underline">
+                  linkedin.com/in/sohilakhaled
+                </a>
+              </div>
+              
+              <div className="flex items-center space-x-3">
+                <Github className="h-5 w-5 flex-shrink-0" />
+                <a href="https://github.com/sohilakhaled" target="_blank" rel="noreferrer" className="hover:underline">
+                  github.com/sohilakhaled
+                </a>
+              </div>
+
+              <div className="pt-6">
+                <p>
+                  Looking forward to collaborating on data-driven projects or discussing how I can help your organization leverage data for better decision making.
+                </p>
+              </div>
+            </CardContent>
+          </Card>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default Contact;
