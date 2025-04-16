@@ -1,67 +1,68 @@
 
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
 import { Github } from "lucide-react";
 
 const Projects = () => {
   const projects = [
     {
       title: "Wuzzuf Job Market Analysis",
-      description: "Analyzed job postings, hiring trends, salary distributions, and in-demand skills from Wuzzuf data.",
+      description: "Analyzed job postings, hiring trends, salary distributions, and in-demand skills.",
       tools: ["Power BI", "Python"],
       githubUrl: "https://github.com/Sohila-Khaled-Abbas/Wuzzuf-Job-Market-Analysis",
     },
     {
       title: "Social Media Advertising Dashboard",
-      description: "Built a dashboard resolving ROI data issues and highlighting a 35% click contribution from top channels.",
+      description: "Delivered a dashboard resolving ROI data issues and highlighting a 35% click contribution from top channels.",
       tools: ["Power BI", "Python"],
       githubUrl: "https://github.com/Sohila-Khaled-Abbas/Social-Media-Advertising-Dashboard",
     },
     {
       title: "Startup Expansion Analysis Dashboard",
-      description: "Interactive dashboard analyzing a startup's revenue, ROI, and marketing efficiency across markets.",
+      description: "Interactive dashboard analyzing revenue, ROI, and marketing efficiency for startup growth.",
       tools: ["Power BI", "Python"],
       githubUrl: "https://github.com/Sohila-Khaled-Abbas/Startup-Expansion-Analysis-Dashboard",
     },
     {
       title: "Global Layoffs Analysis",
-      description: "Used SQL to uncover layoff trends across industries, funding stages, and regions.",
+      description: "Used SQL to reveal workforce reduction trends by industry, region, and funding stage.",
       tools: ["SQL"],
       githubUrl: "https://github.com/Sohila-Khaled-Abbas/global-layoffs-analysis",
     },
     {
       title: "Healthcare Analytics Dashboard",
-      description: "Analyzed hospital waitlists, patient demographics, and service usage trends.",
+      description: "Explored hospital waitlists, patient flow, and demographic trends in an interactive dashboard.",
       tools: ["Power BI"],
       githubUrl: "https://github.com/Sohila-Khaled-Abbas/healthcare-analytics-dashboard",
     },
     {
       title: "Python EDA Case Study",
-      description: "Used EDA techniques to explore employee salary data and uncover insights.",
+      description: "Conducted exploratory data analysis on employee salary data to extract insights.",
       tools: ["Python"],
       githubUrl: "https://github.com/Sohila-Khaled-Abbas/Python_EDA_Case_Study",
     },
     {
       title: "HR Analytics Dashboard",
-      description: "Designed an interactive HR dashboard with dynamic filters and insights on attendance and KPIs.",
+      description: "Built an HR dashboard with dynamic filters and detailed KPIs to track employee metrics.",
       tools: ["Power BI", "DAX"],
       githubUrl: "https://github.com/Sohila-Khaled-Abbas/HR-Analytics-Dashboard",
     },
     {
       title: "IMDB Top 250 Movies Dashboard",
-      description: "Visualized cinema trends, ratings, and distributions based on the IMDB Top 250 dataset.",
+      description: "Visualized movie ratings and trends using IMDB's top-ranked titles.",
       tools: ["Power BI"],
       githubUrl: "https://github.com/Sohila-Khaled-Abbas/IMDB-Top250-Movies-Dashboard",
     },
     {
       title: "Emergency Room Dashboard",
-      description: "Analyzed patient satisfaction and visit trends using advanced DAX in Power BI.",
+      description: "Assessed patient satisfaction and ER visit patterns with advanced DAX measures.",
       tools: ["Power BI", "DAX"],
       githubUrl: "https://github.com/Sohila-Khaled-Abbas/Emergency-Room-Dashboard",
     },
     {
       title: "Regional Sales Dashboard",
-      description: "Visualized sales trends to identify profitable regions and growth opportunities.",
+      description: "Monitored regional sales performance, spotting trends and growth opportunities.",
       tools: ["Power BI"],
       githubUrl: "https://github.com/Sohila-Khaled-Abbas/regional-sales-dashboard",
     },
@@ -83,7 +84,7 @@ const Projects = () => {
                 <CardTitle className="text-lg font-semibold line-clamp-2">{project.title}</CardTitle>
               </CardHeader>
               <CardContent className="flex-grow">
-                <p className="text-gray-600 text-sm mb-4 line-clamp-3">
+                <p className="text-gray-600 text-sm mb-4">
                   {project.description}
                 </p>
                 <div className="flex flex-wrap gap-2">
@@ -98,11 +99,15 @@ const Projects = () => {
                   ))}
                 </div>
               </CardContent>
-              <CardFooter className="pt-0">
-                <div className="flex items-center text-sm text-gray-600">
-                  <Github className="h-4 w-4 mr-2" />
-                  <span className="break-all">{project.githubUrl}</span>
-                </div>
+              <CardFooter>
+                <Button 
+                  variant="outline" 
+                  className="w-full"
+                  onClick={() => window.open(project.githubUrl, '_blank')}
+                >
+                  <Github className="mr-2 h-4 w-4" />
+                  View on GitHub
+                </Button>
               </CardFooter>
             </Card>
           ))}
