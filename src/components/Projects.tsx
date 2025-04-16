@@ -1,31 +1,69 @@
 
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
-import { Github, ExternalLink } from "lucide-react";
+import { Github } from "lucide-react";
 
 const Projects = () => {
   const projects = [
     {
-      title: "Wuzzuf Job Market Analysis Dashboard",
-      description: "Extracted and analyzed 200+ job listings using BeautifulSoup and Selenium. Visualized trends in Power BI.",
-      tools: ["Power BI", "Python", "BeautifulSoup", "Selenium"],
-      githubLink: "https://github.com/Sohila-Khaled-Abbas/Wuzzuf-Job-Market-Analysis",
-      liveLink: "#",
+      title: "Wuzzuf Job Market Analysis",
+      description: "Analyzed job postings, hiring trends, salary distributions, and in-demand skills from Wuzzuf data.",
+      tools: ["Power BI", "Python"],
+      githubUrl: "https://github.com/Sohila-Khaled-Abbas/Wuzzuf-Job-Market-Analysis",
     },
     {
       title: "Social Media Advertising Dashboard",
-      description: "Cleaned and analyzed ad performance data to identify top-performing platforms.",
+      description: "Built a dashboard resolving ROI data issues and highlighting a 35% click contribution from top channels.",
       tools: ["Power BI", "Python"],
-      githubLink: "https://github.com/Sohila-Khaled-Abbas/Social-Media-Advertising-Dashboard",
-      liveLink: "#",
+      githubUrl: "https://github.com/Sohila-Khaled-Abbas/Social-Media-Advertising-Dashboard",
+    },
+    {
+      title: "Startup Expansion Analysis Dashboard",
+      description: "Interactive dashboard analyzing a startup's revenue, ROI, and marketing efficiency across markets.",
+      tools: ["Power BI", "Python"],
+      githubUrl: "https://github.com/Sohila-Khaled-Abbas/Startup-Expansion-Analysis-Dashboard",
+    },
+    {
+      title: "Global Layoffs Analysis",
+      description: "Used SQL to uncover layoff trends across industries, funding stages, and regions.",
+      tools: ["SQL"],
+      githubUrl: "https://github.com/Sohila-Khaled-Abbas/global-layoffs-analysis",
+    },
+    {
+      title: "Healthcare Analytics Dashboard",
+      description: "Analyzed hospital waitlists, patient demographics, and service usage trends.",
+      tools: ["Power BI"],
+      githubUrl: "https://github.com/Sohila-Khaled-Abbas/healthcare-analytics-dashboard",
+    },
+    {
+      title: "Python EDA Case Study",
+      description: "Used EDA techniques to explore employee salary data and uncover insights.",
+      tools: ["Python"],
+      githubUrl: "https://github.com/Sohila-Khaled-Abbas/Python_EDA_Case_Study",
     },
     {
       title: "HR Analytics Dashboard",
-      description: "Built an HR dashboard monitoring 100+ employee KPIs, reducing reporting time by 30%.",
+      description: "Designed an interactive HR dashboard with dynamic filters and insights on attendance and KPIs.",
       tools: ["Power BI", "DAX"],
-      githubLink: "https://github.com/Sohila-Khaled-Abbas/HR-Analytics-Dashboard",
-      liveLink: "#",
+      githubUrl: "https://github.com/Sohila-Khaled-Abbas/HR-Analytics-Dashboard",
+    },
+    {
+      title: "IMDB Top 250 Movies Dashboard",
+      description: "Visualized cinema trends, ratings, and distributions based on the IMDB Top 250 dataset.",
+      tools: ["Power BI"],
+      githubUrl: "https://github.com/Sohila-Khaled-Abbas/IMDB-Top250-Movies-Dashboard",
+    },
+    {
+      title: "Emergency Room Dashboard",
+      description: "Analyzed patient satisfaction and visit trends using advanced DAX in Power BI.",
+      tools: ["Power BI", "DAX"],
+      githubUrl: "https://github.com/Sohila-Khaled-Abbas/Emergency-Room-Dashboard",
+    },
+    {
+      title: "Regional Sales Dashboard",
+      description: "Visualized sales trends to identify profitable regions and growth opportunities.",
+      tools: ["Power BI"],
+      githubUrl: "https://github.com/Sohila-Khaled-Abbas/regional-sales-dashboard",
     },
   ];
 
@@ -38,35 +76,33 @@ const Projects = () => {
           </span>
         </h2>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto">
           {projects.map((project, index) => (
-            <Card key={index} className="shadow-lg border-none">
-              <CardHeader className="pb-0">
-                <CardTitle className="text-xl">{project.title}</CardTitle>
+            <Card key={index} className="flex flex-col h-full border shadow-md hover:shadow-lg transition-shadow">
+              <CardHeader>
+                <CardTitle className="text-lg font-semibold line-clamp-2">{project.title}</CardTitle>
               </CardHeader>
-              <CardContent className="pt-4">
-                <p className="text-gray-600 mb-4">{project.description}</p>
-                <div className="flex flex-wrap gap-2 mb-4">
+              <CardContent className="flex-grow">
+                <p className="text-gray-600 text-sm mb-4 line-clamp-3">
+                  {project.description}
+                </p>
+                <div className="flex flex-wrap gap-2">
                   {project.tools.map((tool, toolIndex) => (
-                    <Badge key={toolIndex} variant="secondary" className="bg-gray-100">
+                    <Badge 
+                      key={toolIndex} 
+                      variant="secondary" 
+                      className="bg-purple-50 text-purple-700 hover:bg-purple-100"
+                    >
                       {tool}
                     </Badge>
                   ))}
                 </div>
               </CardContent>
-              <CardFooter className="flex justify-between pt-0">
-                <Button size="sm" variant="outline" asChild>
-                  <a href={project.githubLink} target="_blank" rel="noreferrer" className="inline-flex items-center">
-                    <Github className="mr-1 h-4 w-4" />
-                    GitHub
-                  </a>
-                </Button>
-                <Button size="sm" variant="outline" asChild>
-                  <a href={project.liveLink} target="_blank" rel="noreferrer" className="inline-flex items-center">
-                    <ExternalLink className="mr-1 h-4 w-4" />
-                    Live Demo
-                  </a>
-                </Button>
+              <CardFooter className="pt-0">
+                <div className="flex items-center text-sm text-gray-600">
+                  <Github className="h-4 w-4 mr-2" />
+                  <span className="break-all">{project.githubUrl}</span>
+                </div>
               </CardFooter>
             </Card>
           ))}
@@ -77,4 +113,3 @@ const Projects = () => {
 };
 
 export default Projects;
-
