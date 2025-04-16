@@ -4,9 +4,15 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
-import { Mail, Linkedin, Github } from "lucide-react";
+import { Mail, Phone, MapPin, Linkedin, Github } from "lucide-react";
 
 const Contact = () => {
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    // Placeholder for form submission
+    console.log("Form submitted");
+  };
+
   return (
     <section id="contact" className="py-16 bg-white">
       <div className="container mx-auto px-4">
@@ -26,10 +32,10 @@ const Contact = () => {
               </CardDescription>
             </CardHeader>
             <CardContent>
-              <form className="space-y-4">
+              <form onSubmit={handleSubmit} className="space-y-4">
                 <div>
-                  <Label htmlFor="name">Name</Label>
-                  <Input id="name" placeholder="Your name" />
+                  <Label htmlFor="name">Full Name</Label>
+                  <Input id="name" placeholder="Your full name" />
                 </div>
                 <div>
                   <Label htmlFor="email">Email</Label>
@@ -51,28 +57,40 @@ const Contact = () => {
             <CardHeader>
               <CardTitle className="text-white">Contact Information</CardTitle>
               <CardDescription className="text-white text-opacity-90">
-                Reach out through these channels
+                Let's connect! I'm open to opportunities.
               </CardDescription>
             </CardHeader>
             <CardContent className="space-y-6">
               <div className="flex items-center space-x-3">
                 <Mail className="h-5 w-5 flex-shrink-0" />
-                <a href="mailto:sohila.khaled@example.com" className="hover:underline">
-                  sohila.khaled@example.com
+                <a href="mailto:sohilakhaled811@gmail.com" className="hover:underline">
+                  sohilakhaled811@gmail.com
                 </a>
               </div>
               
               <div className="flex items-center space-x-3">
+                <Phone className="h-5 w-5 flex-shrink-0" />
+                <a href="tel:+201114919021" className="hover:underline">
+                  (+2) 01114919021
+                </a>
+              </div>
+
+              <div className="flex items-center space-x-3">
+                <MapPin className="h-5 w-5 flex-shrink-0" />
+                <span>Damietta, Egypt (Remote & Hybrid)</span>
+              </div>
+              
+              <div className="flex items-center space-x-3">
                 <Linkedin className="h-5 w-5 flex-shrink-0" />
-                <a href="https://www.linkedin.com/in/sohilakhaled" target="_blank" rel="noreferrer" className="hover:underline">
-                  linkedin.com/in/sohilakhaled
+                <a href="https://www.linkedin.com/in/sohilakabbas" target="_blank" rel="noreferrer" className="hover:underline">
+                  linkedin.com/in/sohilakabbas
                 </a>
               </div>
               
               <div className="flex items-center space-x-3">
                 <Github className="h-5 w-5 flex-shrink-0" />
-                <a href="https://github.com/sohilakhaled" target="_blank" rel="noreferrer" className="hover:underline">
-                  github.com/sohilakhaled
+                <a href="https://github.com/Sohila-Khaled-Abbas" target="_blank" rel="noreferrer" className="hover:underline">
+                  github.com/Sohila-Khaled-Abbas
                 </a>
               </div>
 
