@@ -1,16 +1,51 @@
 
+import { useState } from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import { Mail, Phone, MapPin, Linkedin, Github } from "lucide-react";
+import { useToast } from "@/hooks/use-toast";
 
 const Contact = () => {
-  const handleSubmit = (e: React.FormEvent) => {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const { toast } = useToast();
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    // Placeholder for form submission
-    console.log("Form submitted");
+    setIsSubmitting(true);
+
+    const form = e.currentTarget;
+    const formData = new FormData(form);
+
+    try {
+      const response = await fetch('YOUR_FORMSPREE_ENDPOINT', {
+        method: 'POST',
+        body: formData,
+        headers: {
+          'Accept': 'application/json'
+        }
+      });
+
+      if (response.ok) {
+        toast({
+          title: "Message sent successfully!",
+          description: "Thank you for reaching out. I'll get back to you soon.",
+        });
+        form.reset();
+      } else {
+        throw new Error('Failed to send message');
+      }
+    } catch (error) {
+      toast({
+        variant: "destructive",
+        title: "Error sending message",
+        description: "Please try again later or contact me directly via email.",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -23,7 +58,6 @@ const Contact = () => {
         </h2>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-5xl mx-auto">
-          {/* Contact Form */}
           <Card className="shadow-lg border-none">
             <CardHeader>
               <CardTitle>Send Me a Message</CardTitle>
@@ -35,18 +69,22 @@ const Contact = () => {
               <form onSubmit={handleSubmit} className="space-y-4">
                 <div>
                   <Label htmlFor="name">Full Name</Label>
-                  <Input id="name" placeholder="Your full name" />
+                  <Input required id="name" name="name" placeholder="Your full name" />
                 </div>
                 <div>
                   <Label htmlFor="email">Email</Label>
-                  <Input id="email" type="email" placeholder="your.email@example.com" />
+                  <Input required id="email" name="email" type="email" placeholder="your.email@example.com" />
                 </div>
                 <div>
                   <Label htmlFor="message">Message</Label>
-                  <Textarea id="message" placeholder="Your message" rows={5} />
+                  <Textarea required id="message" name="message" placeholder="Your message" rows={5} />
                 </div>
-                <Button type="submit" className="w-full bg-purple-600 hover:bg-purple-700">
-                  Send Message
+                <Button 
+                  type="submit" 
+                  className="w-full bg-purple-600 hover:bg-purple-700"
+                  disabled={isSubmitting}
+                >
+                  {isSubmitting ? "Sending..." : "Send Message"}
                 </Button>
               </form>
             </CardContent>
