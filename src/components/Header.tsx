@@ -8,21 +8,36 @@ import { Button } from "@/components/ui/button";
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [isDarkMode, setIsDarkMode] = useState(false);
+  const [isDarkMode, setIsDarkMode] = useState(
+    localStorage.getItem("theme") === "dark" || 
+    (!localStorage.getItem("theme") && window.matchMedia("(prefers-color-scheme: dark)").matches)
+  );
 
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 10);
     };
+
+    // Set initial theme on component mount
+    if (isDarkMode) {
+      document.documentElement.classList.add("dark");
+      localStorage.setItem("theme", "dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+      localStorage.setItem("theme", "light");
+    }
+    
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  }, [isDarkMode]);
 
   const toggleDarkMode = () => {
     if (isDarkMode) {
       document.documentElement.classList.remove('dark');
+      localStorage.setItem("theme", "light");
     } else {
       document.documentElement.classList.add('dark');
+      localStorage.setItem("theme", "dark");
     }
     setIsDarkMode(!isDarkMode);
   };
@@ -56,8 +71,8 @@ const Header = () => {
       className={cn(
         "fixed top-0 w-full z-50 transition-all duration-300",
         isScrolled
-          ? "bg-white shadow-md py-2"
-          : "bg-transparent py-4"
+          ? "bg-white dark:bg-background-dark shadow-md dark:shadow-gray-900/30 py-2"
+          : "bg-transparent dark:bg-transparent py-4"
       )}
     >
       <div className="container mx-auto px-4 flex justify-between items-center">
@@ -72,7 +87,7 @@ const Header = () => {
               key={link.name}
               href={link.href}
               onClick={(e) => handleScrollToSection(e, link.href)}
-              className="text-foreground hover:text-primary transition duration-300"
+              className="text-foreground dark:text-foreground-dark hover:text-primary dark:hover:text-primary-dark transition duration-300"
             >
               {link.name}
             </a>
@@ -82,7 +97,7 @@ const Header = () => {
             variant="ghost"
             size="icon"
             onClick={toggleDarkMode}
-            className="text-foreground hover:bg-secondary/20"
+            className="text-foreground dark:text-foreground-dark hover:bg-secondary/20 dark:hover:bg-secondary-dark/20"
           >
             {isDarkMode ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
           </Button>
@@ -94,7 +109,7 @@ const Header = () => {
             variant="ghost"
             size="icon"
             onClick={toggleDarkMode}
-            className="text-foreground hover:bg-secondary/20"
+            className="text-foreground dark:text-foreground-dark hover:bg-secondary/20 dark:hover:bg-secondary-dark/20"
           >
             {isDarkMode ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
           </Button>
@@ -102,7 +117,7 @@ const Header = () => {
           <Button
             variant="ghost"
             size="icon"
-            className="text-primary"
+            className="text-primary dark:text-primary-dark"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           >
             <Menu />
@@ -111,14 +126,14 @@ const Header = () => {
 
         {/* Mobile Menu */}
         {isMobileMenuOpen && (
-          <div className="absolute top-full left-0 w-full bg-background shadow-md py-4 md:hidden">
+          <div className="absolute top-full left-0 w-full bg-background dark:bg-background-dark shadow-md dark:shadow-gray-900/30 py-4 md:hidden">
             <div className="flex flex-col space-y-4 px-4">
               {navLinks.map((link) => (
                 <a
                   key={link.name}
                   href={link.href}
                   onClick={(e) => handleScrollToSection(e, link.href)}
-                  className="text-foreground hover:text-primary transition duration-300"
+                  className="text-foreground dark:text-foreground-dark hover:text-primary dark:hover:text-primary-dark transition duration-300"
                 >
                   {link.name}
                 </a>
