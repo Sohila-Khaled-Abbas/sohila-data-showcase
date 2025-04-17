@@ -11,6 +11,16 @@ const Header = () => {
   const [isDarkMode, setIsDarkMode] = useState(false);
 
   useEffect(() => {
+    // Check if user preference is already stored
+    const storedDarkMode = localStorage.getItem('darkMode') === 'true';
+    setIsDarkMode(storedDarkMode);
+    
+    if (storedDarkMode) {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
+
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 10);
     };
@@ -19,12 +29,16 @@ const Header = () => {
   }, []);
 
   const toggleDarkMode = () => {
-    if (isDarkMode) {
-      document.documentElement.classList.remove('dark');
-    } else {
+    const newDarkMode = !isDarkMode;
+    setIsDarkMode(newDarkMode);
+    
+    if (newDarkMode) {
       document.documentElement.classList.add('dark');
+      localStorage.setItem('darkMode', 'true');
+    } else {
+      document.documentElement.classList.remove('dark');
+      localStorage.setItem('darkMode', 'false');
     }
-    setIsDarkMode(!isDarkMode);
   };
 
   const navLinks = [
@@ -56,7 +70,7 @@ const Header = () => {
       className={cn(
         "fixed top-0 w-full z-50 transition-all duration-300",
         isScrolled
-          ? "bg-white shadow-md py-2"
+          ? "bg-white dark:bg-dark-background shadow-md py-2"
           : "bg-transparent py-4"
       )}
     >
@@ -72,7 +86,7 @@ const Header = () => {
               key={link.name}
               href={link.href}
               onClick={(e) => handleScrollToSection(e, link.href)}
-              className="text-foreground hover:text-primary transition duration-300"
+              className="text-foreground dark:text-dark-foreground hover:text-primary dark:hover:text-dark-primary transition duration-300"
             >
               {link.name}
             </a>
@@ -82,7 +96,7 @@ const Header = () => {
             variant="ghost"
             size="icon"
             onClick={toggleDarkMode}
-            className="text-foreground hover:bg-secondary/20"
+            className="text-foreground dark:text-dark-foreground hover:bg-secondary/20 dark:hover:bg-dark-secondary/20"
           >
             {isDarkMode ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
           </Button>
@@ -94,7 +108,7 @@ const Header = () => {
             variant="ghost"
             size="icon"
             onClick={toggleDarkMode}
-            className="text-foreground hover:bg-secondary/20"
+            className="text-foreground dark:text-dark-foreground hover:bg-secondary/20 dark:hover:bg-dark-secondary/20"
           >
             {isDarkMode ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
           </Button>
@@ -102,7 +116,7 @@ const Header = () => {
           <Button
             variant="ghost"
             size="icon"
-            className="text-primary"
+            className="text-primary dark:text-dark-primary"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           >
             <Menu />
@@ -111,14 +125,14 @@ const Header = () => {
 
         {/* Mobile Menu */}
         {isMobileMenuOpen && (
-          <div className="absolute top-full left-0 w-full bg-background shadow-md py-4 md:hidden">
+          <div className="absolute top-full left-0 w-full bg-background dark:bg-dark-background shadow-md py-4 md:hidden">
             <div className="flex flex-col space-y-4 px-4">
               {navLinks.map((link) => (
                 <a
                   key={link.name}
                   href={link.href}
                   onClick={(e) => handleScrollToSection(e, link.href)}
-                  className="text-foreground hover:text-primary transition duration-300"
+                  className="text-foreground dark:text-dark-foreground hover:text-primary dark:hover:text-dark-primary transition duration-300"
                 >
                   {link.name}
                 </a>

@@ -62,6 +62,16 @@ export default {
           'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
           border: 'hsl(var(--sidebar-border))',
           ring: 'hsl(var(--sidebar-ring))'
+        },
+        dark: {
+          background: '#1A1F2C',
+          foreground: '#F7F7F7',
+          primary: '#5C8599',
+          secondary: '#7C9A78',
+          muted: '#31374A',
+          accent: '#D78394',
+          card: '#2A303C',
+          border: '#394056'
         }
       },
       fontFamily: {
