@@ -1,3 +1,4 @@
+
 import type { Config } from "tailwindcss";
 
 export default {
@@ -22,35 +23,35 @@ export default {
         border: 'hsl(var(--border))',
         input: 'hsl(var(--input))',
         ring: 'hsl(var(--ring))',
-        background: '#F7E1D7',
-        foreground: '#4A5759',
+        background: '#FFFFFF',
+        foreground: '#1E1E1E',
         primary: {
-          DEFAULT: '#EDAFB8',
-          foreground: 'hsl(var(--primary-foreground))'
+          DEFAULT: '#4A5759',
+          foreground: '#FFFFFF'
         },
         secondary: {
           DEFAULT: '#B0C4B1',
-          foreground: 'hsl(var(--secondary-foreground))'
+          foreground: '#1E1E1E'
         },
         destructive: {
           DEFAULT: 'hsl(var(--destructive))',
           foreground: 'hsl(var(--destructive-foreground))'
         },
         muted: {
-          DEFAULT: '#DEDBD2',
-          foreground: '#4A5759'
+          DEFAULT: '#F7F7F7',
+          foreground: '#1E1E1E'
         },
         accent: {
-          DEFAULT: '#B0C4B1',
-          foreground: '#4A5759'
+          DEFAULT: '#EDAFB8',
+          foreground: '#FFFFFF'
         },
         popover: {
-          DEFAULT: '#F7E1D7',
-          foreground: '#4A5759'
+          DEFAULT: '#FFFFFF',
+          foreground: '#1E1E1E'
         },
         card: {
-          DEFAULT: '#DEDBD2',
-          foreground: '#4A5759'
+          DEFAULT: '#F7F7F7',
+          foreground: '#1E1E1E'
         },
         sidebar: {
           DEFAULT: 'hsl(var(--sidebar-background))',

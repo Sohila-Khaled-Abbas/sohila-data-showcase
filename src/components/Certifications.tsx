@@ -38,30 +38,30 @@ const Certifications = () => {
   ];
 
   return (
-    <section id="certifications" className="py-16 bg-gray-50">
+    <section id="certifications" className="py-16 bg-muted">
       <div className="container mx-auto px-4">
-        <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">
-          <span className="bg-gradient-to-r from-purple-600 to-blue-500 bg-clip-text text-transparent">
+        <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 font-logo">
+          <span className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
             Certifications
           </span>
         </h2>
 
         <div className="max-w-4xl mx-auto space-y-4">
           {certifications.map((cert, index) => (
-            <Card key={index} className="shadow-md border-none transition-colors hover:bg-gray-50">
+            <Card key={index} className="shadow-sm border-secondary/20 transition-colors hover:bg-background/80 bg-background">
               <CardHeader className="flex flex-row items-center justify-between py-4">
                 <div className="flex items-center gap-3">
-                  <CheckCircle2 className="h-5 w-5 text-green-500" />
-                  <CardTitle className="text-lg">{cert.title}</CardTitle>
+                  <CheckCircle2 className="h-5 w-5 text-accent" />
+                  <CardTitle className="text-lg text-primary">{cert.title}</CardTitle>
                 </div>
-                <Button variant="ghost" size="sm" asChild className="ml-2">
+                <Button variant="ghost" size="sm" asChild className="ml-2 text-primary hover:text-accent">
                   <a href={cert.link} target="_blank" rel="noreferrer" className="inline-flex items-center">
                     <ExternalLink className="h-4 w-4" />
                   </a>
                 </Button>
               </CardHeader>
               <CardContent className="pt-0 pb-4">
-                <div className="flex justify-between text-gray-600">
+                <div className="flex justify-between text-foreground/80">
                   <span>{cert.issuer}</span>
                   <span>{cert.date}</span>
                 </div>

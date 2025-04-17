@@ -69,22 +69,22 @@ const Projects = () => {
   ];
 
   return (
-    <section id="projects" className="py-16 bg-white">
+    <section id="projects" className="py-16 bg-background">
       <div className="container mx-auto px-4">
-        <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">
-          <span className="bg-gradient-to-r from-purple-600 to-blue-500 bg-clip-text text-transparent">
+        <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 font-logo">
+          <span className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
             Featured Projects
           </span>
         </h2>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto">
           {projects.map((project, index) => (
-            <Card key={index} className="flex flex-col h-full border shadow-md hover:shadow-lg transition-shadow">
-              <CardHeader>
-                <CardTitle className="text-lg font-semibold line-clamp-2">{project.title}</CardTitle>
+            <Card key={index} className="flex flex-col h-full border border-secondary/20 shadow-md hover:shadow-lg transition-shadow rounded-xl bg-background">
+              <CardHeader className="pb-2">
+                <CardTitle className="text-lg font-semibold text-primary">{project.title}</CardTitle>
               </CardHeader>
-              <CardContent className="flex-grow">
-                <p className="text-gray-600 text-sm mb-4">
+              <CardContent className="flex-grow pb-2">
+                <p className="text-foreground text-sm mb-4">
                   {project.description}
                 </p>
                 <div className="flex flex-wrap gap-2">
@@ -92,17 +92,17 @@ const Projects = () => {
                     <Badge 
                       key={toolIndex} 
                       variant="secondary" 
-                      className="bg-purple-50 text-purple-700 hover:bg-purple-100"
+                      className="bg-secondary/10 text-primary border-none"
                     >
                       {tool}
                     </Badge>
                   ))}
                 </div>
               </CardContent>
-              <CardFooter>
+              <CardFooter className="pt-2">
                 <Button 
-                  variant="outline" 
-                  className="w-full"
+                  variant="default" 
+                  className="w-full bg-primary hover:bg-primary/90 text-white"
                   onClick={() => window.open(project.githubUrl, '_blank')}
                 >
                   <Github className="mr-2 h-4 w-4" />

@@ -1,3 +1,4 @@
+
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@400;700&display=swap');
 
 @tailwind base;
@@ -7,32 +8,32 @@
 @layer base {
   :root {
     --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    --foreground: 0 0% 12%;
 
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card: 0 0% 97%;
+    --card-foreground: 0 0% 12%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover-foreground: 0 0% 12%;
 
-    --primary: 351 65% 81%;
-    --primary-foreground: 210 40% 98%;
+    --primary: 197 13% 32%;
+    --primary-foreground: 0 0% 100%;
 
     --secondary: 120 10% 73%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    --secondary-foreground: 0 0% 12%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    --muted: 0 0% 97%;
+    --muted-foreground: 0 0% 45%;
 
-    --accent: 120 10% 73%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    --accent: 351 65% 81%;
+    --accent-foreground: 0 0% 100%;
 
     --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive-foreground: 0 0% 98%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 351 65% 81%;
+    --border: 0 0% 89.8%;
+    --input: 0 0% 89.8%;
+    --ring: 197 13% 32%;
 
     --radius: 0.5rem;
   }

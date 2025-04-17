@@ -49,39 +49,59 @@ const Contact = () => {
   };
 
   return (
-    <section id="contact" className="py-16 bg-white">
+    <section id="contact" className="py-16 bg-background">
       <div className="container mx-auto px-4">
-        <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">
-          <span className="bg-gradient-to-r from-purple-600 to-blue-500 bg-clip-text text-transparent">
+        <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 font-logo">
+          <span className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
             Get In Touch
           </span>
         </h2>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-5xl mx-auto">
-          <Card className="shadow-lg border-none">
+          <Card className="shadow-md border-secondary/20">
             <CardHeader>
-              <CardTitle>Send Me a Message</CardTitle>
-              <CardDescription>
+              <CardTitle className="text-primary">Send Me a Message</CardTitle>
+              <CardDescription className="text-foreground/80">
                 I'll get back to you as soon as possible.
               </CardDescription>
             </CardHeader>
             <CardContent>
               <form onSubmit={handleSubmit} className="space-y-4">
                 <div>
-                  <Label htmlFor="name">Full Name</Label>
-                  <Input required id="name" name="name" placeholder="Your full name" />
+                  <Label htmlFor="name" className="text-foreground">Full Name</Label>
+                  <Input 
+                    required 
+                    id="name" 
+                    name="name" 
+                    placeholder="Your full name" 
+                    className="bg-muted border-secondary/30"
+                  />
                 </div>
                 <div>
-                  <Label htmlFor="email">Email</Label>
-                  <Input required id="email" name="email" type="email" placeholder="your.email@example.com" />
+                  <Label htmlFor="email" className="text-foreground">Email</Label>
+                  <Input 
+                    required 
+                    id="email" 
+                    name="email" 
+                    type="email" 
+                    placeholder="your.email@example.com" 
+                    className="bg-muted border-secondary/30"
+                  />
                 </div>
                 <div>
-                  <Label htmlFor="message">Message</Label>
-                  <Textarea required id="message" name="message" placeholder="Your message" rows={5} />
+                  <Label htmlFor="message" className="text-foreground">Message</Label>
+                  <Textarea 
+                    required 
+                    id="message" 
+                    name="message" 
+                    placeholder="Your message" 
+                    rows={5} 
+                    className="bg-muted border-secondary/30"
+                  />
                 </div>
                 <Button 
                   type="submit" 
-                  className="w-full bg-purple-600 hover:bg-purple-700"
+                  className="w-full bg-primary hover:bg-primary/90 text-white"
                   disabled={isSubmitting}
                 >
                   {isSubmitting ? "Sending..." : "Send Message"}
@@ -91,7 +111,7 @@ const Contact = () => {
           </Card>
 
           {/* Contact Information */}
-          <Card className="shadow-lg border-none bg-gradient-to-br from-purple-500 to-blue-600 text-white">
+          <Card className="shadow-md border-secondary/20 bg-gradient-to-br from-primary to-secondary text-white">
             <CardHeader>
               <CardTitle className="text-white">Contact Information</CardTitle>
               <CardDescription className="text-white text-opacity-90">
