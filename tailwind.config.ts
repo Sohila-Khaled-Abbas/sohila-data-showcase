@@ -1,3 +1,4 @@
+
 import type { Config } from "tailwindcss";
 
 export default {
@@ -22,25 +23,15 @@ export default {
         border: 'hsl(var(--border))',
         input: 'hsl(var(--input))',
         ring: 'hsl(var(--ring))',
-        background: {
-          DEFAULT: '#FFFFFF',
-          dark: '#1A1F2C'  // Updated dark background color
-        },
-        foreground: {
-          DEFAULT: '#1E1E1E',
-          dark: '#F7F7F7'  // Bright text for dark mode
-        },
+        background: '#FFFFFF',
+        foreground: '#1E1E1E',
         primary: {
           DEFAULT: '#4A5759',
-          foreground: '#FFFFFF',
-          dark: '#6D8A96',
-          'dark-foreground': '#FFFFFF'
+          foreground: '#FFFFFF'
         },
         secondary: {
           DEFAULT: '#B0C4B1',
-          foreground: '#1E1E1E',
-          dark: '#70897A',
-          'dark-foreground': '#FFFFFF'
+          foreground: '#1E1E1E'
         },
         destructive: {
           DEFAULT: 'hsl(var(--destructive))',
@@ -48,27 +39,19 @@ export default {
         },
         muted: {
           DEFAULT: '#F7F7F7',
-          foreground: '#1E1E1E',
-          dark: '#2D3748',
-          'dark-foreground': '#E2E8F0'
+          foreground: '#1E1E1E'
         },
         accent: {
           DEFAULT: '#EDAFB8',
-          foreground: '#FFFFFF',
-          dark: '#D58E9C',
-          'dark-foreground': '#FFFFFF'
+          foreground: '#FFFFFF'
         },
         popover: {
           DEFAULT: '#FFFFFF',
-          foreground: '#1E1E1E',
-          dark: '#1A1F2C',
-          'dark-foreground': '#F7F7F7'
+          foreground: '#1E1E1E'
         },
         card: {
           DEFAULT: '#F7F7F7',
-          foreground: '#1E1E1E',
-          dark: '#2D3748',
-          'dark-foreground': '#E2E8F0'
+          foreground: '#1E1E1E'
         },
         sidebar: {
           DEFAULT: 'hsl(var(--sidebar-background))',

@@ -1,3 +1,4 @@
+
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=DM+Serif+Display:wght@400;700&display=swap');
 
 @tailwind base;
@@ -38,34 +39,33 @@
   }
 
   .dark {
-    --background: 222 30% 14%;  // Dark background
-    --foreground: 0 0% 97%;     // Bright text
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
 
-    --card: 222 25% 23%;
-    --card-foreground: 0 0% 97%;
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
 
-    --popover: 222 30% 14%;
-    --popover-foreground: 0 0% 97%;
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
 
-    --primary: 198 22% 51%;
-    --primary-foreground: 0 0% 100%;
+    --primary: 263 85% 65%;
+    --primary-foreground: 222.2 47.4% 11.2%;
 
-    --secondary: 120 8% 49%;
-    --secondary-foreground: 0 0% 100%;
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
 
-    --muted: 223 27% 23%;
-    --muted-foreground: 217 9% 88%;
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
 
-    --accent: 351 54% 70%;
-    --accent-foreground: 0 0% 100%;
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
 
     --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 0 0% 98%;
+    --destructive-foreground: 210 40% 98%;
 
-    --border: 220 13% 28%;
-    --input: 220 13% 28%;
-    --ring: 198 22% 51%;
-    
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 263 85% 65%;
     --sidebar-background: 240 5.9% 10%;
     --sidebar-foreground: 240 4.8% 95.9%;
     --sidebar-primary: 224.3 76.3% 48%;
@@ -83,7 +83,7 @@
   }
 
   body {
-    @apply bg-background dark:bg-background-dark text-foreground dark:text-foreground-dark font-sans;
+    @apply bg-background text-foreground font-sans;
   }
 
   html {
@@ -93,7 +93,7 @@
 
 /* Gradients */
 .gradient-text {
-  @apply bg-gradient-to-r from-accent to-primary bg-clip-text text-transparent dark:from-accent-dark dark:to-primary-dark;
+  @apply bg-gradient-to-r from-accent to-primary bg-clip-text text-transparent;
 }
 
 /* Custom scrollbar */
@@ -103,15 +103,15 @@
 }
 
 ::-webkit-scrollbar-track {
-  @apply bg-muted dark:bg-muted-dark;
+  @apply bg-muted;
 }
 
 ::-webkit-scrollbar-thumb {
-  @apply bg-primary bg-opacity-50 dark:bg-primary-dark dark:bg-opacity-70 rounded-full;
+  @apply bg-primary bg-opacity-50 rounded-full;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  @apply bg-primary dark:bg-primary-dark;
+  @apply bg-primary;
 }
 
 /* Hero section animation */
@@ -153,5 +153,5 @@
 
 .photo-frame::after {
   content: '';
-  @apply absolute inset-0 bg-gradient-to-tr from-accent/30 to-secondary/30 dark:from-accent-dark/30 dark:to-secondary-dark/30 opacity-60;
+  @apply absolute inset-0 bg-gradient-to-tr from-accent/30 to-secondary/30 opacity-60;
 }
