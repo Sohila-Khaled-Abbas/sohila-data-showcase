@@ -2,12 +2,13 @@
 import { Link } from "react-router-dom";
 import { cn } from "@/lib/utils";
 import { useState, useEffect } from "react";
-import { Menu } from "lucide-react";
+import { Menu, Sun, Moon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isDarkMode, setIsDarkMode] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -17,14 +18,38 @@ const Header = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  const toggleDarkMode = () => {
+    if (isDarkMode) {
+      document.documentElement.classList.remove('dark');
+    } else {
+      document.documentElement.classList.add('dark');
+    }
+    setIsDarkMode(!isDarkMode);
+  };
+
   const navLinks = [
     { name: "Home", href: "#hero" },
     { name: "About", href: "#about" },
     { name: "Skills", href: "#skills" },
     { name: "Projects", href: "#projects" },
-    { name: "Certifications", href: "#certifications" },
     { name: "Contact", href: "#contact" },
   ];
+
+  const handleScrollToSection = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    e.preventDefault();
+    
+    const element = document.querySelector(href);
+    if (element) {
+      window.scrollTo({
+        top: element.getBoundingClientRect().top + window.pageYOffset - 100,
+        behavior: 'smooth',
+      });
+    }
+    
+    if (isMobileMenuOpen) {
+      setIsMobileMenuOpen(false);
+    }
+  };
 
   return (
     <header
@@ -37,7 +62,7 @@ const Header = () => {
     >
       <div className="container mx-auto px-4 flex justify-between items-center">
         <Link to="/" className="text-xl font-bold">
-          <span className="font-logo bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">Sohila Khaled</span>
+          <span className="font-logo gradient-text">Sohila Khaled</span>
         </Link>
 
         {/* Desktop Navigation */}
@@ -46,22 +71,43 @@ const Header = () => {
             <a
               key={link.name}
               href={link.href}
+              onClick={(e) => handleScrollToSection(e, link.href)}
               className="text-foreground hover:text-primary transition duration-300"
             >
               {link.name}
             </a>
           ))}
+          
+          <Button 
+            variant="ghost"
+            size="icon"
+            onClick={toggleDarkMode}
+            className="text-foreground hover:bg-secondary/20"
+          >
+            {isDarkMode ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
+          </Button>
         </nav>
 
         {/* Mobile Menu Button */}
-        <Button
-          variant="ghost"
-          size="icon"
-          className="md:hidden text-primary"
-          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-        >
-          <Menu />
-        </Button>
+        <div className="flex items-center space-x-2 md:hidden">
+          <Button
+            variant="ghost"
+            size="icon"
+            onClick={toggleDarkMode}
+            className="text-foreground hover:bg-secondary/20"
+          >
+            {isDarkMode ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
+          </Button>
+          
+          <Button
+            variant="ghost"
+            size="icon"
+            className="text-primary"
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+          >
+            <Menu />
+          </Button>
+        </div>
 
         {/* Mobile Menu */}
         {isMobileMenuOpen && (
@@ -71,8 +117,8 @@ const Header = () => {
                 <a
                   key={link.name}
                   href={link.href}
+                  onClick={(e) => handleScrollToSection(e, link.href)}
                   className="text-foreground hover:text-primary transition duration-300"
-                  onClick={() => setIsMobileMenuOpen(false)}
                 >
                   {link.name}
                 </a>

@@ -18,9 +18,12 @@ const Contact = () => {
 
     const form = e.currentTarget;
     const formData = new FormData(form);
+    
+    // Add recipient email to the form data
+    formData.append("_to", "sohilakhaled70@gmail.com");
 
     try {
-      const response = await fetch('YOUR_FORMSPREE_ENDPOINT', {
+      const response = await fetch('https://formspree.io/f/xaygzklp', {
         method: 'POST',
         body: formData,
         headers: {
@@ -52,7 +55,7 @@ const Contact = () => {
     <section id="contact" className="py-16 bg-background">
       <div className="container mx-auto px-4">
         <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 font-logo">
-          <span className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+          <span className="gradient-text">
             Get In Touch
           </span>
         </h2>
@@ -121,21 +124,21 @@ const Contact = () => {
             <CardContent className="space-y-6">
               <div className="flex items-center space-x-3">
                 <Mail className="h-5 w-5 flex-shrink-0" />
-                <a href="mailto:sohilakhaled811@gmail.com" className="hover:underline">
-                  sohilakhaled811@gmail.com
+                <a href="mailto:sohilakhaled70@gmail.com" className="hover:underline">
+                  sohilakhaled70@gmail.com
                 </a>
               </div>
               
               <div className="flex items-center space-x-3">
                 <Phone className="h-5 w-5 flex-shrink-0" />
-                <a href="tel:+201114919021" className="hover:underline">
-                  (+2) 01114919021
+                <a href="tel:+201007178575" className="hover:underline">
+                  01007178575
                 </a>
               </div>
 
               <div className="flex items-center space-x-3">
                 <MapPin className="h-5 w-5 flex-shrink-0" />
-                <span>Damietta, Egypt (Remote & Hybrid)</span>
+                <span>Cairo, Egypt</span>
               </div>
               
               <div className="flex items-center space-x-3">

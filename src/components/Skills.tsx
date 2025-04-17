@@ -5,10 +5,10 @@ import {
   Code, 
   BarChart2, 
   Database, 
-  Library, 
-  Terminal, 
-  Wrench, 
-  Users 
+  FileSpreadsheet,
+  Calculator,
+  Pencil,
+  LayoutDashboard
 } from "lucide-react";
 
 const Skills = () => {
@@ -16,12 +16,12 @@ const Skills = () => {
     {
       name: "Programming & Querying",
       icon: <Code className="h-6 w-6 text-primary" />,
-      skills: ["SQL", "Python", "R"],
+      skills: ["Python", "SQL", "R"],
     },
     {
       name: "Data Visualization",
       icon: <BarChart2 className="h-6 w-6 text-primary" />,
-      skills: ["Excel (Pivot Tables, Charts, Macros)", "Power BI", "Tableau"],
+      skills: ["Power BI", "Tableau", "Excel Charts"],
     },
     {
       name: "Databases",
@@ -29,38 +29,24 @@ const Skills = () => {
       skills: ["PostgreSQL", "MySQL", "SQL Server", "Google BigQuery"],
     },
     {
-      name: "Libraries & Frameworks",
-      icon: <Library className="h-6 w-6 text-primary" />,
-      skills: [
-        "Pandas",
-        "NumPy",
-        "Matplotlib",
-        "Seaborn",
-        "BeautifulSoup",
-        "Selenium",
-        "Scrapy"
-      ],
+      name: "Spreadsheet Skills",
+      icon: <FileSpreadsheet className="h-6 w-6 text-primary" />,
+      skills: ["Excel", "Pivot Tables", "Macros", "VBA"],
     },
     {
-      name: "Tools & Technologies",
-      icon: <Terminal className="h-6 w-6 text-primary" />,
-      skills: ["Jupyter Notebook", "Git", "Docker"],
+      name: "Data Analysis",
+      icon: <Calculator className="h-6 w-6 text-primary" />,
+      skills: ["DAX", "Statistical Analysis", "Forecasting"],
     },
     {
-      name: "Other Technical Skills",
-      icon: <Wrench className="h-6 w-6 text-primary" />,
-      skills: [
-        "Data Cleaning",
-        "Data Validation",
-        "EDA",
-        "Dashboarding",
-        "Reporting Automation"
-      ],
+      name: "Data Preparation",
+      icon: <Pencil className="h-6 w-6 text-primary" />,
+      skills: ["Data Cleaning", "ETL", "Data Validation"],
     },
     {
-      name: "Soft Skills",
-      icon: <Users className="h-6 w-6 text-primary" />,
-      skills: ["Data Storytelling", "Analytical Thinking", "Collaboration"],
+      name: "Dashboard Creation",
+      icon: <LayoutDashboard className="h-6 w-6 text-primary" />,
+      skills: ["Interactive Reports", "KPI Tracking", "Automated Dashboards"],
     },
   ];
 
@@ -68,7 +54,7 @@ const Skills = () => {
     <section id="skills" className="py-16 bg-muted">
       <div className="container mx-auto px-4">
         <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 font-logo">
-          <span className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+          <span className="gradient-text">
             My Skills
           </span>
         </h2>

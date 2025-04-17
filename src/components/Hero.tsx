@@ -7,25 +7,29 @@ const Hero = () => {
     <section id="hero" className="min-h-screen flex items-center justify-center bg-background pt-20">
       <div className="container mx-auto px-4 py-16 flex flex-col md:flex-row items-center gap-8">
         <div className="w-full md:w-1/2 flex justify-center md:order-2">
-          <div className="relative w-64 h-64 md:w-80 md:h-80 rounded-full overflow-hidden border-4 border-accent/20 shadow-xl">
-            <div className="absolute inset-0 bg-gradient-to-r from-accent/50 to-secondary/50 opacity-80"></div>
-            <div className="absolute inset-0 flex items-center justify-center text-primary font-medium">
-              Photo Placeholder
-            </div>
+          <div className="relative w-64 h-64 md:w-80 md:h-80 photo-frame animate-fade-in">
+            <img 
+              src="/lovable-uploads/98f8a1b2-d5ee-4733-bd96-8484ec844805.png" 
+              alt="Sohila Khaled Abbas" 
+              className="absolute inset-0 w-full h-full object-cover z-10"
+            />
           </div>
         </div>
 
         <div className="w-full md:w-1/2 text-center md:text-left md:order-1">
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4">
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 animate-fade-in">
             <span className="block">Hello, I'm</span>
-            <span className="font-logo bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+            <span className="font-logo gradient-text">
               Sohila Khaled Abbas
             </span>
           </h1>
-          <p className="text-xl md:text-2xl text-primary font-medium mb-8">
-            Data Analyst & Top 5 Data Science Creator in Egypt
+          <p className="text-xl md:text-2xl text-primary font-medium mb-3 animate-fade-in-delay-1">
+            Data Analyst
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
+          <p className="text-lg text-foreground/80 mb-8 animate-fade-in-delay-2">
+            Turning Data Into Insights That Matter
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start animate-fade-in-delay-3">
             <Button size="lg" className="bg-primary hover:bg-primary/90 text-white">
               <a href="#projects" className="inline-flex items-center">
                 View My Projects

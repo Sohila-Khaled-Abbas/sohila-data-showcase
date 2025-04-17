@@ -72,7 +72,7 @@ const Projects = () => {
     <section id="projects" className="py-16 bg-background">
       <div className="container mx-auto px-4">
         <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 font-logo">
-          <span className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+          <span className="gradient-text">
             Featured Projects
           </span>
         </h2>

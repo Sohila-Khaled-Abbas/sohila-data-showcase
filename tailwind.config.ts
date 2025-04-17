@@ -65,8 +65,8 @@ export default {
         }
       },
       fontFamily: {
-        sans: ['Inter', 'sans-serif'],
-        logo: ['Playfair Display', 'serif']
+        sans: ['Poppins', 'sans-serif'],
+        logo: ['DM Serif Display', 'serif']
       },
       borderRadius: {
         lg: 'var(--radius)',

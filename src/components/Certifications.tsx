@@ -35,13 +35,25 @@ const Certifications = () => {
       date: "2023",
       link: "https://www.credly.com/badges/42868f31-690d-423e-b812-c7c92024a5b5/public_url",
     },
+    {
+      title: "Introduction to Python",
+      issuer: "DataCamp",
+      date: "2022",
+      link: "#",
+    },
+    {
+      title: "Dashboard Design",
+      issuer: "Power BI Academy",
+      date: "2022",
+      link: "#",
+    },
   ];
 
   return (
     <section id="certifications" className="py-16 bg-muted">
       <div className="container mx-auto px-4">
         <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 font-logo">
-          <span className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+          <span className="gradient-text">
             Certifications
           </span>
         </h2>
