@@ -25,13 +25,19 @@ export default {
         ring: 'hsl(var(--ring))',
         background: '#FFFFFF',
         foreground: '#1E1E1E',
+        'background-dark': '#0F0F0F',
+        'foreground-dark': '#F2F2F2',
         primary: {
           DEFAULT: '#4A5759',
-          foreground: '#FFFFFF'
+          foreground: '#FFFFFF',
+          dark: '#B0C4B1',
+          'dark-foreground': '#0F0F0F'
         },
         secondary: {
           DEFAULT: '#B0C4B1',
-          foreground: '#1E1E1E'
+          foreground: '#1E1E1E',
+          dark: '#4A5759',
+          'dark-foreground': '#F2F2F2'
         },
         destructive: {
           DEFAULT: 'hsl(var(--destructive))',
@@ -39,19 +45,27 @@ export default {
         },
         muted: {
           DEFAULT: '#F7F7F7',
-          foreground: '#1E1E1E'
+          foreground: '#1E1E1E',
+          dark: '#1A1A1A',
+          'dark-foreground': '#F2F2F2'
         },
         accent: {
           DEFAULT: '#EDAFB8',
-          foreground: '#FFFFFF'
+          foreground: '#FFFFFF',
+          dark: '#F7E1D7',
+          'dark-foreground': '#0F0F0F'
         },
         popover: {
           DEFAULT: '#FFFFFF',
-          foreground: '#1E1E1E'
+          foreground: '#1E1E1E',
+          dark: '#0F0F0F',
+          'dark-foreground': '#F2F2F2'
         },
         card: {
           DEFAULT: '#F7F7F7',
-          foreground: '#1E1E1E'
+          foreground: '#1E1E1E',
+          dark: '#1A1A1A',
+          'dark-foreground': '#F2F2F2'
         },
         sidebar: {
           DEFAULT: 'hsl(var(--sidebar-background))',
@@ -63,16 +77,6 @@ export default {
           border: 'hsl(var(--sidebar-border))',
           ring: 'hsl(var(--sidebar-ring))'
         },
-        dark: {
-          background: '#1A1F2C',
-          foreground: '#F7F7F7',
-          primary: '#5C8599',
-          secondary: '#7C9A78',
-          muted: '#31374A',
-          accent: '#D78394',
-          card: '#2A303C',
-          border: '#394056'
-        }
       },
       fontFamily: {
         sans: ['Poppins', 'sans-serif'],

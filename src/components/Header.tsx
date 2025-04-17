@@ -4,6 +4,7 @@ import { cn } from "@/lib/utils";
 import { useState, useEffect } from "react";
 import { Menu, Sun, Moon } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Switch } from "@/components/ui/switch";
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -70,7 +71,7 @@ const Header = () => {
       className={cn(
         "fixed top-0 w-full z-50 transition-all duration-300",
         isScrolled
-          ? "bg-white dark:bg-dark-background shadow-md py-2"
+          ? "bg-background dark:bg-background-dark shadow-md dark:shadow-gray-900 py-2"
           : "bg-transparent py-4"
       )}
     >
@@ -86,20 +87,21 @@ const Header = () => {
               key={link.name}
               href={link.href}
               onClick={(e) => handleScrollToSection(e, link.href)}
-              className="text-foreground dark:text-dark-foreground hover:text-primary dark:hover:text-dark-primary transition duration-300"
+              className="text-foreground dark:text-foreground-dark hover:text-primary dark:hover:text-primary-dark transition duration-300"
             >
               {link.name}
             </a>
           ))}
           
-          <Button 
-            variant="ghost"
-            size="icon"
-            onClick={toggleDarkMode}
-            className="text-foreground dark:text-dark-foreground hover:bg-secondary/20 dark:hover:bg-dark-secondary/20"
-          >
-            {isDarkMode ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
-          </Button>
+          <div className="flex items-center space-x-2">
+            <Sun className="h-4 w-4 text-foreground dark:text-foreground-dark" />
+            <Switch 
+              checked={isDarkMode} 
+              onCheckedChange={toggleDarkMode} 
+              className="data-[state=checked]:bg-primary-dark" 
+            />
+            <Moon className="h-4 w-4 text-foreground dark:text-foreground-dark" />
+          </div>
         </nav>
 
         {/* Mobile Menu Button */}
@@ -108,7 +110,7 @@ const Header = () => {
             variant="ghost"
             size="icon"
             onClick={toggleDarkMode}
-            className="text-foreground dark:text-dark-foreground hover:bg-secondary/20 dark:hover:bg-dark-secondary/20"
+            className="text-foreground dark:text-foreground-dark hover:bg-secondary/20 dark:hover:bg-secondary-dark/20"
           >
             {isDarkMode ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
           </Button>
@@ -116,7 +118,7 @@ const Header = () => {
           <Button
             variant="ghost"
             size="icon"
-            className="text-primary dark:text-dark-primary"
+            className="text-primary dark:text-primary-dark"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           >
             <Menu />
@@ -125,14 +127,14 @@ const Header = () => {
 
         {/* Mobile Menu */}
         {isMobileMenuOpen && (
-          <div className="absolute top-full left-0 w-full bg-background dark:bg-dark-background shadow-md py-4 md:hidden">
+          <div className="absolute top-full left-0 w-full bg-background dark:bg-background-dark shadow-md dark:shadow-gray-900 py-4 md:hidden">
             <div className="flex flex-col space-y-4 px-4">
               {navLinks.map((link) => (
                 <a
                   key={link.name}
                   href={link.href}
                   onClick={(e) => handleScrollToSection(e, link.href)}
-                  className="text-foreground dark:text-dark-foreground hover:text-primary dark:hover:text-dark-primary transition duration-300"
+                  className="text-foreground dark:text-foreground-dark hover:text-primary dark:hover:text-primary-dark transition duration-300"
                 >
                   {link.name}
                 </a>
