@@ -1,4 +1,3 @@
-
 import type { Config } from "tailwindcss";
 
 export default {
@@ -25,11 +24,11 @@ export default {
         ring: 'hsl(var(--ring))',
         background: {
           DEFAULT: '#FFFFFF',
-          dark: '#1A1F2C'
+          dark: '#1A1F2C'  // Updated dark background color
         },
         foreground: {
           DEFAULT: '#1E1E1E',
-          dark: '#F7F7F7'
+          dark: '#F7F7F7'  // Bright text for dark mode
         },
         primary: {
           DEFAULT: '#4A5759',
