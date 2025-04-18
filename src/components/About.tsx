@@ -4,26 +4,26 @@ import { Briefcase, ChartBar, Users, Award, Code } from "lucide-react";
 
 const About = () => {
   return (
-    <section id="about" className="py-16 bg-background dark:bg-background-dark">
-      <div className="container mx-auto px-4">
-        <div className="max-w-6xl mx-auto">
+    <section id="about" className="py-16 bg-background dark:bg-background-dark flex justify-center items-center">
+      <div className="container max-w-4xl px-4 w-full">
+        <div className="text-center">
           {/* Intro Text */}
           <div className="mb-8">
-            <h2 className="text-3xl md:text-4xl font-bold mb-6 font-logo">
+            <h2 className="text-3xl md:text-4xl font-bold mb-6 font-logo text-center">
               <span className="gradient-text">About Me</span>
             </h2>
-            <p className="text-foreground dark:text-foreground-dark text-lg leading-relaxed mb-6">
+            <p className="text-foreground dark:text-foreground-dark text-lg leading-relaxed mb-6 text-center max-w-2xl mx-auto">
               I'm a self-taught data analyst who turns messy spreadsheets and complex datasets 
               into dashboards people actually use. I focus on making reporting smoother, automating 
               the boring stuff, and helping teams see what matters.
             </p>
-            <blockquote className="border-l-4 border-accent dark:border-accent pl-4 italic text-foreground/80 dark:text-foreground-dark/80 my-8">
+            <blockquote className="border-l-4 border-accent dark:border-accent pl-4 italic text-foreground/80 dark:text-foreground-dark/80 my-8 max-w-2xl mx-auto text-center">
               "Dashboards aren't just visuals — they're decisions waiting to happen."
             </blockquote>
           </div>
 
           {/* Highlight Cards */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 justify-center">
             <Card className="bg-card dark:bg-card-dark shadow-sm">
               <CardContent className="pt-6">
                 <div className="flex items-start gap-4">
