@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -49,7 +48,7 @@ const Contact = () => {
   };
 
   return (
-    <section id="contact" className="py-16 bg-background">
+    <section id="contact" className="py-16 bg-background dark:bg-[#121212]">
       <div className="container mx-auto px-4">
         <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 font-logo">
           <span className="gradient-text">
@@ -58,7 +57,7 @@ const Contact = () => {
         </h2>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-5xl mx-auto">
-          <Card className="shadow-md border-secondary/20">
+          <Card className="shadow-md border-secondary/20 dark:border-secondary/40 bg-background dark:bg-[#1F1F1F]">
             <CardHeader>
               <CardTitle className="text-primary">Send Me a Message</CardTitle>
               <CardDescription className="text-foreground/80">
@@ -110,8 +109,7 @@ const Contact = () => {
             </CardContent>
           </Card>
 
-          {/* Contact Information */}
-          <Card className="shadow-md border-secondary/20 bg-gradient-to-br from-primary to-secondary text-white">
+          <Card className="shadow-md border-secondary/20 dark:border-secondary/40 bg-gradient-to-br from-primary to-secondary dark:from-primary-dark dark:to-secondary-dark text-white">
             <CardHeader>
               <CardTitle className="text-white">Contact Information</CardTitle>
               <CardDescription className="text-white text-opacity-90">

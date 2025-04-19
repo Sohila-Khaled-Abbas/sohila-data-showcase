@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 
 const Hero = () => {
   return (
-    <section id="hero" className="min-h-screen flex items-center justify-center bg-background pt-20">
+    <section id="hero" className="min-h-screen flex items-center justify-center bg-background dark:bg-[#121212] pt-20">
       <div className="container mx-auto px-4 py-16 flex flex-col md:flex-row items-center gap-8">
         <div className="w-full md:w-1/2 flex justify-center md:order-2">
           <div className="relative w-64 h-64 md:w-80 md:h-80 photo-frame animate-fade-in">

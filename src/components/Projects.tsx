@@ -110,21 +110,21 @@ const Projects = () => {
   const displayProjects = projects?.length ? projects : fallbackProjects;
 
   return (
-    <section id="projects" className="py-16 bg-background">
+    <section id="projects" className="py-16 bg-background dark:bg-[#121212]">
       <div className="container mx-auto px-4">
         <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 font-logo">
           <span className="gradient-text">Featured Projects</span>
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto">
           {displayProjects.map((project, index) => (
-            <Card key={index} className="flex flex-col h-full border border-secondary/20 shadow-md hover:shadow-lg transition-shadow rounded-xl bg-background">
+            <Card key={index} className="flex flex-col h-full border border-secondary/20 dark:border-secondary/40 shadow-md hover:shadow-lg transition-shadow rounded-xl bg-background dark:bg-[#1F1F1F]">
               <CardHeader className="pb-2">
-                <CardTitle className="text-lg font-semibold text-primary">
+                <CardTitle className="text-lg font-semibold text-primary dark:text-white">
                   {project.title}
                 </CardTitle>
               </CardHeader>
               <CardContent className="flex-grow pb-2">
-                <p className="text-foreground text-sm mb-4">
+                <p className="text-foreground dark:text-white/90 text-sm mb-4">
                   {project.description}
                 </p>
                 <div className="flex flex-wrap gap-2">
@@ -132,7 +132,7 @@ const Projects = () => {
                     <Badge 
                       key={techIndex} 
                       variant="secondary" 
-                      className="bg-secondary/10 text-primary border-none"
+                      className="bg-secondary/10 dark:bg-secondary/20 text-primary dark:text-white border-none"
                     >
                       {tech}
                     </Badge>
@@ -142,7 +142,7 @@ const Projects = () => {
               <CardFooter className="pt-2">
                 <Button 
                   variant="default" 
-                  className="w-full bg-primary hover:bg-primary/90 text-white"
+                  className="w-full bg-primary dark:bg-primary-dark hover:bg-primary/90 dark:hover:bg-primary-dark/90 text-white"
                   onClick={() => window.open(project.github_url, '_blank')}
                 >
                   <Github className="mr-2 h-4 w-4" />

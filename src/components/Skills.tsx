@@ -51,7 +51,7 @@ const Skills = () => {
   ];
 
   return (
-    <section id="skills" className="py-16 bg-muted">
+    <section id="skills" className="py-16 bg-muted dark:bg-[#121212]">
       <div className="container mx-auto px-4">
         <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 font-logo">
           <span className="gradient-text">
@@ -61,18 +61,18 @@ const Skills = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto">
           {skillCategories.map((category, index) => (
-            <Card key={index} className="border border-secondary/20 shadow-sm bg-background rounded-xl overflow-hidden hover:shadow-md transition-shadow duration-300">
+            <Card key={index} className="border border-secondary/20 dark:border-secondary/40 shadow-sm bg-background dark:bg-[#1F1F1F] rounded-xl overflow-hidden hover:shadow-md transition-shadow">
               <CardContent className="p-6">
                 <div className="flex items-center gap-3 mb-4">
                   {category.icon}
-                  <h3 className="text-lg font-semibold text-primary">{category.name}</h3>
+                  <h3 className="text-lg font-semibold text-primary dark:text-white">{category.name}</h3>
                 </div>
                 <div className="flex flex-wrap gap-2">
                   {category.skills.map((skill, skillIndex) => (
                     <Badge
                       key={skillIndex}
                       variant="outline"
-                      className="bg-secondary/10 text-primary border-secondary/20"
+                      className="bg-secondary/10 dark:bg-secondary/20 text-primary dark:text-white border-secondary/20 dark:border-secondary/40"
                     >
                       {skill}
                     </Badge>
