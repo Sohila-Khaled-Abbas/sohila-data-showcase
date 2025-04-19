@@ -5,8 +5,9 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
-import { Mail, Phone, MapPin, Linkedin, Github } from "lucide-react";
+import { Mail, Phone, MapPin, Linkedin, Github, Globe } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import { supabase } from "@/lib/supabase";
 
 const Contact = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -19,27 +20,23 @@ const Contact = () => {
     const form = e.currentTarget;
     const formData = new FormData(form);
     
-    // Add recipient email to the form data
-    formData.append("_to", "sohilakhaled70@gmail.com");
-
     try {
-      const response = await fetch('https://formspree.io/f/xaygzklp', {
-        method: 'POST',
-        body: formData,
-        headers: {
-          'Accept': 'application/json'
-        }
-      });
+      const { error } = await supabase
+        .from('contact_submissions')
+        .insert([{
+          full_name: formData.get('name'),
+          email: formData.get('email'),
+          message: formData.get('message'),
+          submitted_at: new Date().toISOString()
+        }]);
 
-      if (response.ok) {
-        toast({
-          title: "Message sent successfully!",
-          description: "Thank you for reaching out. I'll get back to you soon.",
-        });
-        form.reset();
-      } else {
-        throw new Error('Failed to send message');
-      }
+      if (error) throw error;
+
+      toast({
+        title: "Message sent successfully!",
+        description: "Thank you for reaching out. I'll get back to you soon.",
+      });
+      form.reset();
     } catch (error) {
       toast({
         variant: "destructive",
@@ -124,26 +121,26 @@ const Contact = () => {
             <CardContent className="space-y-6">
               <div className="flex items-center space-x-3">
                 <Mail className="h-5 w-5 flex-shrink-0" />
-                <a href="mailto:sohilakhaled70@gmail.com" className="hover:underline">
-                  sohilakhaled70@gmail.com
+                <a href="mailto:sohilakhaled811@gmail.com" className="hover:underline">
+                  sohilakhaled811@gmail.com
                 </a>
               </div>
               
               <div className="flex items-center space-x-3">
                 <Phone className="h-5 w-5 flex-shrink-0" />
-                <a href="tel:+201007178575" className="hover:underline">
-                  01007178575
+                <a href="tel:+201114919021" className="hover:underline">
+                  (+2) 01114919021
                 </a>
               </div>
 
               <div className="flex items-center space-x-3">
                 <MapPin className="h-5 w-5 flex-shrink-0" />
-                <span>Cairo, Egypt</span>
+                <span>Damietta, Egypt (Open to Remote & Hybrid Roles)</span>
               </div>
               
               <div className="flex items-center space-x-3">
                 <Linkedin className="h-5 w-5 flex-shrink-0" />
-                <a href="https://www.linkedin.com/in/sohilakabbas" target="_blank" rel="noreferrer" className="hover:underline">
+                <a href="https://linkedin.com/in/sohilakabbas" target="_blank" rel="noreferrer" className="hover:underline">
                   linkedin.com/in/sohilakabbas
                 </a>
               </div>
@@ -152,6 +149,13 @@ const Contact = () => {
                 <Github className="h-5 w-5 flex-shrink-0" />
                 <a href="https://github.com/Sohila-Khaled-Abbas" target="_blank" rel="noreferrer" className="hover:underline">
                   github.com/Sohila-Khaled-Abbas
+                </a>
+              </div>
+              
+              <div className="flex items-center space-x-3">
+                <Globe className="h-5 w-5 flex-shrink-0" />
+                <a href="https://sohila-khaled-abbas.github.io/Portfolio/index.html" target="_blank" rel="noreferrer" className="hover:underline">
+                  View Portfolio
                 </a>
               </div>
 

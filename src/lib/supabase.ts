@@ -36,6 +36,7 @@ export type ContactSubmission = {
   id: number;
   full_name: string;
   email: string;
-  message: text;
+  message: string;
   submitted_at: string;
 };
+
