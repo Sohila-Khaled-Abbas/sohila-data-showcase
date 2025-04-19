@@ -1,9 +1,22 @@
+
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Github } from "lucide-react";
+import { Github, ExternalLink } from "lucide-react";
 import { useProjects } from "@/hooks/use-supabase-data";
 import { Skeleton } from "@/components/ui/skeleton";
+
+// Add PowerBI URLs mapping
+const powerBiUrls: { [key: string]: string } = {
+  "Wuzzuf Job Market Analysis": "https://app.powerbi.com/view?r=eyJrIjoiMGNjZmFlOWItMWU3My00ZjM4LTlhYjQtMWY5N2QzOGQwMTAyIiwidCI6IjI1Y2UwMjYxLWJiZDYtNDljZC1hMWUyLTU0MjYwODg2ZDE1OSJ9",
+  "Social Media Advertising Dashboard": "https://app.powerbi.com/view?r=eyJrIjoiMTRlM2M4OWQtMTcyYy00YzhjLWE3NDAtZGNmMDkxNTUwYzIwIiwidCI6IjI1Y2UwMjYxLWJiZDYtNDljZC1hMWUyLTU0MjYwODg2ZDE1OSJ9",
+  "Startup Expansion Analysis Dashboard": "https://app.powerbi.com/view?r=eyJrIjoiZTFiMTFjOWQtNjI5Ni00YzRiLWEwNzQtZmVlZjM2OGQwZGZlIiwidCI6IjI1Y2UwMjYxLWJiZDYtNDljZC1hMWUyLTU0MjYwODg2ZDE1OSJ9",
+  "Healthcare Analytics Dashboard": "https://app.powerbi.com/view?r=eyJrIjoiNDI1ODE0MmYtODk0YS00ZjcxLTgwZTgtODM1NzA0NThjZjEwIiwidCI6IjI1Y2UwMjYxLWJiZDYtNDljZC1hMWUyLTU0MjYwODg2ZDE1OSJ9",
+  "HR Analytics Dashboard": "https://app.powerbi.com/view?r=eyJrIjoiMTgxZTY2NmMtNzA5ZS00Y2FlLWIxNzgtMDM2MWY0ZTIzZjczIiwidCI6IjI1Y2UwMjYxLWJiZDYtNDljZC1hMWUyLTU0MjYwODg2ZDE1OSJ9",
+  "IMDB Top 250 Movies Dashboard": "https://app.powerbi.com/view?r=eyJrIjoiMWJlYmY2ODgtYzQwOS00NzY5LWJmZWItMWI0N2Q0MTJkYmI1IiwidCI6IjI1Y2UwMjYxLWJiZDYtNDljZC1hMWUyLTU0MjYwODg2ZDE1OSJ9",
+  "Emergency Room Dashboard": "https://app.powerbi.com/view?r=eyJrIjoiZjNmNjEwMzMtYzM3OS00OWM5LTkzYTUtNjJhODU2NTcxNzU3IiwidCI6IjI1Y2UwMjYxLWJiZDYtNDljZC1hMWUyLTU0MjYwODg2ZDE1OSJ9",
+  "Regional Sales Dashboard": "https://app.powerbi.com/view?r=eyJrIjoiYWM3NmU2MjgtYjY5Yy00YzczLTg0MDItZjNiMTJlNDUzODhmIiwidCI6IjI1Y2UwMjYxLWJiZDYtNDljZC1hMWUyLTU0MjYwODg2ZDE1OSJ9",
+};
 
 const Projects = () => {
   const { data: projects, isLoading, error } = useProjects();
@@ -139,7 +152,7 @@ const Projects = () => {
                   ))}
                 </div>
               </CardContent>
-              <CardFooter className="pt-2">
+              <CardFooter className="pt-2 flex flex-col gap-2">
                 <Button 
                   variant="default" 
                   className="w-full bg-primary dark:bg-primary-dark hover:bg-primary/90 dark:hover:bg-primary-dark/90 text-white"
@@ -148,6 +161,16 @@ const Projects = () => {
                   <Github className="mr-2 h-4 w-4" />
                   View on GitHub
                 </Button>
+                {project.technologies.includes("Power BI") && powerBiUrls[project.title] && (
+                  <Button 
+                    variant="secondary"
+                    className="w-full bg-highlight dark:bg-secondary hover:bg-primary dark:hover:bg-highlight text-black dark:text-white transition-colors"
+                    onClick={() => window.open(powerBiUrls[project.title], '_blank')}
+                  >
+                    <ExternalLink className="mr-2 h-4 w-4" />
+                    View Live Dashboard
+                  </Button>
+                )}
               </CardFooter>
             </Card>
           ))}
