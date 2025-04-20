@@ -13,6 +13,7 @@ export type Project = {
   description: string;
   technologies: string[];
   github_url: string;
+  powerbi_url?: string;  // Add the new optional field
   image_url?: string;
   created_at?: string;
 };

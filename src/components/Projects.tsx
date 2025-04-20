@@ -1,22 +1,9 @@
-
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Github, ExternalLink } from "lucide-react";
+import { Github, BarChart3 } from "lucide-react";
 import { useProjects } from "@/hooks/use-supabase-data";
 import { Skeleton } from "@/components/ui/skeleton";
-
-// Add PowerBI URLs mapping
-const powerBiUrls: { [key: string]: string } = {
-  "Wuzzuf Job Market Analysis": "https://app.powerbi.com/view?r=eyJrIjoiMGNjZmFlOWItMWU3My00ZjM4LTlhYjQtMWY5N2QzOGQwMTAyIiwidCI6IjI1Y2UwMjYxLWJiZDYtNDljZC1hMWUyLTU0MjYwODg2ZDE1OSJ9",
-  "Social Media Advertising Dashboard": "https://app.powerbi.com/view?r=eyJrIjoiMTRlM2M4OWQtMTcyYy00YzhjLWE3NDAtZGNmMDkxNTUwYzIwIiwidCI6IjI1Y2UwMjYxLWJiZDYtNDljZC1hMWUyLTU0MjYwODg2ZDE1OSJ9",
-  "Startup Expansion Analysis Dashboard": "https://app.powerbi.com/view?r=eyJrIjoiZTFiMTFjOWQtNjI5Ni00YzRiLWEwNzQtZmVlZjM2OGQwZGZlIiwidCI6IjI1Y2UwMjYxLWJiZDYtNDljZC1hMWUyLTU0MjYwODg2ZDE1OSJ9",
-  "Healthcare Analytics Dashboard": "https://app.powerbi.com/view?r=eyJrIjoiNDI1ODE0MmYtODk0YS00ZjcxLTgwZTgtODM1NzA0NThjZjEwIiwidCI6IjI1Y2UwMjYxLWJiZDYtNDljZC1hMWUyLTU0MjYwODg2ZDE1OSJ9",
-  "HR Analytics Dashboard": "https://app.powerbi.com/view?r=eyJrIjoiMTgxZTY2NmMtNzA5ZS00Y2FlLWIxNzgtMDM2MWY0ZTIzZjczIiwidCI6IjI1Y2UwMjYxLWJiZDYtNDljZC1hMWUyLTU0MjYwODg2ZDE1OSJ9",
-  "IMDB Top 250 Movies Dashboard": "https://app.powerbi.com/view?r=eyJrIjoiMWJlYmY2ODgtYzQwOS00NzY5LWJmZWItMWI0N2Q0MTJkYmI1IiwidCI6IjI1Y2UwMjYxLWJiZDYtNDljZC1hMWUyLTU0MjYwODg2ZDE1OSJ9",
-  "Emergency Room Dashboard": "https://app.powerbi.com/view?r=eyJrIjoiZjNmNjEwMzMtYzM3OS00OWM5LTkzYTUtNjJhODU2NTcxNzU3IiwidCI6IjI1Y2UwMjYxLWJiZDYtNDljZC1hMWUyLTU0MjYwODg2ZDE1OSJ9",
-  "Regional Sales Dashboard": "https://app.powerbi.com/view?r=eyJrIjoiYWM3NmU2MjgtYjY5Yy00YzczLTg0MDItZjNiMTJlNDUzODhmIiwidCI6IjI1Y2UwMjYxLWJiZDYtNDljZC1hMWUyLTU0MjYwODg2ZDE1OSJ9",
-};
 
 const Projects = () => {
   const { data: projects, isLoading, error } = useProjects();
@@ -63,18 +50,21 @@ const Projects = () => {
       description: "Analyzed job postings, hiring trends, salary distributions, and in-demand skills.",
       technologies: ["Power BI", "Python"],
       github_url: "https://github.com/Sohila-Khaled-Abbas/Wuzzuf-Job-Market-Analysis",
+      powerbi_url: "https://app.powerbi.com/view?r=eyJrIjoiMGNjZmFlOWItMWU3My00ZjM4LTlhYjQtMWY5N2QzOGQwMTAyIiwidCI6IjI1Y2UwMjYxLWJiZDYtNDljZC1hMWUyLTU0MjYwODg2ZDE1OSJ9",
     },
     {
       title: "Social Media Advertising Dashboard",
       description: "Delivered a dashboard resolving ROI data issues and highlighting a 35% click contribution from top channels.",
       technologies: ["Power BI", "Python"],
       github_url: "https://github.com/Sohila-Khaled-Abbas/Social-Media-Advertising-Dashboard",
+      powerbi_url: "https://app.powerbi.com/view?r=eyJrIjoiMTRlM2M4OWQtMTcyYy00YzhjLWE3NDAtZGNmMDkxNTUwYzIwIiwidCI6IjI1Y2UwMjYxLWJiZDYtNDljZC1hMWUyLTU0MjYwODg2ZDE1OSJ9",
     },
     {
       title: "Startup Expansion Analysis Dashboard",
       description: "Interactive dashboard analyzing revenue, ROI, and marketing efficiency for startup growth.",
       technologies: ["Power BI", "Python"],
       github_url: "https://github.com/Sohila-Khaled-Abbas/Startup-Expansion-Analysis-Dashboard",
+      powerbi_url: "https://app.powerbi.com/view?r=eyJrIjoiZTFiMTFjOWQtNjI5Ni00YzRiLWEwNzQtZmVlZjM2OGQwZGZlIiwidCI6IjI1Y2UwMjYxLWJiZDYtNDljZC1hMWUyLTU0MjYwODg2ZDE1OSJ9",
     },
     {
       title: "Global Layoffs Analysis",
@@ -87,6 +77,7 @@ const Projects = () => {
       description: "Explored hospital waitlists, patient flow, and demographic trends in an interactive dashboard.",
       technologies: ["Power BI"],
       github_url: "https://github.com/Sohila-Khaled-Abbas/healthcare-analytics-dashboard",
+      powerbi_url: "https://app.powerbi.com/view?r=eyJrIjoiNDI1ODE0MmYtODk0YS00ZjcxLTgwZTgtODM1NzA0NThjZjEwIiwidCI6IjI1Y2UwMjYxLWJiZDYtNDljZC1hMWUyLTU0MjYwODg2ZDE1OSJ9",
     },
     {
       title: "Python EDA Case Study",
@@ -99,24 +90,28 @@ const Projects = () => {
       description: "Built an HR dashboard with dynamic filters and detailed KPIs to track employee metrics.",
       technologies: ["Power BI", "DAX"],
       github_url: "https://github.com/Sohila-Khaled-Abbas/HR-Analytics-Dashboard",
+      powerbi_url: "https://app.powerbi.com/view?r=eyJrIjoiMTgxZTY2NmMtNzA5ZS00Y2FlLWIxNzgtMDM2MWY0ZTIzZjczIiwidCI6IjI1Y2UwMjYxLWJiZDYtNDljZC1hMWUyLTU0MjYwODg2ZDE1OSJ9",
     },
     {
       title: "IMDB Top 250 Movies Dashboard",
       description: "Visualized movie ratings and trends using IMDB's top-ranked titles.",
       technologies: ["Power BI"],
       github_url: "https://github.com/Sohila-Khaled-Abbas/IMDB-Top250-Movies-Dashboard",
+      powerbi_url: "https://app.powerbi.com/view?r=eyJrIjoiMWJlYmY2ODgtYzQwOS00NzY5LWJmZWItMWI0N2Q0MTJkYmI1IiwidCI6IjI1Y2UwMjYxLWJiZDYtNDljZC1hMWUyLTU0MjYwODg2ZDE1OSJ9",
     },
     {
       title: "Emergency Room Dashboard",
       description: "Assessed patient satisfaction and ER visit patterns with advanced DAX measures.",
       technologies: ["Power BI", "DAX"],
       github_url: "https://github.com/Sohila-Khaled-Abbas/Emergency-Room-Dashboard",
+      powerbi_url: "https://app.powerbi.com/view?r=eyJrIjoiZjNmNjEwMzMtYzM3OS00OWM5LTkzYTUtNjJhODU2NTcxNzU3IiwidCI6IjI1Y2UwMjYxLWJiZDYtNDljZC1hMWUyLTU0MjYwODg2ZDE1OSJ9",
     },
     {
       title: "Regional Sales Dashboard",
       description: "Monitored regional sales performance, spotting trends and growth opportunities.",
       technologies: ["Power BI"],
       github_url: "https://github.com/Sohila-Khaled-Abbas/regional-sales-dashboard",
+      powerbi_url: "https://app.powerbi.com/view?r=eyJrIjoiYWM3NmU2MjgtYjY5Yy00YzczLTg0MDItZjNiMTJlNDUzODhmIiwidCI6IjI1Y2UwMjYxLWJiZDYtNDljZC1hMWUyLTU0MjYwODg2ZDE1OSJ9",
     },
   ];
 
@@ -161,13 +156,13 @@ const Projects = () => {
                   <Github className="mr-2 h-4 w-4" />
                   View on GitHub
                 </Button>
-                {project.technologies.includes("Power BI") && powerBiUrls[project.title] && (
+                {project.powerbi_url && (
                   <Button 
                     variant="secondary"
                     className="w-full bg-highlight dark:bg-secondary hover:bg-primary dark:hover:bg-highlight text-black dark:text-white transition-colors"
-                    onClick={() => window.open(powerBiUrls[project.title], '_blank')}
+                    onClick={() => window.open(project.powerbi_url, '_blank')}
                   >
-                    <ExternalLink className="mr-2 h-4 w-4" />
+                    <BarChart3 className="mr-2 h-4 w-4" />
                     View Live Dashboard
                   </Button>
                 )}
