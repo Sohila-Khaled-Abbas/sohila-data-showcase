@@ -60,7 +60,7 @@ const Contact = () => {
           <Card className="shadow-md border-secondary/20 dark:border-secondary/40 bg-background dark:bg-[#1F1F1F]">
             <CardHeader>
               <CardTitle className="text-primary">Send Me a Message</CardTitle>
-              <CardDescription className="text-foreground/80">
+              <CardDescription className="text-accent dark:text-accent">
                 I'll get back to you as soon as possible.
               </CardDescription>
             </CardHeader>

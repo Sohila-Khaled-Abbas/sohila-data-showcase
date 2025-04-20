@@ -26,7 +26,7 @@ const Hero = () => {
           <p className="text-xl md:text-2xl text-primary font-medium mb-3 animate-fade-in-delay-1">
             Data Analyst
           </p>
-          <p className="text-lg text-foreground/80 mb-8 animate-fade-in-delay-2">
+          <p className="text-lg text-accent dark:text-accent mb-8 animate-fade-in-delay-2">
             Turning Data Into Insights That Matter
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start animate-fade-in-delay-3">

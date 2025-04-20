@@ -1,5 +1,5 @@
 
-import { Github, Linkedin, Twitter, Mail } from "lucide-react";
+import { Github, Linkedin, Mail } from "lucide-react";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -20,9 +20,6 @@ const Footer = () => {
             </a>
             <a href="https://www.linkedin.com/in/sohilakhaled" target="_blank" rel="noreferrer" className="text-gray-400 hover:text-white transition-colors">
               <Linkedin className="h-5 w-5" />
-            </a>
-            <a href="https://twitter.com/sohilakhaled" target="_blank" rel="noreferrer" className="text-gray-400 hover:text-white transition-colors">
-              <Twitter className="h-5 w-5" />
             </a>
             <a href="mailto:sohila.khaled@example.com" className="text-gray-400 hover:text-white transition-colors">
               <Mail className="h-5 w-5" />

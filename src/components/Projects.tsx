@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -319,16 +318,6 @@ const Projects = () => {
                   
                   {project.powerbi_url && (
                     <>
-                      {/* Regular external link button */}
-                      <Button 
-                        variant="secondary"
-                        className="w-full bg-highlight dark:bg-secondary hover:bg-primary dark:hover:bg-highlight text-black dark:text-white transition-colors"
-                        onClick={() => window.open(project.powerbi_url, '_blank')}
-                      >
-                        <BarChart3 className="mr-2 h-4 w-4" />
-                        View Live Dashboard
-                      </Button>
-                      
                       {/* Preview button with modal */}
                       <Button 
                         variant="outline"
