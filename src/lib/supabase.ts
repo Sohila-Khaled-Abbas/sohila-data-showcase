@@ -1,4 +1,3 @@
-
 import { createClient } from '@supabase/supabase-js';
 
 const supabaseUrl = 'https://your-project-url.supabase.co';
@@ -13,9 +12,10 @@ export type Project = {
   description: string;
   technologies: string[];
   github_url: string;
-  powerbi_url?: string;  // Add the new optional field
+  powerbi_url?: string;
   image_url?: string;
   created_at?: string;
+  impact_score?: number; // Added for business impact sorting
 };
 
 export type Skill = {
@@ -40,4 +40,3 @@ export type ContactSubmission = {
   message: string;
   submitted_at: string;
 };
-
