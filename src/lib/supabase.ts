@@ -1,3 +1,4 @@
+
 import { createClient } from '@supabase/supabase-js';
 
 const supabaseUrl = 'https://your-project-url.supabase.co';
@@ -30,6 +31,17 @@ export type Certification = {
   name: string;
   issuer: string;
   link?: string;
+  created_at?: string;
+};
+
+export type Course = {
+  id: number;
+  title: string;
+  provider: string;
+  category: string;
+  cert_link?: string;
+  completed: boolean;
+  order: number;
   created_at?: string;
 };
 
