@@ -1,5 +1,5 @@
 
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { cn } from "@/lib/utils";
 import { useState, useEffect } from "react";
 import { Menu, Sun, Moon } from "lucide-react";
@@ -10,6 +10,7 @@ const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isDarkMode, setIsDarkMode] = useState(false);
+  const location = useLocation();
 
   useEffect(() => {
     // Check if user preference is already stored
@@ -42,7 +43,7 @@ const Header = () => {
     }
   };
 
-  const navLinks = [
+  const mainNavLinks = [
     { name: "Home", href: "#hero" },
     { name: "About", href: "#about" },
     { name: "Skills", href: "#skills" },
@@ -51,8 +52,18 @@ const Header = () => {
     { name: "Contact", href: "#contact" },
   ];
 
+  const otherLinks = [
+    { name: "Courses", href: "/courses" }
+  ];
+
   const handleScrollToSection = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     e.preventDefault();
+    
+    if (location.pathname !== "/") {
+      // Navigate to home page first
+      window.location.href = `/${href}`;
+      return;
+    }
     
     const element = document.querySelector(href);
     if (element) {
@@ -83,7 +94,7 @@ const Header = () => {
 
         {/* Desktop Navigation */}
         <nav className="hidden md:flex space-x-8">
-          {navLinks.map((link) => (
+          {mainNavLinks.map((link) => (
             <a
               key={link.name}
               href={link.href}
@@ -92,6 +103,16 @@ const Header = () => {
             >
               {link.name}
             </a>
+          ))}
+          
+          {otherLinks.map((link) => (
+            <Link
+              key={link.name}
+              to={link.href}
+              className="text-foreground dark:text-foreground-dark hover:text-primary dark:hover:text-primary-dark transition duration-300"
+            >
+              {link.name}
+            </Link>
           ))}
           
           <div className="flex items-center space-x-2">
@@ -130,7 +151,7 @@ const Header = () => {
         {isMobileMenuOpen && (
           <div className="absolute top-full left-0 w-full bg-background dark:bg-background-dark shadow-md dark:shadow-gray-900 py-4 md:hidden">
             <div className="flex flex-col space-y-4 px-4">
-              {navLinks.map((link) => (
+              {mainNavLinks.map((link) => (
                 <a
                   key={link.name}
                   href={link.href}
@@ -139,6 +160,16 @@ const Header = () => {
                 >
                   {link.name}
                 </a>
+              ))}
+              
+              {otherLinks.map((link) => (
+                <Link
+                  key={link.name}
+                  to={link.href}
+                  className="text-foreground dark:text-foreground-dark hover:text-primary dark:hover:text-primary-dark transition duration-300"
+                >
+                  {link.name}
+                </Link>
               ))}
             </div>
           </div>
