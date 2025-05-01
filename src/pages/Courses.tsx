@@ -2,6 +2,8 @@
 import React from "react";
 import { ExternalLink } from "lucide-react";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
 
 const Courses = () => {
   const courseCategories = [
@@ -66,8 +68,9 @@ const Courses = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-background dark:bg-background-dark text-foreground dark:text-foreground-dark pt-24 pb-16">
-      <div className="container mx-auto px-4">
+    <div className="min-h-screen bg-background dark:bg-background-dark text-foreground dark:text-foreground-dark">
+      <Header />
+      <section className="pt-24 pb-16 container mx-auto px-4">
         <h1 className="text-4xl md:text-5xl font-bold mb-6 gradient-text">Courses & Learning Journey</h1>
         
         <p className="text-lg mb-10 max-w-3xl">
@@ -109,7 +112,8 @@ const Courses = () => {
             <ExternalLink className="h-5 w-5" />
           </a>
         </div>
-      </div>
+      </section>
+      <Footer />
     </div>
   );
 };

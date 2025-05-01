@@ -49,15 +49,18 @@ const Header = () => {
     { name: "Skills", href: "#skills" },
     { name: "Projects", href: "#projects" },
     { name: "Certifications", href: "#certifications" },
+    { name: "Courses", href: "/courses" },
     { name: "Contact", href: "#contact" },
-  ];
-
-  const otherLinks = [
-    { name: "Courses", href: "/courses" }
   ];
 
   const handleScrollToSection = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     e.preventDefault();
+    
+    if (href.startsWith("/")) {
+      // Navigate to a different page
+      window.location.href = href;
+      return;
+    }
     
     if (location.pathname !== "/") {
       // Navigate to home page first
@@ -105,16 +108,6 @@ const Header = () => {
             </a>
           ))}
           
-          {otherLinks.map((link) => (
-            <Link
-              key={link.name}
-              to={link.href}
-              className="text-foreground dark:text-foreground-dark hover:text-primary dark:hover:text-primary-dark transition duration-300"
-            >
-              {link.name}
-            </Link>
-          ))}
-          
           <div className="flex items-center space-x-2">
             <Sun className="h-4 w-4 text-foreground dark:text-foreground-dark" />
             <Switch 
@@ -160,16 +153,6 @@ const Header = () => {
                 >
                   {link.name}
                 </a>
-              ))}
-              
-              {otherLinks.map((link) => (
-                <Link
-                  key={link.name}
-                  to={link.href}
-                  className="text-foreground dark:text-foreground-dark hover:text-primary dark:hover:text-primary-dark transition duration-300"
-                >
-                  {link.name}
-                </Link>
               ))}
             </div>
           </div>
