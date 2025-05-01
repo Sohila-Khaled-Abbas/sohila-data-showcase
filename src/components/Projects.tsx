@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from "react";
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -18,11 +19,33 @@ const Projects = () => {
   const [filteredProjects, setFilteredProjects] = useState<Project[]>([]);
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+  const [commonTechs, setCommonTechs] = useState<string[]>([]);
   
   // Extract unique technologies for filter badges
   const uniqueTechnologies = projects ? 
     [...new Set(projects.flatMap(project => project.technologies || []))] : 
     [];
+  
+  // Set common technologies for quick filtering
+  useEffect(() => {
+    if (projects) {
+      const techCount = new Map<string, number>();
+      projects.forEach(project => {
+        project.technologies?.forEach(tech => {
+          techCount.set(tech, (techCount.get(tech) || 0) + 1);
+        });
+      });
+      
+      // Get the most common technologies (those with more than 1 project)
+      const common = Array.from(techCount.entries())
+        .filter(([_, count]) => count > 1)
+        .sort((a, b) => b[1] - a[1])
+        .map(([tech]) => tech)
+        .slice(0, 5); // Top 5 most common
+      
+      setCommonTechs(common);
+    }
+  }, [projects]);
   
   // Filter and sort projects
   useEffect(() => {
@@ -33,13 +56,28 @@ const Projects = () => {
     
     // Search filter
     if (searchQuery) {
-      const query = searchQuery.toLowerCase();
-      result = result.filter(project => 
-        project.title.toLowerCase().includes(query) || 
-        (project.technologies && project.technologies.some(tech => 
-          tech.toLowerCase().includes(query)
-        ))
+      const query = searchQuery.toLowerCase().trim();
+      
+      // Check if the search query exactly matches a technology name
+      const exactTechMatch = uniqueTechnologies.find(
+        tech => tech.toLowerCase() === query
       );
+      
+      if (exactTechMatch && !selectedTechnology) {
+        // If there's an exact technology match, act as if it was selected in the tech filter
+        result = result.filter(project => 
+          project.technologies && project.technologies.includes(exactTechMatch)
+        );
+      } else {
+        // Regular search behavior with improved tech matching
+        result = result.filter(project => 
+          project.title.toLowerCase().includes(query) || 
+          (project.description && project.description.toLowerCase().includes(query)) ||
+          (project.technologies && project.technologies.some(tech => 
+            tech.toLowerCase().includes(query) || query.includes(tech.toLowerCase())
+          ))
+        );
+      }
     }
     
     // Technology filter
@@ -71,12 +109,24 @@ const Projects = () => {
     }
     
     setFilteredProjects(result);
-  }, [projects, searchQuery, selectedTechnology, sortBy]);
+  }, [projects, searchQuery, selectedTechnology, sortBy, uniqueTechnologies]);
 
   // Preview modal handler
   const openPreviewModal = (project: Project) => {
     setSelectedProject(project);
     setIsModalOpen(true);
+  };
+
+  // Quick filter by technology
+  const setQuickFilter = (tech: string) => {
+    setSelectedTechnology(selectedTechnology === tech ? "" : tech);
+    setSearchQuery("");
+  };
+
+  // Check if a technology matches the search query
+  const highlightIfMatched = (technology: string): boolean => {
+    if (!searchQuery) return false;
+    return technology.toLowerCase().includes(searchQuery.toLowerCase());
   };
 
   // Loading state
@@ -220,7 +270,7 @@ const Projects = () => {
           <div className="relative flex-grow">
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
             <Input
-              placeholder="Search projects by name, tool, or tag"
+              placeholder="Search projects by name or technology (e.g. Power BI, Python)"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               className="pl-10 bg-background dark:bg-[#1F1F1F] border-secondary/30"
@@ -251,16 +301,39 @@ const Projects = () => {
           </Select>
         </div>
         
+        {/* Quick filter technology buttons */}
+        <div className="flex flex-wrap gap-2 mb-4 max-w-7xl mx-auto">
+          {commonTechs.map((tech, index) => (
+            <Button
+              key={index}
+              variant={tech === selectedTechnology ? "default" : "outline"}
+              size="sm"
+              className={`
+                text-xs py-1 h-8 transition-colors
+                ${tech === selectedTechnology ? 
+                  'bg-primary dark:bg-primary-dark text-white' : 
+                  'bg-secondary/10 hover:bg-secondary/20 dark:bg-secondary/20 hover:dark:bg-secondary/30'}
+              `}
+              onClick={() => setQuickFilter(tech)}
+            >
+              {tech}
+            </Button>
+          ))}
+        </div>
+        
         {/* Technology filter badges */}
         <div className="flex flex-wrap gap-2 mb-8 max-w-7xl mx-auto">
           {uniqueTechnologies.map((tech, index) => (
             <Badge 
               key={index} 
-              variant={selectedTechnology === tech ? "default" : "outline"}
+              variant={selectedTechnology === tech ? "default" : 
+                highlightIfMatched(tech) ? "secondary" : "outline"}
               className={`
                 cursor-pointer text-xs px-3 py-1 rounded-full
                 ${selectedTechnology === tech ? 
                   'bg-primary dark:bg-primary-dark text-white' : 
+                  highlightIfMatched(tech) ?
+                  'bg-secondary/40 dark:bg-secondary/60 dark:text-white font-medium' :
                   'bg-secondary/20 dark:bg-secondary/30 hover:bg-secondary/40'}
               `}
               onClick={() => setSelectedTechnology(selectedTechnology === tech ? "" : tech)}
@@ -268,14 +341,17 @@ const Projects = () => {
               {tech}
             </Badge>
           ))}
-          {selectedTechnology && (
+          {(selectedTechnology || searchQuery) && (
             <Button 
               variant="ghost" 
               size="sm" 
-              onClick={() => setSelectedTechnology("")}
+              onClick={() => {
+                setSelectedTechnology("");
+                setSearchQuery("");
+              }}
               className="text-xs h-6 px-2"
             >
-              Clear filter
+              Clear filters
             </Button>
           )}
         </div>
@@ -298,8 +374,12 @@ const Projects = () => {
                     {project.technologies && project.technologies.map((tech, techIndex) => (
                       <Badge 
                         key={techIndex} 
-                        variant="secondary" 
-                        className="bg-secondary/10 dark:bg-secondary/20 text-primary dark:text-white border-none text-xs"
+                        variant={highlightIfMatched(tech) ? "default" : "secondary"}
+                        className={`
+                          bg-secondary/10 dark:bg-secondary/20 text-primary dark:text-white 
+                          border-none text-xs
+                          ${highlightIfMatched(tech) ? 'bg-primary/20 dark:bg-primary-dark/30 font-medium' : ''}
+                        `}
                       >
                         {tech}
                       </Badge>
