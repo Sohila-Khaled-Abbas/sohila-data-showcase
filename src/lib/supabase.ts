@@ -43,6 +43,7 @@ export type Course = {
   completed: boolean;
   order: number;
   created_at?: string;
+  tags?: string[]; // New field for filtering
 };
 
 export type ContactSubmission = {
