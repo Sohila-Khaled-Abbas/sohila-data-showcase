@@ -1,105 +1,65 @@
 
-import React, { useState, useMemo } from "react";
-import { ExternalLink, Loader2, Search, Filter, X } from "lucide-react";
+import React from "react";
+import { ExternalLink } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
-import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import { useQuery } from "@tanstack/react-query";
-import { supabase, Course } from "@/lib/supabase";
-import { groupBy, uniq, flatten } from "lodash";
 
 const Courses = () => {
-  const [searchQuery, setSearchQuery] = useState("");
-  const [selectedTags, setSelectedTags] = useState<string[]>([]);
-
-  const { data: courses, isLoading, error } = useQuery({
-    queryKey: ['courses'],
-    queryFn: async (): Promise<Course[]> => {
-      const { data, error } = await supabase
-        .from('courses')
-        .select('*')
-        .eq('completed', true)
-        .order('category', { ascending: true })
-        .order('order', { ascending: true });
-      
-      if (error) throw error;
-      return data || [];
-    },
-  });
-
-  // Extract all unique tags from courses
-  const allTags = useMemo(() => {
-    if (!courses) return [];
-    
-    // Handle both array tags and string tags (comma separated)
-    const tagLists = courses.map(course => {
-      if (!course.tags) return [];
-      return Array.isArray(course.tags) ? course.tags : course.tags.split(',').map(tag => tag.trim());
-    });
-    
-    return uniq(flatten(tagLists)).sort();
-  }, [courses]);
-
-  // Filter courses based on search and selected tags
-  const filteredCourses = useMemo(() => {
-    if (!courses) return [];
-    
-    return courses.filter(course => {
-      // Search filter
-      const searchLower = searchQuery.toLowerCase();
-      const matchesSearch = searchQuery === "" || 
-        course.title.toLowerCase().includes(searchLower) ||
-        course.provider.toLowerCase().includes(searchLower) ||
-        course.category.toLowerCase().includes(searchLower);
-
-      // Tags filter
-      let courseTags: string[] = [];
-      if (course.tags) {
-        courseTags = Array.isArray(course.tags) ? course.tags : course.tags.split(',').map(tag => tag.trim());
-      }
-      
-      const matchesTags = selectedTags.length === 0 || 
-        selectedTags.some(tag => courseTags.includes(tag));
-
-      return matchesSearch && matchesTags;
-    });
-  }, [courses, searchQuery, selectedTags]);
-
-  // Group courses by category
-  const groupedCourses = useMemo(() => {
-    if (!filteredCourses.length) return {};
-    return groupBy(filteredCourses, 'category');
-  }, [filteredCourses]);
-
-  // Function to toggle a tag selection
-  const toggleTag = (tag: string) => {
-    if (selectedTags.includes(tag)) {
-      setSelectedTags(selectedTags.filter(t => t !== tag));
-    } else {
-      setSelectedTags([...selectedTags, tag]);
-    }
-  };
-
-  // Clear all filters
-  const clearFilters = () => {
-    setSearchQuery("");
-    setSelectedTags([]);
+  // Define course categories and their respective courses
+  const coursesByCategory = {
+    "Data Analysis & Visualization": [
+      { title: "Data Analytics Essentials", provider: "Cisco" },
+      { title: "Power BI Fundamentals", provider: "DataCamp" },
+      { title: "Design in Power BI", provider: "DataCamp" },
+      { title: "Time Intelligent Functions Using DAX in Power BI", provider: "Udemy" },
+      { title: "Data Visualization in Python", provider: "DataCamp" }
+    ],
+    "SQL & Databases": [
+      { title: "Transact SQL Queries", provider: "MaharaTech" },
+      { title: "SQL Fundamentals", provider: "DataCamp" },
+      { title: "SQL Server Fundamentals", provider: "DataCamp" },
+      { title: "SQL for Business Analysts", provider: "DataCamp" },
+      { title: "Associate Data Analyst in SQL", provider: "DataCamp" },
+      { title: "Associate Data Engineer in SQL", provider: "DataCamp" }
+    ],
+    "Python & Programming": [
+      { title: "Python Programming", provider: "DataCamp" },
+      { title: "Python Programming Fundamentals", provider: "DataCamp" },
+      { title: "Web Scraping in Python", provider: "DataCamp" },
+      { title: "Data Manipulation in Python", provider: "DataCamp" },
+      { title: "Python Data Fundamentals", provider: "DataCamp" },
+      { title: "Time Series in Python", provider: "DataCamp" },
+      { title: "Applied Statistics in Python", provider: "DataCamp" },
+      { title: "Data Analyst in Python", provider: "DataCamp" },
+      { title: "Associate Data Scientist in Python", provider: "DataCamp" }
+    ],
+    "Career & Data Foundations": [
+      { title: "Data Literacy Foundations", provider: "Maven Analytics" },
+      { title: "Data Literacy Professional", provider: "DataCamp" },
+      { title: "Building Your Personal Brand", provider: "Maven Analytics" },
+      { title: "Networking & Applying for Jobs", provider: "Maven Analytics" },
+      { title: "Optimizing Your Resume", provider: "Maven Analytics" },
+      { title: "Thinking Like an Analyst", provider: "Maven Analytics" },
+      { title: "Acing the Analyst Interview", provider: "Maven Analytics" },
+      { title: "Google Data Analytics Professional Certificate", provider: "Coursera" },
+      { title: "Finding Your Path in Data", provider: "Maven Analytics" },
+      { title: "Introduction to Data & Data Science", provider: "IBM" },
+      { title: "Understanding Data Visualization", provider: "DataCamp" },
+      { title: "Understanding Cloud Computing", provider: "DataCamp" }
+    ]
   };
 
   // Function to get the appropriate icon for each category
   const getCategoryIcon = (category: string): string => {
-    switch (category.toLowerCase()) {
-      case 'sql & databases':
-        return '💻';
-      case 'python & programming':
-        return '🐍';
-      case 'data analysis & bi':
+    switch (category) {
+      case 'Data Analysis & Visualization':
         return '📊';
-      case 'data literacy & career':
+      case 'SQL & Databases':
+        return '💻';
+      case 'Python & Programming':
+        return '🐍';
+      case 'Career & Data Foundations':
         return '🌐';
       default:
         return '📚';
@@ -113,128 +73,30 @@ const Courses = () => {
         <h1 className="text-4xl md:text-5xl font-bold mb-6 gradient-text">Courses & Learning Journey</h1>
         
         <p className="text-lg mb-10 max-w-3xl">
-          These are the courses and certifications I've completed across data analytics, dashboarding, programming, and career development. View full certification proof below.
+          These are the courses and certifications I've completed across data analytics, dashboarding, programming, and career development. You can view my certificate folder at the bottom of this page.
         </p>
 
-        {/* Search and Filter Controls */}
-        <div className="mb-8 space-y-4">
-          {/* Search Bar */}
-          <div className="relative max-w-xl">
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-            <Input 
-              type="text" 
-              placeholder="Search by course, provider, or topic..." 
-              className="pl-10 w-full bg-surface dark:bg-[#1A1A1A] border-secondary/30"
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-            />
-          </div>
-          
-          {/* Tags Filtering */}
-          {allTags.length > 0 && (
-            <div className="space-y-2">
-              <div className="flex items-center gap-2">
-                <Filter className="h-4 w-4 text-muted-foreground" />
-                <span className="text-sm font-medium">Filter by tags:</span>
-                {selectedTags.length > 0 && (
-                  <Button 
-                    variant="ghost" 
-                    size="sm" 
-                    className="text-xs h-7" 
-                    onClick={clearFilters}
-                  >
-                    Clear <X className="ml-1 h-3 w-3" />
-                  </Button>
-                )}
-              </div>
-              <div className="flex flex-wrap gap-2">
-                {allTags.map(tag => (
-                  <Badge 
-                    key={tag}
-                    variant={selectedTags.includes(tag) ? "default" : "outline"}
-                    className="cursor-pointer hover:opacity-80 transition-opacity"
-                    onClick={() => toggleTag(tag)}
-                  >
-                    {tag}
-                  </Badge>
+        {/* Courses By Category */}
+        <div className="space-y-12">
+          {Object.entries(coursesByCategory).map(([category, courses]) => (
+            <div key={category} className="mb-8">
+              <h2 className="flex items-center gap-3 text-2xl font-semibold mb-6">
+                <span>{getCategoryIcon(category)}</span>
+                {category}
+              </h2>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {courses.map((course, index) => (
+                  <Card key={index} className="bg-surface dark:bg-[#1A1A1A] border border-secondary/30 shadow-sm hover:shadow-md transition-shadow">
+                    <CardContent className="p-4">
+                      <h3 className="text-base font-semibold text-primary dark:text-primary-dark">{course.title}</h3>
+                      <p className="text-sm text-muted-foreground mt-1">{course.provider}</p>
+                    </CardContent>
+                  </Card>
                 ))}
               </div>
             </div>
-          )}
+          ))}
         </div>
-
-        {isLoading && (
-          <div className="flex justify-center py-16">
-            <Loader2 className="h-8 w-8 animate-spin text-primary dark:text-primary-dark" />
-          </div>
-        )}
-
-        {error && (
-          <div className="p-4 rounded-lg bg-red-50 dark:bg-red-900/20 text-red-600 dark:text-red-400">
-            <p>Error loading courses. Please try again later.</p>
-          </div>
-        )}
-
-        {courses && !isLoading && (
-          <>
-            {/* No Results Message */}
-            {Object.keys(groupedCourses).length === 0 && (
-              <div className="p-8 text-center rounded-lg bg-muted dark:bg-muted-dark">
-                <p className="text-lg font-medium mb-2">No courses match your filters</p>
-                <p className="text-muted-foreground">Try adjusting your search or filters</p>
-                <Button onClick={clearFilters} className="mt-4">Clear Filters</Button>
-              </div>
-            )}
-            
-            {/* Courses By Category */}
-            <div className="space-y-12">
-              {Object.entries(groupedCourses).map(([category, coursesInCategory]) => (
-                <div key={category} className="mb-8">
-                  <h2 className="flex items-center gap-3 text-2xl font-semibold mb-6">
-                    <span>{getCategoryIcon(category)}</span>
-                    {category}
-                  </h2>
-                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    {(coursesInCategory as Course[]).map((course) => (
-                      <Card key={course.id} className="bg-surface dark:bg-[#1A1A1A] border border-secondary/30 shadow-sm hover:shadow-md transition-shadow">
-                        <CardContent className="p-4">
-                          <h3 className="text-base font-semibold text-primary dark:text-primary-dark">{course.title}</h3>
-                          <p className="text-sm text-muted-foreground mt-1">{course.provider}</p>
-                          
-                          {/* Course Tags */}
-                          {course.tags && (
-                            <div className="flex flex-wrap gap-1 mt-2">
-                              {(Array.isArray(course.tags) ? course.tags : course.tags.split(',').map(t => t.trim())).map((tag, index) => (
-                                <span 
-                                  key={index} 
-                                  className="inline-flex items-center text-xs px-1.5 py-0.5 rounded-sm bg-secondary/20 text-muted-foreground"
-                                >
-                                  {tag}
-                                </span>
-                              ))}
-                            </div>
-                          )}
-                          
-                          {course.cert_link && (
-                            <a 
-                              href={course.cert_link} 
-                              target="_blank" 
-                              rel="noreferrer"
-                              className="mt-2 inline-flex items-center text-xs text-accent dark:text-accent-dark hover:underline"
-                            >
-                              View Certificate
-                              <ExternalLink className="ml-1 h-3 w-3" />
-                            </a>
-                          )}
-                        </CardContent>
-                      </Card>
-                    ))}
-                  </div>
-                </div>
-              ))}
-            </div>
-          </>
-        )}
 
         {/* View All Certificates Button */}
         <div className="flex justify-center mt-16">
