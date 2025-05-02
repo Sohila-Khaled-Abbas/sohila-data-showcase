@@ -5,51 +5,51 @@ import { Card, CardContent } from "@/components/ui/card";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { ChartContainer, ChartLegend, ChartLegendContent } from "@/components/ui/chart";
-import { PieChart, Pie, Cell, ResponsiveContainer } from "recharts";
+import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip, Label } from "recharts";
 import CountUp from "react-countup";
 
 const LearningJourney = () => {
   // Define course categories and their respective courses
   const coursesByCategory = {
     "Data Analysis & Visualization": [
-      { title: "Data Analytics Essentials", provider: "Cisco" },
-      { title: "Power BI Fundamentals", provider: "DataCamp" },
-      { title: "Design in Power BI", provider: "DataCamp" },
-      { title: "Time Intelligent Functions Using DAX in Power BI", provider: "Udemy" },
-      { title: "Data Visualization in Python", provider: "DataCamp" }
+      { title: "Data Analytics Essentials", provider: "Cisco", platform: "YouTube" },
+      { title: "Power BI Fundamentals", provider: "DataCamp", platform: "YouTube" },
+      { title: "Design in Power BI", provider: "DataCamp", platform: "YouTube" },
+      { title: "Time Intelligent Functions Using DAX in Power BI", provider: "Udemy", platform: "YouTube" },
+      { title: "Data Visualization in Python", provider: "DataCamp", platform: "YouTube" }
     ],
     "SQL & Databases": [
-      { title: "Transact SQL Queries", provider: "MaharaTech" },
-      { title: "SQL Fundamentals", provider: "DataCamp" },
-      { title: "SQL Server Fundamentals", provider: "DataCamp" },
-      { title: "SQL for Business Analysts", provider: "DataCamp" },
-      { title: "Associate Data Analyst in SQL", provider: "DataCamp" },
-      { title: "Associate Data Engineer in SQL", provider: "DataCamp" }
+      { title: "Transact SQL Queries", provider: "MaharaTech", platform: "YouTube" },
+      { title: "SQL Fundamentals", provider: "DataCamp", platform: "YouTube" },
+      { title: "SQL Server Fundamentals", provider: "DataCamp", platform: "YouTube" },
+      { title: "SQL for Business Analysts", provider: "DataCamp", platform: "YouTube" },
+      { title: "Associate Data Analyst in SQL", provider: "DataCamp", platform: "YouTube" },
+      { title: "Associate Data Engineer in SQL", provider: "DataCamp", platform: "YouTube" }
     ],
     "Python & Programming": [
-      { title: "Python Programming", provider: "DataCamp" },
-      { title: "Python Programming Fundamentals", provider: "DataCamp" },
-      { title: "Web Scraping in Python", provider: "DataCamp" },
-      { title: "Data Manipulation in Python", provider: "DataCamp" },
-      { title: "Python Data Fundamentals", provider: "DataCamp" },
-      { title: "Time Series in Python", provider: "DataCamp" },
-      { title: "Applied Statistics in Python", provider: "DataCamp" },
-      { title: "Data Analyst in Python", provider: "DataCamp" },
-      { title: "Associate Data Scientist in Python", provider: "DataCamp" }
+      { title: "Python Programming", provider: "DataCamp", platform: "YouTube" },
+      { title: "Python Programming Fundamentals", provider: "DataCamp", platform: "YouTube" },
+      { title: "Web Scraping in Python", provider: "DataCamp", platform: "YouTube" },
+      { title: "Data Manipulation in Python", provider: "DataCamp", platform: "YouTube" },
+      { title: "Python Data Fundamentals", provider: "DataCamp", platform: "YouTube" },
+      { title: "Time Series in Python", provider: "DataCamp", platform: "YouTube" },
+      { title: "Applied Statistics in Python", provider: "DataCamp", platform: "YouTube" },
+      { title: "Data Analyst in Python", provider: "DataCamp", platform: "YouTube" },
+      { title: "Associate Data Scientist in Python", provider: "DataCamp", platform: "YouTube" }
     ],
     "Career & Data Foundations": [
-      { title: "Data Literacy Foundations", provider: "Maven Analytics" },
-      { title: "Data Literacy Professional", provider: "DataCamp" },
-      { title: "Building Your Personal Brand", provider: "Maven Analytics" },
-      { title: "Networking & Applying for Jobs", provider: "Maven Analytics" },
-      { title: "Optimizing Your Resume", provider: "Maven Analytics" },
-      { title: "Thinking Like an Analyst", provider: "Maven Analytics" },
-      { title: "Acing the Analyst Interview", provider: "Maven Analytics" },
-      { title: "Google Data Analytics Professional Certificate", provider: "Coursera" },
-      { title: "Finding Your Path in Data", provider: "Maven Analytics" },
-      { title: "Introduction to Data & Data Science", provider: "IBM" },
-      { title: "Understanding Data Visualization", provider: "DataCamp" },
-      { title: "Understanding Cloud Computing", provider: "DataCamp" }
+      { title: "Data Literacy Foundations", provider: "Maven Analytics", platform: "YouTube" },
+      { title: "Data Literacy Professional", provider: "DataCamp", platform: "YouTube" },
+      { title: "Building Your Personal Brand", provider: "Maven Analytics", platform: "YouTube" },
+      { title: "Networking & Applying for Jobs", provider: "Maven Analytics", platform: "YouTube" },
+      { title: "Optimizing Your Resume", provider: "Maven Analytics", platform: "YouTube" },
+      { title: "Thinking Like an Analyst", provider: "Maven Analytics", platform: "YouTube" },
+      { title: "Acing the Analyst Interview", provider: "Maven Analytics", platform: "YouTube" },
+      { title: "Google Data Analytics Professional Certificate", provider: "Coursera", platform: "YouTube" },
+      { title: "Finding Your Path in Data", provider: "Maven Analytics", platform: "YouTube" },
+      { title: "Introduction to Data & Data Science", provider: "IBM", platform: "YouTube" },
+      { title: "Understanding Data Visualization", provider: "DataCamp", platform: "YouTube" },
+      { title: "Understanding Cloud Computing", provider: "DataCamp", platform: "YouTube" }
     ]
   };
 
@@ -57,7 +57,7 @@ const LearningJourney = () => {
   const stats = [
     { label: "Learning Hours", value: 400 },
     { label: "Completed Courses", value: 35 },
-    { label: "LinkedIn Followers", value: 10000 },
+    { label: "LinkedIn Followers", value: 20000 },
     { label: "Top 5 Creator (Egypt)", value: 5, suffix: " (Favikon)" },
   ];
 
@@ -78,9 +78,14 @@ const LearningJourney = () => {
   };
 
   // Calculate category percentages for the chart
+  const totalCourses = Object.values(coursesByCategory).reduce(
+    (acc, courses) => acc + courses.length, 0
+  );
+  
   const categoryData = Object.entries(coursesByCategory).map(([category, courses]) => ({
     name: category,
     value: courses.length,
+    percentage: ((courses.length / totalCourses) * 100).toFixed(1)
   }));
 
   // Chart colors
@@ -92,6 +97,21 @@ const LearningJourney = () => {
     setActiveFilter(activeFilter === category ? null : category);
   };
 
+  // Custom tooltip for the pie chart
+  const CustomTooltip = ({ active, payload }: any) => {
+    if (active && payload && payload.length) {
+      const data = payload[0].payload;
+      return (
+        <div className="bg-background dark:bg-background-dark p-3 border border-border rounded-md shadow-md">
+          <p className="font-semibold">{data.name}</p>
+          <p className="text-primary dark:text-primary-dark">{data.value} courses</p>
+          <p className="text-accent dark:text-accent-dark">{data.percentage}%</p>
+        </div>
+      );
+    }
+    return null;
+  };
+
   return (
     <div className="min-h-screen bg-background dark:bg-background-dark text-foreground dark:text-foreground-dark">
       <Header />
@@ -100,7 +120,7 @@ const LearningJourney = () => {
         <div className="max-w-4xl mx-auto text-center mb-12">
           <h1 className="text-3xl md:text-4xl font-bold text-primary dark:text-primary-dark text-center mb-4">
             I Turned <span className="text-accent dark:text-accent-dark">400+ Hours</span> of Learning into Real-World Dashboards —
-            <br className="hidden sm:inline" /> and Shared it with <span className="text-accent dark:text-accent-dark">10,000+ LinkedIn Followers</span>
+            <br className="hidden sm:inline" /> and Shared it with <span className="text-accent dark:text-accent-dark">20,000+ LinkedIn Followers</span>
           </h1>
           
           <p className="text-lg mb-8 text-muted-foreground dark:text-muted-foreground">
@@ -122,10 +142,10 @@ const LearningJourney = () => {
 
         {/* Course Distribution Chart */}
         <div className="mb-12">
-          <h2 className="text-2xl font-semibold text-center mb-8">My Learning Distribution</h2>
+          <h2 className="text-2xl font-semibold text-center mb-8">My YouTube Learning Distribution</h2>
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-center">
             <div className="col-span-1 lg:col-span-1">
-              <div className="h-64 w-full">
+              <div className="h-80 w-full">
                 <ChartContainer
                   config={{
                     dataAnalysis: { color: COLORS[0] },
@@ -134,29 +154,34 @@ const LearningJourney = () => {
                     careerFoundations: { color: COLORS[3] },
                   }}
                 >
-                  <PieChart>
-                    <Pie
-                      data={categoryData}
-                      cx="50%"
-                      cy="50%"
-                      labelLine={false}
-                      outerRadius={80}
-                      fill="#8884d8"
-                      dataKey="value"
-                    >
-                      {categoryData.map((entry, index) => (
-                        <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
-                      ))}
-                    </Pie>
-                    <ChartLegend>
-                      <ChartLegendContent 
-                        payload={categoryData.map((item, index) => ({
-                          value: item.name,
-                          color: COLORS[index % COLORS.length],
-                        }))}
-                      />
-                    </ChartLegend>
-                  </PieChart>
+                  <ResponsiveContainer width="100%" height="100%">
+                    <PieChart>
+                      <Pie
+                        data={categoryData}
+                        cx="50%"
+                        cy="50%"
+                        labelLine={false}
+                        innerRadius={40}
+                        outerRadius={80}
+                        fill="#8884d8"
+                        dataKey="value"
+                        label={({ name, percentage }) => `${percentage}%`}
+                      >
+                        {categoryData.map((entry, index) => (
+                          <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+                        ))}
+                      </Pie>
+                      <Tooltip content={<CustomTooltip />} />
+                      <ChartLegend>
+                        <ChartLegendContent 
+                          payload={categoryData.map((item, index) => ({
+                            value: `${item.name} (${item.percentage}%)`,
+                            color: COLORS[index % COLORS.length],
+                          }))}
+                        />
+                      </ChartLegend>
+                    </PieChart>
+                  </ResponsiveContainer>
                 </ChartContainer>
               </div>
             </div>
@@ -169,6 +194,9 @@ const LearningJourney = () => {
                     <div className="mt-2 flex items-center">
                       <span className="text-xl font-bold mr-2">{courses.length}</span>
                       <span className="text-sm text-muted-foreground">courses</span>
+                    </div>
+                    <div className="mt-1 text-xs text-accent dark:text-accent-dark">
+                      {((courses.length / totalCourses) * 100).toFixed(1)}% of total
                     </div>
                     <button 
                       onClick={() => handleFilterClick(category)}
@@ -235,6 +263,7 @@ const LearningJourney = () => {
                         )}
                       </div>
                       <p className="text-sm text-muted-foreground mt-1">{course.provider}</p>
+                      <p className="text-xs text-accent dark:text-accent-dark mt-1">Watched on {course.platform}</p>
                     </CardContent>
                   </Card>
                 ))}
