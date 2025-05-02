@@ -70,9 +70,9 @@ const Courses = () => {
     <div className="min-h-screen bg-background dark:bg-background-dark text-foreground dark:text-foreground-dark">
       <Header />
       <section className="pt-24 pb-16 container mx-auto px-4">
-        <h1 className="text-4xl md:text-5xl font-bold mb-6 gradient-text">Courses & Learning Journey</h1>
+        <h1 className="text-4xl md:text-5xl font-bold mb-6 gradient-text text-center">Courses & Learning Journey</h1>
         
-        <p className="text-lg mb-10 max-w-3xl">
+        <p className="text-lg mb-10 max-w-3xl mx-auto text-center">
           These are the courses and certifications I've completed across data analytics, dashboarding, programming, and career development. You can view my certificate folder at the bottom of this page.
         </p>
 
