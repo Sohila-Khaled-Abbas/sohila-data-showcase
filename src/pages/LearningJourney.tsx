@@ -124,7 +124,7 @@ const LearningJourney = () => {
           </h1>
           
           <p className="text-lg mb-8 text-muted-foreground dark:text-muted-foreground">
-            My journey of continuous learning and growth in data analytics and visualization
+            My journey of continuous learning through online platforms and YouTube resources
           </p>
         </div>
 
@@ -246,7 +246,7 @@ const LearningJourney = () => {
                 <span>{getCategoryIcon(category)}</span>
                 {category}
                 <span className="text-sm bg-primary/10 dark:bg-primary-dark/10 text-primary dark:text-primary-dark px-2 py-1 rounded-full">
-                  {courses.length} courses
+                  {courses.length} YouTube resources
                 </span>
               </h2>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
