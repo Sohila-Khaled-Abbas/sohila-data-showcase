@@ -59,6 +59,21 @@ const Certifications = () => {
             </Card>
           ))}
         </div>
+        
+        {/* CTA Button for Google Drive */}
+        <div className="mt-10 text-center">
+          <Button variant="default" size="lg" asChild className="px-6 py-6 h-auto">
+            <a 
+              href="https://drive.google.com/drive/folders/19SefDOOSqbmVOyTOyOD-qFWSH7JULXRU" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="inline-flex items-center"
+            >
+              View All Certificates on Google Drive
+              <ExternalLink className="ml-2 h-4 w-4" />
+            </a>
+          </Button>
+        </div>
       </div>
     </section>
   );
