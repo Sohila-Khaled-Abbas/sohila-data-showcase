@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -182,6 +181,12 @@ const Projects = () => {
   }
 
   const fallbackProjects = [
+    {
+      title: "A/B Testing for Marketing Conversion",
+      description: "Used statistical testing to compare conversion rates between marketing strategies. Analyzed user behavior data to validate the effectiveness of a new design using Python, pandas, and hypothesis testing.",
+      technologies: ["Python", "pandas", "SciPy", "Matplotlib"],
+      github_url: "https://github.com/Sohila-Khaled-Abbas/ab-testing-marketing-conversion",
+    },
     {
       title: "Wuzzuf Job Market Analysis",
       description: "Analyzed job postings, hiring trends, salary distributions, and in-demand skills.",
