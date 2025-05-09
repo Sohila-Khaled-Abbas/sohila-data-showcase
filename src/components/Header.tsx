@@ -1,4 +1,3 @@
-
 import { Link, useLocation } from "react-router-dom";
 import { cn } from "@/lib/utils";
 import { useState, useEffect } from "react";
@@ -49,7 +48,6 @@ const Header = () => {
     { name: "Skills", href: "#skills" },
     { name: "Projects", href: "#projects" },
     { name: "Certifications", href: "#certifications" },
-    { name: "Learning Journey", href: "/learning-journey" },
     { name: "Contact", href: "#contact" },
   ];
 
