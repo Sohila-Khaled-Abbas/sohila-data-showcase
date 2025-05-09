@@ -142,7 +142,7 @@ const LearningJourney = () => {
 
         {/* Course Distribution Chart */}
         <div className="mb-12">
-          <h2 className="text-2xl font-semibold text-center mb-8">My YouTube Learning Distribution</h2>
+          <h2 className="text-2xl font-semibold text-center mb-8">My Learning Distribution</h2>
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-center">
             <div className="col-span-1 lg:col-span-1">
               <div className="h-80 w-full">
@@ -246,7 +246,7 @@ const LearningJourney = () => {
                 <span>{getCategoryIcon(category)}</span>
                 {category}
                 <span className="text-sm bg-primary/10 dark:bg-primary-dark/10 text-primary dark:text-primary-dark px-2 py-1 rounded-full">
-                  {courses.length} YouTube resources
+                  {courses.length} resources
                 </span>
               </h2>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
