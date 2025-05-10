@@ -42,7 +42,7 @@ const Hero = () => {
               className="border-primary text-primary hover:bg-primary hover:text-white"
             >
               <a 
-                href="https://drive.google.com/file/d/1UULl32bLOY1ZVSxvLM875v6E69MqiLpi/view?usp=sharing" 
+                href="https://docs.google.com/document/d/1fy26XlddpG7fY5YXNJllNesmu-oA1PBC/edit?rtpof=true&sd=true&tab=t.0" 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="inline-flex items-center"
