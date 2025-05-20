@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from "react";
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -5,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogClose } from "@/components/ui/dialog";
-import { Github, BarChart3, Search, X, Filter } from "lucide-react";
+import { Github, BarChart3, Search, X, Filter, Presentation } from "lucide-react";
 import { useProjects } from "@/hooks/use-supabase-data";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Project } from "@/lib/supabase";
@@ -183,9 +184,10 @@ const Projects = () => {
   const fallbackProjects = [
     {
       title: "A/B Testing for Marketing Conversion",
-      description: "Used statistical testing to compare conversion rates between marketing strategies. Analyzed user behavior data to validate the effectiveness of a new design using Python, pandas, and hypothesis testing.",
-      technologies: ["Python", "pandas", "SciPy", "Matplotlib"],
+      description: "Used statistical testing to compare conversion rates between marketing strategies. Analyzed user behavior data to validate the effectiveness of a new design using Python and Excel.",
+      technologies: ["Python", "Excel"],
       github_url: "https://github.com/Sohila-Khaled-Abbas/ab-testing-marketing-conversion",
+      presentation_url: "https://docs.google.com/presentation/d/1eYQSaxsK_8GT6Tk2pK9gJVb26Nv7NPhj8ik92czk8vI/edit?usp=sharing"
     },
     {
       title: "Wuzzuf Job Market Analysis",
@@ -401,18 +403,26 @@ const Projects = () => {
                     View on GitHub
                   </Button>
                   
+                  {project.presentation_url && (
+                    <Button 
+                      variant="outline"
+                      className="w-full border-secondary/30 dark:border-secondary/50 hover:bg-secondary/10 dark:hover:bg-secondary/20"
+                      onClick={() => window.open(project.presentation_url, '_blank')}
+                    >
+                      <Presentation className="mr-2 h-4 w-4" />
+                      View Presentation
+                    </Button>
+                  )}
+                  
                   {project.powerbi_url && (
-                    <>
-                      {/* Preview button with modal */}
-                      <Button 
-                        variant="outline"
-                        className="w-full border-secondary/30 dark:border-secondary/50 hover:bg-secondary/10 dark:hover:bg-secondary/20"
-                        onClick={() => openPreviewModal(project)}
-                      >
-                        <BarChart3 className="mr-2 h-4 w-4" />
-                        Preview Dashboard
-                      </Button>
-                    </>
+                    <Button 
+                      variant="outline"
+                      className="w-full border-secondary/30 dark:border-secondary/50 hover:bg-secondary/10 dark:hover:bg-secondary/20"
+                      onClick={() => openPreviewModal(project)}
+                    >
+                      <BarChart3 className="mr-2 h-4 w-4" />
+                      Preview Dashboard
+                    </Button>
                   )}
                 </CardFooter>
               </Card>
