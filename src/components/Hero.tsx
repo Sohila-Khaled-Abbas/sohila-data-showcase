@@ -1,6 +1,7 @@
 
-import { ArrowRight, Download } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Link } from "react-router-dom";
 
 const Hero = () => {
   return (
@@ -31,25 +32,23 @@ const Hero = () => {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start animate-fade-in-delay-3">
             <Button size="lg" className="bg-primary hover:bg-primary/90 text-white">
-              <a href="#projects" className="inline-flex items-center">
+              <Link to="#projects" className="inline-flex items-center">
                 View My Projects
                 <ArrowRight className="ml-2 h-4 w-4" />
-              </a>
+              </Link>
             </Button>
             <Button 
               size="lg" 
               variant="outline"
               className="border-primary text-primary hover:bg-primary hover:text-white"
             >
-              <a 
-                href="https://docs.google.com/document/d/1fy26XlddpG7fY5YXNJllNesmu-oA1PBC/edit?rtpof=true&sd=true&tab=t.0" 
-                target="_blank" 
-                rel="noopener noreferrer"
+              <Link 
+                to="/resume"
                 className="inline-flex items-center"
               >
-                Download CV
-                <Download className="ml-2 h-4 w-4" />
-              </a>
+                View Resume
+                <ArrowRight className="ml-2 h-4 w-4" />
+              </Link>
             </Button>
           </div>
         </div>

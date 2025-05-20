@@ -1,3 +1,4 @@
+
 import { Link, useLocation } from "react-router-dom";
 import { cn } from "@/lib/utils";
 import { useState, useEffect } from "react";
@@ -49,6 +50,7 @@ const Header = () => {
     { name: "Projects", href: "#projects" },
     { name: "Certifications", href: "#certifications" },
     { name: "Contact", href: "#contact" },
+    { name: "Resume", href: "/resume" },
   ];
 
   const handleScrollToSection = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
