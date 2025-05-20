@@ -214,42 +214,44 @@ const Resume = () => {
         </div>
       </div>
 
-      {/* Print styles - only visible when printing */}
-      <style jsx global>{`
-        @media print {
-          header, .flex, footer, button, .container > h1, .container > p {
-            display: none !important;
+      {/* Print styles */}
+      <style>
+        {`
+          @media print {
+            header, .flex, footer, button, .container > h1, .container > p {
+              display: none !important;
+            }
+            
+            .resume-container {
+              margin: 0;
+              padding: 0;
+              box-shadow: none;
+              max-width: 100% !important;
+            }
+            
+            body, html {
+              background: white;
+              font-size: 12pt;
+            }
+            
+            a {
+              text-decoration: none;
+              color: black;
+            }
+            
+            .container {
+              padding: 0 !important;
+              margin: 0 !important;
+              max-width: 100% !important;
+            }
+            
+            .py-24 {
+              padding-top: 0 !important;
+              padding-bottom: 0 !important;
+            }
           }
-          
-          .resume-container {
-            margin: 0;
-            padding: 0;
-            box-shadow: none;
-            max-width: 100% !important;
-          }
-          
-          body, html {
-            background: white;
-            font-size: 12pt;
-          }
-          
-          a {
-            text-decoration: none;
-            color: black;
-          }
-          
-          .container {
-            padding: 0 !important;
-            margin: 0 !important;
-            max-width: 100% !important;
-          }
-          
-          .py-24 {
-            padding-top: 0 !important;
-            padding-bottom: 0 !important;
-          }
-        }
-      `}</style>
+        `}
+      </style>
 
       <Footer />
     </div>

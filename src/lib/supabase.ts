@@ -1,55 +1,32 @@
+import { createClient } from '@supabase/supabase-js'
 
-import { createClient } from '@supabase/supabase-js';
+const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!
+const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
 
-const supabaseUrl = 'https://your-project-url.supabase.co';
-const supabaseAnonKey = 'your-anon-key';
+export const supabase = createClient(supabaseUrl, supabaseAnonKey)
 
-export const supabase = createClient(supabaseUrl, supabaseAnonKey);
-
-// Type definitions for our tables
-export type Project = {
-  id: number;
+export interface Project {
+  id?: string;
   title: string;
   description: string;
   technologies: string[];
   github_url: string;
   powerbi_url?: string;
-  image_url?: string;
-  created_at?: string;
-  impact_score?: number; // Added for business impact sorting
-};
+  presentation_url?: string;
+}
 
-export type Skill = {
-  id: number;
-  category: string;
-  skills: string[];
-  created_at?: string;
-};
-
-export type Certification = {
-  id: number;
+export interface Skill {
+  id?: string;
   name: string;
-  issuer: string;
-  link?: string;
-  created_at?: string;
-};
+  description: string;
+  image_url: string;
+}
 
-export type Course = {
-  id: number;
+export interface Certification {
+  id?: string;
   title: string;
-  provider: string;
-  category: string;
-  cert_link?: string;
-  completed: boolean;
-  order: number;
-  created_at?: string;
-  tags?: string[]; // New field for filtering
-};
-
-export type ContactSubmission = {
-  id: number;
-  full_name: string;
-  email: string;
-  message: string;
-  submitted_at: string;
-};
+  authority: string;
+  issue_date: string;
+  expiration_date?: string;
+  credential_url: string;
+}

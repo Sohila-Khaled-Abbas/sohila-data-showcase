@@ -3,6 +3,7 @@ import { Project } from "@/lib/supabase";
 
 export const fallbackProjects: Project[] = [
   {
+    id: "1",
     title: "SMART Supply Chain Insights Dashboard",
     description: "Developed a comprehensive dashboard to monitor logistics efficiency, supplier reliability, and fulfillment KPIs. Integrated Python and Excel for data preprocessing, and visualized insights using Power BI with DAX-driven metrics.",
     technologies: ["Python", "Excel", "Power BI"],
@@ -11,6 +12,7 @@ export const fallbackProjects: Project[] = [
     presentation_url: "https://docs.google.com/presentation/d/1q51qHk1B0xWvKBgJMcKiS-Fe-QbRng_nYn0VZEHL2e0/edit?usp=sharing"
   },
   {
+    id: "2",
     title: "A/B Testing for Marketing Conversion",
     description: "Used statistical testing to compare conversion rates between marketing strategies. Analyzed user behavior data to validate the effectiveness of a new design using Python and Excel.",
     technologies: ["Python", "Excel"],
@@ -18,6 +20,7 @@ export const fallbackProjects: Project[] = [
     presentation_url: "https://docs.google.com/presentation/d/1eYQSaxsK_8GT6Tk2pK9gJVb26Nv7NPhj8ik92czk8vI/edit?usp=sharing"
   },
   {
+    id: "3",
     title: "Wuzzuf Job Market Analysis",
     description: "Analyzed job postings, hiring trends, salary distributions, and in-demand skills.",
     technologies: ["Power BI", "Python"],
@@ -25,6 +28,7 @@ export const fallbackProjects: Project[] = [
     powerbi_url: "https://app.powerbi.com/view?r=eyJrIjoiMGNjZmFlOWItMWU3My00ZjM4LTlhYjQtMWY5N2QzOGQwMTAyIiwidCI6IjI1Y2UwMjYxLWJiZDYtNDljZC1hMWUyLTU0MjYwODg2ZDE1OSJ9",
   },
   {
+    id: "4",
     title: "Social Media Advertising Dashboard",
     description: "Delivered a dashboard resolving ROI data issues and highlighting a 35% click contribution from top channels.",
     technologies: ["Power BI", "Python"],
@@ -32,6 +36,7 @@ export const fallbackProjects: Project[] = [
     powerbi_url: "https://app.powerbi.com/view?r=eyJrIjoiMTRlM2M4OWQtMTcyYy00YzhjLWE3NDAtZGNmMDkxNTUwYzIwIiwidCI6IjI1Y2UwMjYxLWJiZDYtNDljZC1hMWUyLTU0MjYwODg2ZDE1OSJ9",
   },
   {
+    id: "5",
     title: "Startup Expansion Analysis Dashboard",
     description: "Interactive dashboard analyzing revenue, ROI, and marketing efficiency for startup growth.",
     technologies: ["Power BI", "Python"],
@@ -39,12 +44,14 @@ export const fallbackProjects: Project[] = [
     powerbi_url: "https://app.powerbi.com/view?r=eyJrIjoiZTFiMTFjOWQtNjI5Ni00YzRiLWEwNzQtZmVlZjM2OGQwZGZlIiwidCI6IjI1Y2UwMjYxLWJiZDYtNDljZC1hMWUyLTU0MjYwODg2ZDE1OSJ9",
   },
   {
+    id: "6",
     title: "Global Layoffs Analysis",
     description: "Used SQL to reveal workforce reduction trends by industry, region, and funding stage.",
     technologies: ["SQL"],
     github_url: "https://github.com/Sohila-Khaled-Abbas/global-layoffs-analysis",
   },
   {
+    id: "7",
     title: "Healthcare Analytics Dashboard",
     description: "Explored hospital waitlists, patient flow, and demographic trends in an interactive dashboard.",
     technologies: ["Power BI"],
@@ -52,12 +59,14 @@ export const fallbackProjects: Project[] = [
     powerbi_url: "https://app.powerbi.com/view?r=eyJrIjoiNDI1ODE0MmYtODk0YS00ZjcxLTgwZTgtODM1NzA0NThjZjEwIiwidCI6IjI1Y2UwMjYxLWJiZDYtNDljZC1hMWUyLTU0MjYwODg2ZDE1OSJ9",
   },
   {
+    id: "8",
     title: "Python EDA Case Study",
     description: "Conducted exploratory data analysis on employee salary data to extract insights.",
     technologies: ["Python"],
     github_url: "https://github.com/Sohila-Khaled-Abbas/Python_EDA_Case_Study",
   },
   {
+    id: "9",
     title: "HR Analytics Dashboard",
     description: "Built an HR dashboard with dynamic filters and detailed KPIs to track employee metrics.",
     technologies: ["Power BI", "DAX"],
@@ -65,6 +74,7 @@ export const fallbackProjects: Project[] = [
     powerbi_url: "https://app.powerbi.com/view?r=eyJrIjoiMTgxZTY2NmMtNzA5ZS00Y2FlLWIxNzgtMDM2MWY0ZTIzZjczIiwidCI6IjI1Y2UwMjYxLWJiZDYtNDljZC1hMWUyLTU0MjYwODg2ZDE1OSJ9",
   },
   {
+    id: "10",
     title: "IMDB Top 250 Movies Dashboard",
     description: "Visualized movie ratings and trends using IMDB's top-ranked titles.",
     technologies: ["Power BI"],
@@ -72,6 +82,7 @@ export const fallbackProjects: Project[] = [
     powerbi_url: "https://app.powerbi.com/view?r=eyJrIjoiMWJlYmY2ODgtYzQwOS00NzY5LWJmZWItMWI0N2Q0MTJkYmI1IiwidCI6IjI1Y2UwMjYxLWJiZDYtNDljZC1hMWUyLTU0MjYwODg2ZDE1OSJ9",
   },
   {
+    id: "11",
     title: "Emergency Room Dashboard",
     description: "Assessed patient satisfaction and ER visit patterns with advanced DAX measures.",
     technologies: ["Power BI", "DAX"],
@@ -79,6 +90,7 @@ export const fallbackProjects: Project[] = [
     powerbi_url: "https://app.powerbi.com/view?r=eyJrIjoiZjNmNjEwMzMtYzM3OS00OWM5LTkzYTUtNjJhODU2NTcxNzU3IiwidCI6IjI1Y2UwMjYxLWJiZDYtNDljZC1hMWUyLTU0MjYwODg2ZDE1OSJ9",
   },
   {
+    id: "12",
     title: "Regional Sales Dashboard",
     description: "Monitored regional sales performance, spotting trends and growth opportunities.",
     technologies: ["Power BI"],
