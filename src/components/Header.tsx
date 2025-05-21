@@ -1,3 +1,4 @@
+
 import { Link, useLocation } from "react-router-dom";
 import { cn } from "@/lib/utils";
 import { useState, useEffect } from "react";
@@ -43,30 +44,31 @@ const Header = () => {
   };
 
   const mainNavLinks = [
-    { name: "Home", href: "#hero" },
-    { name: "About", href: "#about" },
-    { name: "Skills", href: "#skills" },
-    { name: "Projects", href: "#projects" },
-    { name: "Certifications", href: "#certifications" },
-    { name: "Contact", href: "#contact" },
+    { name: "Home", href: "/" },
+    { name: "Resume", href: "/resume" },
+    { name: "About", href: "/#about" },
+    { name: "Skills", href: "/#skills" },
+    { name: "Projects", href: "/#projects" },
+    { name: "Certifications", href: "/#certifications" },
+    { name: "Contact", href: "/#contact" },
   ];
 
   const handleScrollToSection = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     e.preventDefault();
     
-    if (href.startsWith("/")) {
+    if (href === "/" || href === "/resume") {
       // Navigate to a different page
       window.location.href = href;
       return;
     }
     
     if (location.pathname !== "/") {
-      // Navigate to home page first
-      window.location.href = `/${href}`;
+      // Navigate to home page first with anchor
+      window.location.href = href;
       return;
     }
     
-    const element = document.querySelector(href);
+    const element = document.querySelector(href.replace('/#', '#'));
     if (element) {
       window.scrollTo({
         top: element.getBoundingClientRect().top + window.pageYOffset - 100,
