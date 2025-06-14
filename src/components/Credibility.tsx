@@ -1,4 +1,3 @@
-
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Award, Users, TrendingUp, Clock, Star, Quote } from "lucide-react";
@@ -6,18 +5,18 @@ import { Award, Users, TrendingUp, Clock, Star, Quote } from "lucide-react";
 const Credibility = () => {
   const recognitions = [
     {
-      title: "Top 5 Data Science Creator",
+      title: "Top 2 Data Science Creator",
       location: "Egypt",
       source: "Favikon",
-      date: "April 2025",
-      description: "Recognized for leading a 20K+ follower community focused on impactful Power BI and analytics content"
+      date: "June 2025",
+      description: "Recognized for leading a 25K+ follower community focused on impactful Power BI and analytics content"
     }
   ];
 
   const metrics = [
     {
       icon: Users,
-      value: "20,000+",
+      value: "25,000+",
       label: "LinkedIn Followers",
       description: "Engaging with dashboards, career tips, and Python use cases"
     },
@@ -214,7 +213,7 @@ const Credibility = () => {
               40% Faster Reporting
             </Badge>
             <Badge variant="outline" className="px-3 py-1">
-              20K+ Community
+              25K+ Community
             </Badge>
           </div>
         </div>
