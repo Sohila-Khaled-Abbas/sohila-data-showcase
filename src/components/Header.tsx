@@ -12,34 +12,20 @@ const Header = () => {
   const location = useLocation();
 
   useEffect(() => {
-    // Check if user preference is already stored
-    const storedDarkMode = localStorage.getItem('darkMode') === 'true';
-    setIsDarkMode(storedDarkMode);
-    
-    if (storedDarkMode) {
-      document.documentElement.classList.add('dark');
-    } else {
-      document.documentElement.classList.remove('dark');
-    }
+    const stored = localStorage.getItem("darkMode") === "true";
+    setIsDarkMode(stored);
+    document.documentElement.classList.toggle("dark", stored);
 
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 10);
-    };
+    const handleScroll = () => setIsScrolled(window.scrollY > 10);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   const toggleDarkMode = () => {
-    const newDarkMode = !isDarkMode;
-    setIsDarkMode(newDarkMode);
-    
-    if (newDarkMode) {
-      document.documentElement.classList.add('dark');
-      localStorage.setItem('darkMode', 'true');
-    } else {
-      document.documentElement.classList.remove('dark');
-      localStorage.setItem('darkMode', 'false');
-    }
+    const next = !isDarkMode;
+    setIsDarkMode(next);
+    document.documentElement.classList.toggle("dark", next);
+    localStorage.setItem("darkMode", String(next));
   };
 
   const mainNavLinks = [
@@ -48,109 +34,68 @@ const Header = () => {
     { name: "About", href: "/#about" },
     { name: "Skills", href: "/#skills" },
     { name: "Projects", href: "/#projects" },
+    { name: "Community", href: "/#community" },
     { name: "Credibility", href: "/#credibility" },
     { name: "Certifications", href: "/#certifications" },
     { name: "Contact", href: "/#contact" },
   ];
 
-  const handleScrollToSection = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+  const handleNav = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     e.preventDefault();
-    
     if (href === "/" || href === "/resume") {
-      // Navigate to a different page
       window.location.href = href;
       return;
     }
-    
     if (location.pathname !== "/") {
-      // Navigate to home page first with anchor
       window.location.href = href;
       return;
     }
-    
-    const element = document.querySelector(href.replace('/#', '#'));
-    if (element) {
-      window.scrollTo({
-        top: element.getBoundingClientRect().top + window.pageYOffset - 100,
-        behavior: 'smooth',
-      });
+    const el = document.querySelector(href.replace("/#", "#"));
+    if (el) {
+      window.scrollTo({ top: el.getBoundingClientRect().top + window.pageYOffset - 80, behavior: "smooth" });
     }
-    
-    if (isMobileMenuOpen) {
-      setIsMobileMenuOpen(false);
-    }
+    setIsMobileMenuOpen(false);
   };
 
   return (
-    <header
-      className={cn(
-        "fixed top-0 w-full z-50 transition-all duration-300",
-        isScrolled
-          ? "bg-background dark:bg-background-dark shadow-md dark:shadow-gray-900 py-2"
-          : "bg-transparent py-4"
-      )}
-    >
+    <header className={cn(
+      "fixed top-0 w-full z-50 transition-all duration-300",
+      isScrolled ? "bg-background/80 backdrop-blur-md border-b border-border shadow-sm py-2" : "bg-transparent py-4"
+    )}>
       <div className="container mx-auto px-4 flex justify-between items-center">
-        <Link to="/" className="text-xl font-bold">
-          <span className="font-logo gradient-text">Sohila Khaled</span>
+        <Link to="/" className="text-xl font-bold font-mono">
+          <span className="gradient-text">S.K.A</span>
         </Link>
 
-        {/* Desktop Navigation */}
-        <nav className="hidden md:flex space-x-8">
+        <nav className="hidden md:flex items-center space-x-6">
           {mainNavLinks.map((link) => (
-            <a
-              key={link.name}
-              href={link.href}
-              onClick={(e) => handleScrollToSection(e, link.href)}
-              className="text-foreground dark:text-foreground-dark hover:text-primary dark:hover:text-primary-dark transition duration-300"
-            >
+            <a key={link.name} href={link.href} onClick={(e) => handleNav(e, link.href)}
+              className="text-sm text-muted-foreground hover:text-primary transition-colors font-medium">
               {link.name}
             </a>
           ))}
-          
-          <div className="flex items-center space-x-2">
-            <Sun className="h-4 w-4 text-foreground dark:text-foreground-dark" />
-            <Switch 
-              checked={isDarkMode} 
-              onCheckedChange={toggleDarkMode} 
-              className="data-[state=checked]:bg-primary-dark" 
-            />
-            <Moon className="h-4 w-4 text-foreground dark:text-foreground-dark" />
+          <div className="flex items-center space-x-2 ml-2">
+            <Sun className="h-3.5 w-3.5 text-muted-foreground" />
+            <Switch checked={isDarkMode} onCheckedChange={toggleDarkMode} className="data-[state=checked]:bg-primary" />
+            <Moon className="h-3.5 w-3.5 text-muted-foreground" />
           </div>
         </nav>
 
-        {/* Mobile Menu Button */}
         <div className="flex items-center space-x-2 md:hidden">
-          <Button
-            variant="ghost"
-            size="icon"
-            onClick={toggleDarkMode}
-            className="text-foreground dark:text-foreground-dark hover:bg-secondary/20 dark:hover:bg-secondary-dark/20"
-          >
+          <Button variant="ghost" size="icon" onClick={toggleDarkMode} className="text-muted-foreground">
             {isDarkMode ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
           </Button>
-          
-          <Button
-            variant="ghost"
-            size="icon"
-            className="text-primary dark:text-primary-dark"
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-          >
+          <Button variant="ghost" size="icon" className="text-foreground" onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
             <Menu />
           </Button>
         </div>
 
-        {/* Mobile Menu */}
         {isMobileMenuOpen && (
-          <div className="absolute top-full left-0 w-full bg-background dark:bg-background-dark shadow-md dark:shadow-gray-900 py-4 md:hidden">
-            <div className="flex flex-col space-y-4 px-4">
+          <div className="absolute top-full left-0 w-full bg-background/95 backdrop-blur-md border-b border-border py-4 md:hidden">
+            <div className="flex flex-col space-y-3 px-4">
               {mainNavLinks.map((link) => (
-                <a
-                  key={link.name}
-                  href={link.href}
-                  onClick={(e) => handleScrollToSection(e, link.href)}
-                  className="text-foreground dark:text-foreground-dark hover:text-primary dark:hover:text-primary-dark transition duration-300"
-                >
+                <a key={link.name} href={link.href} onClick={(e) => handleNav(e, link.href)}
+                  className="text-sm text-muted-foreground hover:text-primary transition-colors">
                   {link.name}
                 </a>
               ))}

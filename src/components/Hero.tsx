@@ -1,56 +1,88 @@
-
-import { ArrowRight } from "lucide-react";
+import { motion } from "framer-motion";
+import { ArrowRight, BarChart3, Mail } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Link } from "react-router-dom";
 
 const Hero = () => {
   return (
-    <section id="hero" className="min-h-screen flex items-center justify-center bg-background dark:bg-[#121212] pt-20">
-      <div className="container mx-auto px-4 py-16 flex flex-col md:flex-row items-center gap-8">
-        <div className="w-full md:w-1/2 flex justify-center md:order-2">
-          <div className="relative w-64 h-64 md:w-80 md:h-80 photo-frame animate-fade-in">
-            <img 
-              src="/lovable-uploads/98f8a1b2-d5ee-4733-bd96-8484ec844805.png" 
-              alt="Sohila Khaled Abbas" 
-              className="absolute inset-0 w-full h-full object-cover z-10"
-            />
-          </div>
-        </div>
+    <section id="hero" className="min-h-screen flex items-center justify-center bg-background bg-grid-pattern pt-20 relative overflow-hidden">
+      {/* Ambient glow orbs */}
+      <div className="absolute top-20 left-10 w-72 h-72 bg-primary/10 rounded-full blur-3xl" />
+      <div className="absolute bottom-20 right-10 w-96 h-96 bg-secondary/10 rounded-full blur-3xl" />
 
-        <div className="w-full md:w-1/2 text-center md:text-left md:order-1">
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 animate-fade-in">
-            <span className="block">Hello, I'm</span>
-            <span className="font-logo gradient-text">
-              Sohila Khaled Abbas
+      <div className="container mx-auto px-4 py-16 flex flex-col md:flex-row items-center gap-12 relative z-10">
+        {/* Image */}
+        <motion.div
+          className="w-full md:w-5/12 flex justify-center md:order-2"
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.8 }}
+        >
+          <div className="relative">
+            <div className="absolute -inset-1 bg-gradient-to-r from-primary via-accent to-secondary rounded-2xl blur-lg opacity-40" />
+            <motion.div
+              className="relative w-64 h-64 md:w-80 md:h-80 rounded-2xl overflow-hidden border-2 border-primary/30"
+              animate={{ y: [0, -12, 0] }}
+              transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+            >
+              <img
+                src="/images/sohila-hero.png"
+                alt="Sohila Khaled Abbas"
+                className="w-full h-full object-cover"
+              />
+            </motion.div>
+          </div>
+        </motion.div>
+
+        {/* Text */}
+        <div className="w-full md:w-7/12 text-center md:text-left md:order-1">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+          >
+            <span className="inline-block px-3 py-1 rounded-full text-xs font-mono font-medium bg-primary/10 text-primary border border-primary/20 mb-4">
+              BI Developer & Data Analytics Engineer
             </span>
-          </h1>
-          <p className="text-xl md:text-2xl text-primary font-medium mb-3 animate-fade-in-delay-1">
-            Data Analyst
-          </p>
-          <p className="text-lg text-accent dark:text-accent mb-8 animate-fade-in-delay-2">
-            Turning Data Into Insights That Matter
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start animate-fade-in-delay-3">
-            <Button size="lg" className="bg-primary hover:bg-primary/90 text-white">
-              <a href="#projects" className="inline-flex items-center">
-                View My Projects
-                <ArrowRight className="ml-2 h-4 w-4" />
+          </motion.div>
+
+          <motion.h1
+            className="text-4xl md:text-5xl lg:text-6xl font-extrabold mb-4 leading-tight"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+          >
+            <span className="block text-foreground">Sohila Khaled</span>
+            <span className="gradient-text">Abbas</span>
+          </motion.h1>
+
+          <motion.p
+            className="text-lg text-muted-foreground mb-8 max-w-xl"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+          >
+            Transforming fragmented datasets into scalable, decision-ready architectures. Recognized Technical Mentor and Top 200 Arabic-Speaking Influencer in data education.
+          </motion.p>
+
+          <motion.div
+            className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+          >
+            <Button size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground font-semibold" asChild>
+              <a href="#projects">
+                <BarChart3 className="mr-2 h-4 w-4" />
+                View Dashboards
               </a>
             </Button>
-            <Button 
-              size="lg" 
-              variant="outline"
-              className="border-primary text-primary hover:bg-primary hover:text-white"
-            >
-              <Link 
-                to="/resume" 
-                className="inline-flex items-center"
-              >
-                View Résumé
-                <ArrowRight className="ml-2 h-4 w-4" />
-              </Link>
+            <Button size="lg" variant="outline" className="border-primary/30 text-foreground hover:bg-primary/10" asChild>
+              <a href="#contact">
+                <Mail className="mr-2 h-4 w-4" />
+                Contact Me
+              </a>
             </Button>
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>
