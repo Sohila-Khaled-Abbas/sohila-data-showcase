@@ -1,190 +1,100 @@
-
 import { useState, useEffect } from "react";
+import { motion } from "framer-motion";
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogClose } from "@/components/ui/dialog";
-import { Github, BarChart3, Search, X, Filter, Presentation } from "lucide-react";
+import { Github, BarChart3, Search, X, Filter, Presentation, ExternalLink } from "lucide-react";
 import { useProjects } from "@/hooks/use-supabase-data";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Project } from "@/lib/supabase";
 
 const Projects = () => {
   const { data: projects, isLoading, error } = useProjects();
-  const [searchQuery, setSearchQuery] = useState<string>("");
-  const [selectedTechnology, setSelectedTechnology] = useState<string>("");
-  const [sortBy, setSortBy] = useState<string>("newest");
+  const [searchQuery, setSearchQuery] = useState("");
+  const [selectedTechnology, setSelectedTechnology] = useState("");
+  const [sortBy, setSortBy] = useState("newest");
   const [filteredProjects, setFilteredProjects] = useState<Project[]>([]);
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
-  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const [commonTechs, setCommonTechs] = useState<string[]>([]);
-  
-  // Extract unique technologies for filter badges
-  const uniqueTechnologies = projects ? 
-    [...new Set(projects.flatMap(project => project.technologies || []))] : 
-    [];
-  
-  // Set common technologies for quick filtering
+
+  const uniqueTechnologies = projects
+    ? [...new Set(projects.flatMap((p) => p.technologies || []))]
+    : [];
+
   useEffect(() => {
     if (projects) {
       const techCount = new Map<string, number>();
-      projects.forEach(project => {
-        project.technologies?.forEach(tech => {
-          techCount.set(tech, (techCount.get(tech) || 0) + 1);
-        });
-      });
-      
-      // Get the most common technologies (those with more than 1 project)
-      const common = Array.from(techCount.entries())
-        .filter(([_, count]) => count > 1)
-        .sort((a, b) => b[1] - a[1])
-        .map(([tech]) => tech)
-        .slice(0, 5); // Top 5 most common
-      
-      setCommonTechs(common);
+      projects.forEach((p) =>
+        p.technologies?.forEach((t) => techCount.set(t, (techCount.get(t) || 0) + 1))
+      );
+      setCommonTechs(
+        Array.from(techCount.entries())
+          .filter(([, c]) => c > 1)
+          .sort((a, b) => b[1] - a[1])
+          .map(([t]) => t)
+          .slice(0, 5)
+      );
     }
   }, [projects]);
-  
-  // Filter and sort projects
+
   useEffect(() => {
     if (!projects) return;
-    
-    // Apply filters
     let result = [...projects];
-    
-    // Search filter
     if (searchQuery) {
-      const query = searchQuery.toLowerCase().trim();
-      
-      // Check if the search query exactly matches a technology name
-      const exactTechMatch = uniqueTechnologies.find(
-        tech => tech.toLowerCase() === query
-      );
-      
-      if (exactTechMatch && !selectedTechnology) {
-        // If there's an exact technology match, act as if it was selected in the tech filter
-        result = result.filter(project => 
-          project.technologies && project.technologies.includes(exactTechMatch)
-        );
+      const q = searchQuery.toLowerCase().trim();
+      const exactTech = uniqueTechnologies.find((t) => t.toLowerCase() === q);
+      if (exactTech && !selectedTechnology) {
+        result = result.filter((p) => p.technologies?.includes(exactTech));
       } else {
-        // Regular search behavior with improved tech matching
-        result = result.filter(project => 
-          project.title.toLowerCase().includes(query) || 
-          (project.description && project.description.toLowerCase().includes(query)) ||
-          (project.technologies && project.technologies.some(tech => 
-            tech.toLowerCase().includes(query) || query.includes(tech.toLowerCase())
-          ))
+        result = result.filter(
+          (p) =>
+            p.title.toLowerCase().includes(q) ||
+            p.description?.toLowerCase().includes(q) ||
+            p.technologies?.some((t) => t.toLowerCase().includes(q))
         );
       }
     }
-    
-    // Technology filter
     if (selectedTechnology) {
-      result = result.filter(project => 
-        project.technologies && project.technologies.includes(selectedTechnology)
-      );
+      result = result.filter((p) => p.technologies?.includes(selectedTechnology));
     }
-    
-    // Sorting
-    switch(sortBy) {
-      case "newest":
-        result = result.sort((a, b) => 
-          new Date(b.created_at || "").getTime() - new Date(a.created_at || "").getTime()
-        );
-        break;
-      case "tech":
-        result = result.sort((a, b) => {
-          const techsA = a.technologies ? a.technologies.join('') : '';
-          const techsB = b.technologies ? b.technologies.join('') : '';
-          return techsA.localeCompare(techsB);
-        });
-        break;
-      case "impact":
-        // Placeholder for future impact sorting
-        break;
-      default:
-        break;
+    if (sortBy === "newest") {
+      result.sort((a, b) => new Date(b.created_at || "").getTime() - new Date(a.created_at || "").getTime());
+    } else if (sortBy === "tech") {
+      result.sort((a, b) => (a.technologies?.join("") || "").localeCompare(b.technologies?.join("") || ""));
     }
-    
     setFilteredProjects(result);
   }, [projects, searchQuery, selectedTechnology, sortBy, uniqueTechnologies]);
 
-  // Preview modal handler
-  const openPreviewModal = (project: Project) => {
-    setSelectedProject(project);
-    setIsModalOpen(true);
-  };
-
-  // Quick filter by technology
-  const setQuickFilter = (tech: string) => {
-    setSelectedTechnology(selectedTechnology === tech ? "" : tech);
-    setSearchQuery("");
-  };
-
-  // Check if a technology matches the search query
-  const highlightIfMatched = (technology: string): boolean => {
-    if (!searchQuery) return false;
-    return technology.toLowerCase().includes(searchQuery.toLowerCase());
-  };
-
-  // Loading state
-  if (isLoading) {
-    return (
-      <section id="projects" className="py-16 bg-background dark:bg-[#121212]">
-        <div className="container mx-auto px-4">
-          <h2 className="text-3xl md:text-4xl font-bold text-center mb-8 font-logo">
-            <span className="gradient-text">Featured Projects</span>
-          </h2>
-          
-          {/* Skeleton for filters */}
-          <div className="flex flex-col md:flex-row gap-4 mb-8">
-            <Skeleton className="h-10 w-full md:w-64" />
-            <Skeleton className="h-10 w-full md:w-48" />
-          </div>
-          
-          {/* Skeleton for technologies filter */}
-          <div className="flex flex-wrap gap-2 mb-8">
-            {[...Array(5)].map((_, i) => (
-              <Skeleton key={i} className="h-8 w-20 rounded-full" />
-            ))}
-          </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto">
-            {[...Array(6)].map((_, i) => (
-              <Card key={i} className="flex flex-col h-full border border-secondary/20">
-                <CardHeader className="pb-2">
-                  <Skeleton className="h-6 w-3/4" />
-                </CardHeader>
-                <CardContent className="flex-grow pb-2">
-                  <Skeleton className="h-20 w-full mb-4" />
-                  <div className="flex flex-wrap gap-2">
-                    {[...Array(3)].map((_, j) => (
-                      <Skeleton key={j} className="h-6 w-16" />
-                    ))}
-                  </div>
-                </CardContent>
-                <CardFooter className="pt-2 flex-col">
-                  <Skeleton className="h-10 w-full mb-2" />
-                  <Skeleton className="h-10 w-full" />
-                </CardFooter>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
-    );
-  }
-
-  if (error) {
-    console.error('Error loading projects:', error);
-  }
+  const highlightIfMatched = (t: string) => searchQuery && t.toLowerCase().includes(searchQuery.toLowerCase());
 
   const fallbackProjects = [
     {
+      title: "Stock Price Data Pipeline",
+      description: "Fully automated real-time stock price ingestion and analytics pipeline. Fetches market data from Yahoo Finance API, processes via Apache Spark, stores in MinIO, loads into PostgreSQL data warehouse, and visualizes insights with Metabase. Slack notifications for completion.",
+      technologies: ["Apache Spark", "PostgreSQL", "MinIO", "Metabase", "Python"],
+      github_url: "https://github.com/Sohila-Khaled-Abbas/udemy_airflow",
+    },
+    {
+      title: "Apple Stock Market Analysis",
+      description: "End-to-end data engineering and analytics project analyzing historical Apple Inc. (AAPL) stock data to extract actionable business insights and investment strategies.",
+      technologies: ["Power BI", "Python", "Data Engineering"],
+      github_url: "https://github.com/Sohila-Khaled-Abbas",
+      powerbi_url: "https://app.powerbi.com/view?r=eyJrIjoiNTNhYmI1ZjUtNDNhZC00OWM3LWFjYzktMmU0NWYyODYzZjIxIiwidCI6IjI1Y2UwMjYxLWJiZDYtNDljZC1hMWUyLTU0MjYwODg2ZDE1OSJ9",
+    },
+    {
+      title: "B2B Retail Analytics & Churn Diagnostic",
+      description: "BI solution diagnosing operational bottlenecks and retailer churn in the B2B sector. Processes over 472,000 orders across 70,000 retailers, translating daily operational data into strategic decision-making tools.",
+      technologies: ["Power BI", "SQL", "DAX"],
+      github_url: "https://github.com/Sohila-Khaled-Abbas",
+      powerbi_url: "https://app.powerbi.com/view?r=eyJrIjoiNzE0MWUwYTgtZTlhZC00N2IxLWFmYzQtYmI2MzFkNjFhN2NjIiwidCI6IjI1Y2UwMjYxLWJiZDYtNDljZC1hMWUyLTU0MjYwODg2ZDE1OSJ9",
+    },
+    {
       title: "SMART Supply Chain Insights Dashboard",
-      description: "Developed a comprehensive dashboard to monitor logistics efficiency, supplier reliability, and fulfillment KPIs. Integrated Python and Excel for data preprocessing, and visualized insights using Power BI with DAX-driven metrics.",
+      description: "Comprehensive dashboard to monitor logistics efficiency, supplier reliability, and fulfillment KPIs. Integrated Python and Excel for data preprocessing, and visualized insights using Power BI with DAX-driven metrics.",
       technologies: ["Python", "Excel", "Power BI"],
       github_url: "https://github.com/Sohila-Khaled-Abbas/SMART-Supply-Chain-Insights-Dashboard/",
       powerbi_url: "https://app.powerbi.com/view?r=eyJrIjoiNzc1YzdkYWQtZDlkZC00MDhkLWJhNGEtZDg4YzRmMDI5NTljIiwidCI6IjI1Y2UwMjYxLWJiZDYtNDljZC1hMWUyLTU0MjYwODg2ZDE1OSJ9",
@@ -267,223 +177,182 @@ const Projects = () => {
     },
   ];
 
-  const displayProjects = filteredProjects.length > 0 
-    ? filteredProjects 
-    : projects?.length 
-      ? projects 
-      : fallbackProjects;
+  const displayProjects = filteredProjects.length > 0
+    ? filteredProjects
+    : projects?.length
+    ? projects
+    : fallbackProjects;
+
+  if (isLoading) {
+    return (
+      <section id="projects" className="py-16 bg-background">
+        <div className="container mx-auto px-4">
+          <h2 className="text-3xl md:text-4xl font-bold text-center mb-8">
+            <span className="gradient-text">The Dashboards Hub</span>
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto">
+            {[...Array(6)].map((_, i) => (
+              <Card key={i} className="flex flex-col h-full border border-border">
+                <CardHeader><Skeleton className="h-6 w-3/4" /></CardHeader>
+                <CardContent className="flex-grow"><Skeleton className="h-20 w-full mb-4" /></CardContent>
+                <CardFooter><Skeleton className="h-10 w-full" /></CardFooter>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+    );
+  }
+
+  if (error) console.error("Error loading projects:", error);
 
   return (
-    <section id="projects" className="py-16 bg-background dark:bg-[#121212]">
+    <section id="projects" className="py-16 bg-background">
       <div className="container mx-auto px-4">
-        <h2 className="text-3xl md:text-4xl font-bold text-center mb-8 font-logo">
-          <span className="gradient-text">Featured Projects</span>
-        </h2>
-        
-        {/* Search and Filter UI */}
+        <motion.h2
+          className="text-3xl md:text-4xl font-bold text-center mb-2"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+        >
+          <span className="gradient-text">The Dashboards Hub</span>
+        </motion.h2>
+        <p className="text-center text-muted-foreground mb-8">Interactive, expanding project cards — hover to explore</p>
+
+        {/* Filters */}
         <div className="flex flex-col md:flex-row gap-4 mb-6 max-w-7xl mx-auto">
           <div className="relative flex-grow">
-            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+            <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
             <Input
-              placeholder="Search projects by name or technology (e.g. Power BI, Python)"
+              placeholder="Search projects by name or technology…"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="pl-10 bg-background dark:bg-[#1F1F1F] border-secondary/30"
+              className="pl-10 bg-card border-border"
             />
             {searchQuery && (
-              <Button 
-                variant="ghost" 
-                size="icon" 
-                className="absolute right-1 top-1/2 transform -translate-y-1/2 h-6 w-6"
-                onClick={() => setSearchQuery("")}
-              >
+              <Button variant="ghost" size="icon" className="absolute right-1 top-1/2 -translate-y-1/2 h-6 w-6" onClick={() => setSearchQuery("")}>
                 <X className="h-3 w-3" />
               </Button>
             )}
           </div>
-          
-          {/* Sort Dropdown */}
           <Select value={sortBy} onValueChange={setSortBy}>
-            <SelectTrigger className="w-full md:w-48 bg-background dark:bg-[#1F1F1F] border-secondary/30">
+            <SelectTrigger className="w-full md:w-48 bg-card border-border">
               <Filter className="mr-2 h-4 w-4" />
               <SelectValue placeholder="Sort by" />
             </SelectTrigger>
             <SelectContent>
               <SelectItem value="newest">Newest</SelectItem>
               <SelectItem value="tech">Tech Stack</SelectItem>
-              <SelectItem value="impact">Business Impact</SelectItem>
             </SelectContent>
           </Select>
         </div>
-        
-        {/* Quick filter technology buttons */}
+
+        {/* Quick filter */}
         <div className="flex flex-wrap gap-2 mb-4 max-w-7xl mx-auto">
-          {commonTechs.map((tech, index) => (
+          {commonTechs.map((tech) => (
             <Button
-              key={index}
+              key={tech}
               variant={tech === selectedTechnology ? "default" : "outline"}
               size="sm"
-              className={`
-                text-xs py-1 h-8 transition-colors
-                ${tech === selectedTechnology ? 
-                  'bg-primary dark:bg-primary-dark text-white' : 
-                  'bg-secondary/10 hover:bg-secondary/20 dark:bg-secondary/20 hover:dark:bg-secondary/30'}
-              `}
-              onClick={() => setQuickFilter(tech)}
+              className="text-xs h-8"
+              onClick={() => setSelectedTechnology(selectedTechnology === tech ? "" : tech)}
             >
               {tech}
             </Button>
           ))}
         </div>
-        
-        {/* Technology filter badges */}
+
+        {/* Tech badges */}
         <div className="flex flex-wrap gap-2 mb-8 max-w-7xl mx-auto">
-          {uniqueTechnologies.map((tech, index) => (
-            <Badge 
-              key={index} 
-              variant={selectedTechnology === tech ? "default" : 
-                highlightIfMatched(tech) ? "secondary" : "outline"}
-              className={`
-                cursor-pointer text-xs px-3 py-1 rounded-full
-                ${selectedTechnology === tech ? 
-                  'bg-primary dark:bg-primary-dark text-white' : 
-                  highlightIfMatched(tech) ?
-                  'bg-secondary/40 dark:bg-secondary/60 dark:text-white font-medium' :
-                  'bg-secondary/20 dark:bg-secondary/30 hover:bg-secondary/40'}
-              `}
+          {uniqueTechnologies.map((tech) => (
+            <Badge
+              key={tech}
+              variant={selectedTechnology === tech ? "default" : "outline"}
+              className="cursor-pointer text-xs px-3 py-1 rounded-full"
               onClick={() => setSelectedTechnology(selectedTechnology === tech ? "" : tech)}
             >
               {tech}
             </Badge>
           ))}
           {(selectedTechnology || searchQuery) && (
-            <Button 
-              variant="ghost" 
-              size="sm" 
-              onClick={() => {
-                setSelectedTechnology("");
-                setSearchQuery("");
-              }}
-              className="text-xs h-6 px-2"
-            >
+            <Button variant="ghost" size="sm" onClick={() => { setSelectedTechnology(""); setSearchQuery(""); }} className="text-xs h-6 px-2">
               Clear filters
             </Button>
           )}
         </div>
-        
-        {/* Projects Grid */}
+
+        {/* Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto">
           {displayProjects.length > 0 ? (
             displayProjects.map((project, index) => (
-              <Card key={index} className="flex flex-col h-full border border-secondary/20 dark:border-secondary/40 shadow-md hover:shadow-lg transition-shadow rounded-xl bg-background dark:bg-[#1F1F1F]">
-                <CardHeader className="pb-2">
-                  <CardTitle className="text-lg font-semibold text-primary dark:text-white">
-                    {project.title}
-                  </CardTitle>
-                </CardHeader>
-                <CardContent className="flex-grow pb-2">
-                  <p className="text-foreground dark:text-white/90 text-sm mb-4">
-                    {project.description}
-                  </p>
-                  <div className="flex flex-wrap gap-2">
-                    {project.technologies && project.technologies.map((tech, techIndex) => (
-                      <Badge 
-                        key={techIndex} 
-                        variant={highlightIfMatched(tech) ? "default" : "secondary"}
-                        className={`
-                          bg-secondary/10 dark:bg-secondary/20 text-primary dark:text-white 
-                          border-none text-xs
-                          ${highlightIfMatched(tech) ? 'bg-primary/20 dark:bg-primary-dark/30 font-medium' : ''}
-                        `}
-                      >
-                        {tech}
-                      </Badge>
-                    ))}
-                  </div>
-                </CardContent>
-                <CardFooter className="pt-2 flex flex-col gap-2">
-                  <Button 
-                    variant="default" 
-                    className="w-full bg-primary dark:bg-primary-dark hover:bg-primary/90 dark:hover:bg-primary-dark/90 text-white flex items-center justify-center"
-                    onClick={() => window.open(project.github_url, '_blank')}
-                  >
-                    <Github className="mr-2 h-4 w-4" />
-                    View on GitHub
-                  </Button>
-                  
-                  {project.presentation_url && (
-                    <Button 
-                      variant="outline"
-                      className="w-full border-secondary/30 dark:border-secondary/50 hover:bg-secondary/10 dark:hover:bg-secondary/20"
-                      onClick={() => window.open(project.presentation_url, '_blank')}
-                    >
-                      <Presentation className="mr-2 h-4 w-4" />
-                      View Presentation
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.05, duration: 0.4 }}
+              >
+                <Card className="flex flex-col h-full border border-border bg-card rounded-xl neon-glow-hover transition-all duration-300 hover:border-primary/40">
+                  <CardHeader className="pb-2">
+                    <CardTitle className="text-lg font-semibold text-foreground">{project.title}</CardTitle>
+                  </CardHeader>
+                  <CardContent className="flex-grow pb-2">
+                    <p className="text-muted-foreground text-sm mb-4">{project.description}</p>
+                    <div className="flex flex-wrap gap-2">
+                      {project.technologies?.map((tech, j) => (
+                        <Badge
+                          key={j}
+                          variant="secondary"
+                          className={`text-xs ${highlightIfMatched(tech) ? "bg-primary/20 font-medium" : "bg-muted"}`}
+                        >
+                          {tech}
+                        </Badge>
+                      ))}
+                    </div>
+                  </CardContent>
+                  <CardFooter className="pt-2 flex flex-col gap-2">
+                    <Button variant="default" className="w-full bg-primary hover:bg-primary/90 text-primary-foreground" onClick={() => window.open(project.github_url, "_blank")}>
+                      <Github className="mr-2 h-4 w-4" />
+                      View on GitHub
                     </Button>
-                  )}
-                  
-                  {project.powerbi_url && (
-                    <Button 
-                      variant="outline"
-                      className="w-full border-secondary/30 dark:border-secondary/50 hover:bg-secondary/10 dark:hover:bg-secondary/20"
-                      onClick={() => openPreviewModal(project)}
-                    >
-                      <BarChart3 className="mr-2 h-4 w-4" />
-                      Preview Dashboard
-                    </Button>
-                  )}
-                </CardFooter>
-              </Card>
+                    {project.presentation_url && (
+                      <Button variant="outline" className="w-full" onClick={() => window.open(project.presentation_url, "_blank")}>
+                        <Presentation className="mr-2 h-4 w-4" />
+                        View Presentation
+                      </Button>
+                    )}
+                    {project.powerbi_url && (
+                      <Button variant="outline" className="w-full" onClick={() => { setSelectedProject(project); setIsModalOpen(true); }}>
+                        <BarChart3 className="mr-2 h-4 w-4" />
+                        Preview Dashboard
+                      </Button>
+                    )}
+                  </CardFooter>
+                </Card>
+              </motion.div>
             ))
           ) : (
             <div className="col-span-full text-center py-10">
               <p className="text-muted-foreground">No projects match your search criteria.</p>
-              <Button 
-                variant="link" 
-                onClick={() => {
-                  setSearchQuery("");
-                  setSelectedTechnology("");
-                }}
-              >
-                Clear filters
-              </Button>
+              <Button variant="link" onClick={() => { setSearchQuery(""); setSelectedTechnology(""); }}>Clear filters</Button>
             </div>
           )}
         </div>
       </div>
-      
-      {/* Modal for Power BI Preview */}
+
       <Dialog open={isModalOpen} onOpenChange={setIsModalOpen}>
         <DialogContent className="sm:max-w-[90vw] max-h-[90vh]">
           <DialogHeader>
-            <DialogTitle className="text-lg font-semibold">
-              {selectedProject?.title} - Dashboard Preview
-            </DialogTitle>
+            <DialogTitle>{selectedProject?.title} - Dashboard Preview</DialogTitle>
           </DialogHeader>
-          
           {selectedProject?.powerbi_url && (
             <div className="relative w-full pt-[56.25%]">
-              <iframe 
-                src={selectedProject.powerbi_url} 
-                className="absolute top-0 left-0 w-full h-full rounded-xl border border-secondary/30 dark:border-secondary/50"
-                allowFullScreen
-              />
+              <iframe src={selectedProject.powerbi_url} className="absolute top-0 left-0 w-full h-full rounded-xl border border-border" allowFullScreen />
             </div>
           )}
-          
           <div className="flex justify-end mt-4">
-            <DialogClose asChild>
-              <Button variant="outline" className="mr-2">Close</Button>
-            </DialogClose>
-            <Button 
-              variant="default"
-              onClick={() => {
-                window.open(selectedProject?.powerbi_url, '_blank');
-                setIsModalOpen(false);
-              }}
-            >
-              Open in New Tab
-            </Button>
+            <DialogClose asChild><Button variant="outline" className="mr-2">Close</Button></DialogClose>
+            <Button onClick={() => { window.open(selectedProject?.powerbi_url, "_blank"); setIsModalOpen(false); }}>Open in New Tab</Button>
           </div>
         </DialogContent>
       </Dialog>
