@@ -36,9 +36,9 @@ const Credibility = () => {
           viewport={{ once: true }}
         >
           <Award className="h-8 w-8 text-primary mx-auto mb-3" />
-          <Badge className="bg-primary text-primary-foreground mb-2">Top 2 Data Science Creator</Badge>
+          <Badge className="bg-primary text-primary-foreground mb-2">Top 3 Data Science Creator</Badge>
           <p className="text-sm text-muted-foreground">
-            Egypt — Favikon (June 2025). Recognized for leading a 25K+ follower community focused on impactful Power BI and analytics content.
+            Egypt — Favikon (2026). Recognized for leading a 55K+ follower community focused on impactful Power BI and analytics content.
           </p>
         </motion.div>
 
