@@ -3,7 +3,7 @@ import { Award, Users, TrendingUp, Clock, Star, Quote } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 
 const metrics = [
-  { icon: Users, value: "25,000+", label: "LinkedIn Followers", desc: "Engaging with dashboards, career tips, and Python use cases" },
+  { icon: Users, value: "55K+", label: "LinkedIn Followers", desc: "Engaging with dashboards, career tips, and Python use cases" },
   { icon: TrendingUp, value: "200+", label: "Dashboard Users", desc: "Explored Wuzzuf Job Market Dashboard to identify hiring trends" },
   { icon: Clock, value: "40%", label: "Time Reduction", desc: "In reporting time through Python automation" },
   { icon: Star, value: "25%", label: "Speed Improvement", desc: "In SQL data retrieval performance" },
@@ -36,9 +36,9 @@ const Credibility = () => {
           viewport={{ once: true }}
         >
           <Award className="h-8 w-8 text-primary mx-auto mb-3" />
-          <Badge className="bg-primary text-primary-foreground mb-2">Top 2 Data Science Creator</Badge>
+          <Badge className="bg-primary text-primary-foreground mb-2">Top 3 Data Science Creator</Badge>
           <p className="text-sm text-muted-foreground">
-            Egypt — Favikon (June 2025). Recognized for leading a 25K+ follower community focused on impactful Power BI and analytics content.
+            Egypt — Favikon (2026). Recognized for leading a 55K+ follower community focused on impactful Power BI and analytics content.
           </p>
         </motion.div>
 
@@ -87,7 +87,7 @@ const Credibility = () => {
           <div className="flex justify-center gap-3 flex-wrap">
             <Badge variant="outline" className="px-3 py-1 font-mono text-xs">6+ Hours Weekly Saved</Badge>
             <Badge variant="outline" className="px-3 py-1 font-mono text-xs">40% Faster Reporting</Badge>
-            <Badge variant="outline" className="px-3 py-1 font-mono text-xs">25K+ Community</Badge>
+            <Badge variant="outline" className="px-3 py-1 font-mono text-xs">55K+ Community</Badge>
           </div>
         </div>
       </div>

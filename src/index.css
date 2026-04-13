@@ -6,69 +6,69 @@
 
 @layer base {
   :root {
-    --background: 220 20% 97%;
-    --foreground: 220 20% 10%;
+    --background: 40 20% 96%;
+    --foreground: 220 40% 13%;
 
-    --card: 220 15% 94%;
-    --card-foreground: 220 20% 10%;
+    --card: 40 15% 93%;
+    --card-foreground: 220 40% 13%;
 
-    --popover: 220 20% 97%;
-    --popover-foreground: 220 20% 10%;
+    --popover: 40 20% 96%;
+    --popover-foreground: 220 40% 13%;
 
-    --primary: 174 62% 47%;
-    --primary-foreground: 220 30% 8%;
+    --primary: 38 75% 50%;
+    --primary-foreground: 220 40% 8%;
 
-    --secondary: 263 70% 58%;
-    --secondary-foreground: 0 0% 100%;
+    --secondary: 220 45% 25%;
+    --secondary-foreground: 40 20% 96%;
 
-    --muted: 220 15% 92%;
-    --muted-foreground: 220 10% 45%;
+    --muted: 40 12% 90%;
+    --muted-foreground: 220 15% 42%;
 
-    --accent: 210 100% 56%;
+    --accent: 12 55% 55%;
     --accent-foreground: 0 0% 100%;
 
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 98%;
 
-    --border: 220 13% 88%;
-    --input: 220 13% 88%;
-    --ring: 174 62% 47%;
+    --border: 40 10% 85%;
+    --input: 40 10% 85%;
+    --ring: 38 75% 50%;
 
     --radius: 0.75rem;
 
-    --neon-teal: 174 62% 47%;
-    --neon-purple: 263 70% 58%;
-    --neon-blue: 210 100% 56%;
+    --neon-teal: 38 75% 50%;
+    --neon-purple: 220 45% 25%;
+    --neon-blue: 12 55% 55%;
   }
 
   .dark {
-    --background: 222 33% 7%;
-    --foreground: 210 20% 92%;
+    --background: 222 40% 6%;
+    --foreground: 40 15% 90%;
 
-    --card: 222 28% 12%;
-    --card-foreground: 210 20% 92%;
+    --card: 222 35% 11%;
+    --card-foreground: 40 15% 90%;
 
-    --popover: 222 33% 7%;
-    --popover-foreground: 210 20% 92%;
+    --popover: 222 40% 6%;
+    --popover-foreground: 40 15% 90%;
 
-    --primary: 174 62% 47%;
-    --primary-foreground: 220 30% 8%;
+    --primary: 38 75% 50%;
+    --primary-foreground: 222 40% 6%;
 
-    --secondary: 263 70% 58%;
-    --secondary-foreground: 0 0% 100%;
+    --secondary: 220 35% 35%;
+    --secondary-foreground: 40 15% 95%;
 
-    --muted: 222 25% 15%;
-    --muted-foreground: 215 15% 55%;
+    --muted: 222 30% 14%;
+    --muted-foreground: 40 10% 55%;
 
-    --accent: 210 100% 56%;
+    --accent: 12 55% 55%;
     --accent-foreground: 0 0% 100%;
 
     --destructive: 0 62% 30%;
     --destructive-foreground: 0 0% 98%;
 
-    --border: 222 20% 18%;
-    --input: 222 20% 18%;
-    --ring: 174 62% 47%;
+    --border: 222 25% 16%;
+    --input: 222 25% 16%;
+    --ring: 38 75% 50%;
   }
 }
 
@@ -88,20 +88,20 @@
 
 /* BI Gradient Text */
 .gradient-text {
-  @apply bg-gradient-to-r from-[hsl(174,62%,47%)] via-[hsl(210,100%,56%)] to-[hsl(263,70%,58%)] bg-clip-text text-transparent;
+  @apply bg-gradient-to-r from-[hsl(38,75%,50%)] via-[hsl(12,55%,55%)] to-[hsl(220,45%,25%)] bg-clip-text text-transparent;
 }
 
 /* Neon glow effects */
 .neon-glow {
-  box-shadow: 0 0 20px hsl(174 62% 47% / 0.15), 0 0 40px hsl(174 62% 47% / 0.05);
+  box-shadow: 0 0 20px hsl(38 75% 50% / 0.15), 0 0 40px hsl(38 75% 50% / 0.05);
 }
 
 .neon-glow-purple {
-  box-shadow: 0 0 20px hsl(263 70% 58% / 0.15), 0 0 40px hsl(263 70% 58% / 0.05);
+  box-shadow: 0 0 20px hsl(220 45% 25% / 0.15), 0 0 40px hsl(220 45% 25% / 0.05);
 }
 
 .neon-glow-hover:hover {
-  box-shadow: 0 0 30px hsl(174 62% 47% / 0.25), 0 0 60px hsl(174 62% 47% / 0.1);
+  box-shadow: 0 0 30px hsl(38 75% 50% / 0.25), 0 0 60px hsl(38 75% 50% / 0.1);
   transform: translateY(-4px);
 }
 
@@ -179,5 +179,5 @@
 /* Photo frame for BI style */
 .photo-frame {
   @apply relative overflow-hidden rounded-2xl border-2;
-  border-color: hsl(174 62% 47% / 0.3);
+  border-color: hsl(38 75% 50% / 0.3);
 }

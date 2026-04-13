@@ -90,7 +90,7 @@ const Certifications = () => {
         <div className="mt-10 text-center">
           <Button variant="outline" size="lg" asChild>
             <a
-              href="https://drive.google.com/drive/folders/19SefDOOSqbmVOyTOyOD-qFWSH7JULXRU"
+              href="https://drive.google.com/drive/folders/1ch0TNOhaczs76D_T1t2juD0HbasaoU2I?usp=sharing"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center"

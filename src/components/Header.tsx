@@ -30,7 +30,6 @@ const Header = () => {
 
   const mainNavLinks = [
     { name: "Home", href: "/" },
-    { name: "Resume", href: "/resume" },
     { name: "About", href: "/#about" },
     { name: "Skills", href: "/#skills" },
     { name: "Projects", href: "/#projects" },
@@ -42,7 +41,7 @@ const Header = () => {
 
   const handleNav = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     e.preventDefault();
-    if (href === "/" || href === "/resume") {
+    if (href === "/") {
       window.location.href = href;
       return;
     }
