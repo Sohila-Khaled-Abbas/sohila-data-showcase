@@ -82,14 +82,14 @@ const Projects = () => {
       title: "Apple Stock Market Analysis",
       description: "End-to-end data engineering and analytics project analyzing historical Apple Inc. (AAPL) stock data to extract actionable business insights and investment strategies.",
       technologies: ["Power BI", "Python", "Data Engineering"],
-      github_url: "https://github.com/Sohila-Khaled-Abbas",
+      github_url: "https://github.com/Sohila-Khaled-Abbas/apple-stock-market-analysis",
       powerbi_url: "https://app.powerbi.com/view?r=eyJrIjoiNTNhYmI1ZjUtNDNhZC00OWM3LWFjYzktMmU0NWYyODYzZjIxIiwidCI6IjI1Y2UwMjYxLWJiZDYtNDljZC1hMWUyLTU0MjYwODg2ZDE1OSJ9",
     },
     {
       title: "B2B Retail Analytics & Churn Diagnostic",
       description: "BI solution diagnosing operational bottlenecks and retailer churn in the B2B sector. Processes over 472,000 orders across 70,000 retailers, translating daily operational data into strategic decision-making tools.",
       technologies: ["Power BI", "SQL", "DAX"],
-      github_url: "https://github.com/Sohila-Khaled-Abbas",
+      github_url: "https://github.com/Sohila-Khaled-Abbas/fmcg-sales-churn-drop-analysis-powerbi",
       powerbi_url: "https://app.powerbi.com/view?r=eyJrIjoiNzE0MWUwYTgtZTlhZC00N2IxLWFmYzQtYmI2MzFkNjFhN2NjIiwidCI6IjI1Y2UwMjYxLWJiZDYtNDljZC1hMWUyLTU0MjYwODg2ZDE1OSJ9",
     },
     {
