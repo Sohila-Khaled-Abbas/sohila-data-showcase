@@ -1,15 +1,15 @@
 import { motion } from "framer-motion";
 import { Badge } from "@/components/ui/badge";
-import { Code, BarChart2, Database, FileSpreadsheet, Calculator, Pencil, LayoutDashboard } from "lucide-react";
+import { Code, BarChart2, Database, FileSpreadsheet, Cloud, FlaskConical, LayoutDashboard } from "lucide-react";
 
 const skillCategories = [
-  { name: "Programming & Querying", icon: Code, skills: ["Python", "SQL", "R"] },
-  { name: "Data Visualization", icon: BarChart2, skills: ["Power BI", "Tableau", "Excel Charts"] },
-  { name: "Databases", icon: Database, skills: ["PostgreSQL", "MySQL", "SQL Server", "Google BigQuery"] },
-  { name: "Spreadsheet Skills", icon: FileSpreadsheet, skills: ["Excel", "Pivot Tables", "Macros", "VBA"] },
-  { name: "Data Analysis", icon: Calculator, skills: ["DAX", "Statistical Analysis", "Forecasting"] },
-  { name: "Data Preparation", icon: Pencil, skills: ["Data Cleaning", "ETL", "Data Validation"] },
-  { name: "Dashboard Creation", icon: LayoutDashboard, skills: ["Interactive Reports", "KPI Tracking", "Automated Dashboards"] },
+  { name: "BI & Visualization", icon: BarChart2, skills: ["Power BI", "Advanced DAX", "Star Schema", "Excel Charts", "Metabase"] },
+  { name: "Data Engineering & ETL", icon: Database, skills: ["SQL (PostgreSQL, T-SQL)", "Python (Pandas, NumPy, Selenium)", "n8n", "API Integration", "Apache Spark"] },
+  { name: "Cloud & Modern Data Stack", icon: Cloud, skills: ["Databricks", "Snowflake", "MinIO", "Google BigQuery", "Web Scraping"] },
+  { name: "Programming & Querying", icon: Code, skills: ["Python", "SQL", "R", "VBA"] },
+  { name: "Spreadsheet Skills", icon: FileSpreadsheet, skills: ["Excel", "Power Query", "Pivot Tables", "Macros", "VBA"] },
+  { name: "Methodologies", icon: FlaskConical, skills: ["A/B Testing", "Statistical Modeling", "OLS Regression", "Hypothesis Testing", "Agile"] },
+  { name: "Dashboard Creation", icon: LayoutDashboard, skills: ["Interactive Reports", "KPI Tracking", "Automated Dashboards", "Data Storytelling"] },
 ];
 
 const Skills = () => {
@@ -22,7 +22,7 @@ const Skills = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
         >
-          <span className="gradient-text">My Skills</span>
+          <span className="gradient-text">Technical Skills</span>
         </motion.h2>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 max-w-7xl mx-auto">

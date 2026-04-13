@@ -1,11 +1,13 @@
 import { motion } from "framer-motion";
-import { ChartBar, Code, Award, Users } from "lucide-react";
+import { ChartBar, Code, Award, Users, Zap, Database } from "lucide-react";
 
 const highlights = [
-  { icon: ChartBar, text: "Created 10+ real-world dashboards for hiring, HR, sales, and social media" },
-  { icon: Code, text: "Automated 5+ reporting tasks, cutting weekly manual work by 40%" },
-  { icon: Award, text: "Recognized as Top 2 Data Science Creator in Egypt (Favikon)" },
-  { icon: Users, text: "25,000+ followers reached via original dashboard insights" },
+  { icon: ChartBar, text: "Architected 10+ interactive Power BI dashboards using star-schema modeling, reducing time-to-insight from days to minutes" },
+  { icon: Code, text: "Reduced manual reporting overhead by 40% for 5+ clients via automated ETL pipelines using Python and SQL" },
+  { icon: Award, text: "Top 3 Data Science Creator in Egypt (Favikon, 2026) & Top 200 Arabic-Speaking Influencer" },
+  { icon: Users, text: "55,000+ LinkedIn followers reached via original dashboard insights and data education content" },
+  { icon: Database, text: "Optimized query performance by 25% through refactored SQL scripts and indexing strategies for large-scale datasets" },
+  { icon: Zap, text: "Increased project success rates by 35% for 50+ professionals through structured mentoring frameworks" },
 ];
 
 const About = () => {
@@ -28,9 +30,10 @@ const About = () => {
           viewport={{ once: true }}
           transition={{ delay: 0.1 }}
         >
-          I'm a self-taught data analyst who turns messy spreadsheets and complex datasets
-          into dashboards people actually use. I focus on making reporting smoother, automating
-          the boring stuff, and helping teams see what matters.
+          BI Developer specializing in end-to-end data modeling and automated ETL pipelines.
+          Expert in SQL, Python, and Power BI with a focus on transforming fragmented datasets
+          into scalable, decision-ready architectures. Recognized Technical Mentor for 50+
+          professionals and Top 200 Arabic-speaking influencer in data literacy.
         </motion.p>
 
         <motion.blockquote
