@@ -3,7 +3,7 @@ import { Award, Users, TrendingUp, Clock, Star, Quote } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 
 const metrics = [
-  { icon: Users, value: "import { motion } from "framer-motion";", label: "LinkedIn Followers", desc: "Engaging with dashboards, career tips, and Python use cases" },
+  { icon: Users, value: "55K+", label: "LinkedIn Followers", desc: "Engaging with dashboards, career tips, and Python use cases" },
   { icon: TrendingUp, value: "200+", label: "Dashboard Users", desc: "Explored Wuzzuf Job Market Dashboard to identify hiring trends" },
   { icon: Clock, value: "40%", label: "Time Reduction", desc: "In reporting time through Python automation" },
   { icon: Star, value: "25%", label: "Speed Improvement", desc: "In SQL data retrieval performance" },
