@@ -5,7 +5,7 @@ import { Award, Users, UserCheck } from "lucide-react";
 const kpis = [
   { icon: Award, value: 40, suffix: "+", label: "Technical Certifications" },
   { icon: Users, value: 1000, suffix: "+", label: "Community Members Mentored" },
-  { icon: UserCheck, value: 50, suffix: "+", label: "Professionals Coached" },
+  { icon: UserCheck, value: 55, suffix: "K+", label: "LinkedIn Followers" },
 ];
 
 const Stats = () => {

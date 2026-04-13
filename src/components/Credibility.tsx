@@ -87,7 +87,7 @@ const Credibility = () => {
           <div className="flex justify-center gap-3 flex-wrap">
             <Badge variant="outline" className="px-3 py-1 font-mono text-xs">6+ Hours Weekly Saved</Badge>
             <Badge variant="outline" className="px-3 py-1 font-mono text-xs">40% Faster Reporting</Badge>
-            <Badge variant="outline" className="px-3 py-1 font-mono text-xs">25K+ Community</Badge>
+            <Badge variant="outline" className="px-3 py-1 font-mono text-xs">55K+ Community</Badge>
           </div>
         </div>
       </div>
