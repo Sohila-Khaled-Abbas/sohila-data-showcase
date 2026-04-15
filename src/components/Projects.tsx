@@ -73,6 +73,12 @@ const Projects = () => {
 
   const fallbackProjects = [
     {
+      title: "FX Rate Pipeline: Dockerized In-Flight State Management",
+      description: "An intentionally flawed ETL pipeline built with Apache NiFi and PostgreSQL inside Docker, designed to surface and demonstrate the architectural limitations of in-flight stateful transformation — and why the industry moved from ETL to ELT.",
+      technologies: ["Apache NiFi", "PostgreSQL", "Docker", "ETL"],
+      github_url: "https://github.com/Sohila-Khaled-Abbas/Fx-Rate-Pipeline",
+    },
+    {
       title: "Stock Price Data Pipeline",
       description: "Fully automated real-time stock price ingestion and analytics pipeline. Fetches market data from Yahoo Finance API, processes via Apache Spark, stores in MinIO, loads into PostgreSQL data warehouse, and visualizes insights with Metabase. Slack notifications for completion.",
       technologies: ["Apache Spark", "PostgreSQL", "MinIO", "Metabase", "Python"],
