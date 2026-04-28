@@ -343,7 +343,7 @@ const Projects = () => {
                   </CardContent>
                   <CardFooter className="pt-2 flex flex-col gap-2">
                     {(project as any).live_url && (
-                      <Button variant="default" className="w-full bg-primary hover:bg-primary/90 text-primary-foreground" onClick={() => window.open((project as any).live_url, "_blank")}>
+                      <Button variant="default" className="w-full bg-primary hover:bg-primary/90 text-primary-foreground" onClick={() => window.open((project as any).live_url, "_blank", "noopener,noreferrer")}>
                         <ExternalLink className="mr-2 h-4 w-4" />
                         View Live Dashboard
                       </Button>
@@ -351,13 +351,13 @@ const Projects = () => {
                     <Button
                       variant={(project as any).live_url ? "outline" : "default"}
                       className={`w-full ${(project as any).live_url ? "" : "bg-primary hover:bg-primary/90 text-primary-foreground"}`}
-                      onClick={() => window.open(project.github_url, "_blank")}
+                      onClick={() => window.open(project.github_url, "_blank", "noopener,noreferrer")}
                     >
                       <Github className="mr-2 h-4 w-4" />
                       {(project as any).live_url ? "View Source Code" : "View on GitHub"}
                     </Button>
                     {project.presentation_url && (
-                      <Button variant="outline" className="w-full" onClick={() => window.open(project.presentation_url, "_blank")}>
+                      <Button variant="outline" className="w-full" onClick={() => window.open(project.presentation_url, "_blank", "noopener,noreferrer")}>
                         <Presentation className="mr-2 h-4 w-4" />
                         View Presentation
                       </Button>
@@ -393,7 +393,7 @@ const Projects = () => {
           )}
           <div className="flex justify-end mt-4">
             <DialogClose asChild><Button variant="outline" className="mr-2">Close</Button></DialogClose>
-            <Button onClick={() => { window.open(selectedProject?.powerbi_url, "_blank"); setIsModalOpen(false); }}>Open in New Tab</Button>
+            <Button onClick={() => { window.open(selectedProject?.powerbi_url, "_blank", "noopener,noreferrer"); setIsModalOpen(false); }}>Open in New Tab</Button>
           </div>
         </DialogContent>
       </Dialog>
