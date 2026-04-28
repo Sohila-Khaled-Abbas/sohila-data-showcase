@@ -73,6 +73,13 @@ const Projects = () => {
 
   const fallbackProjects = [
     {
+      title: "Global Horizon Bank — Enterprise Banking Analytics",
+      description: "End-to-End Data Intelligence Architecture. Architected an analytical data model transforming raw operational banking records into an optimized Star Schema for the Egyptian market. Developed an interactive executive dashboard featuring a rule-based insights engine to analyze loan portfolio aging and dynamically flag structural risks.",
+      technologies: ["SQL", "Python", "Streamlit", "Pandas", "Plotly", "Dimensional Modeling"],
+      github_url: "https://github.com/Sohila-Khaled-Abbas/global-horizon-bank-dwh-project",
+      live_url: "https://global-horizon-bank-dwh-project.streamlit.app/",
+    },
+    {
       title: "FX Rate Pipeline: Dockerized In-Flight State Management",
       description: "An intentionally flawed ETL pipeline built with Apache NiFi and PostgreSQL inside Docker, designed to surface and demonstrate the architectural limitations of in-flight stateful transformation — and why the industry moved from ETL to ELT.",
       technologies: ["Apache NiFi", "PostgreSQL", "Docker", "ETL"],
@@ -317,9 +324,19 @@ const Projects = () => {
                     </div>
                   </CardContent>
                   <CardFooter className="pt-2 flex flex-col gap-2">
-                    <Button variant="default" className="w-full bg-primary hover:bg-primary/90 text-primary-foreground" onClick={() => window.open(project.github_url, "_blank")}>
+                    {(project as any).live_url && (
+                      <Button variant="default" className="w-full bg-primary hover:bg-primary/90 text-primary-foreground" onClick={() => window.open((project as any).live_url, "_blank")}>
+                        <ExternalLink className="mr-2 h-4 w-4" />
+                        View Live Dashboard
+                      </Button>
+                    )}
+                    <Button
+                      variant={(project as any).live_url ? "outline" : "default"}
+                      className={`w-full ${(project as any).live_url ? "" : "bg-primary hover:bg-primary/90 text-primary-foreground"}`}
+                      onClick={() => window.open(project.github_url, "_blank")}
+                    >
                       <Github className="mr-2 h-4 w-4" />
-                      View on GitHub
+                      {(project as any).live_url ? "View Source Code" : "View on GitHub"}
                     </Button>
                     {project.presentation_url && (
                       <Button variant="outline" className="w-full" onClick={() => window.open(project.presentation_url, "_blank")}>
