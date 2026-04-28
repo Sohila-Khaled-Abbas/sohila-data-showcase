@@ -73,6 +73,13 @@ const Projects = () => {
 
   const fallbackProjects = [
     {
+      title: "Global Horizon Bank — Enterprise Banking Analytics",
+      description: "End-to-End Data Intelligence Architecture. Architected an analytical data model transforming raw operational banking records into an optimized Star Schema for the Egyptian market. Developed an interactive executive dashboard featuring a rule-based insights engine to analyze loan portfolio aging and dynamically flag structural risks.",
+      technologies: ["SQL", "Python", "Streamlit", "Pandas", "Plotly", "Dimensional Modeling"],
+      github_url: "https://github.com/Sohila-Khaled-Abbas/global-horizon-bank-dwh-project",
+      live_url: "https://global-horizon-bank-dwh-project.streamlit.app/",
+    },
+    {
       title: "FX Rate Pipeline: Dockerized In-Flight State Management",
       description: "An intentionally flawed ETL pipeline built with Apache NiFi and PostgreSQL inside Docker, designed to surface and demonstrate the architectural limitations of in-flight stateful transformation — and why the industry moved from ETL to ELT.",
       technologies: ["Apache NiFi", "PostgreSQL", "Docker", "ETL"],
