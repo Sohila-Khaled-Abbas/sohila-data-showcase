@@ -80,6 +80,24 @@ const Projects = () => {
       live_url: "https://global-horizon-bank-dwh-project.streamlit.app/",
     },
     {
+      title: "NovaTel: End-to-End Telecom Big Data Ecosystem",
+      description: "High-fidelity data engineering simulation of a Mobile Network Operator at the scale of the Egyptian market (100M+ subscribers). Demonstrates a production-grade transition from legacy RDBMS to a modern Big Data Analytical Platform — processing billions of events with sub-second query latency and addressing 'High Write Velocity' during peak events (Ramadan, football matches).",
+      technologies: ["Apache Kafka", "PostgreSQL", "PySpark", "ClickHouse", "Airflow", "Apache Superset"],
+      github_url: "https://github.com/Sohila-Khaled-Abbas/novatel-big-data-ecosystem",
+    },
+    {
+      title: "Scalper Bot Analytics & Flash Sale Cannibalization",
+      description: "A forensic data engineering investigation into how 'Cyber Flash Drops' silently destroy profit margins through deal-sniper users and coordinated bot exploitation.",
+      technologies: ["Apache Spark", "Databricks", "Delta Lake", "Python", "PySpark", "Power BI"],
+      github_url: "https://github.com/Sohila-Khaled-Abbas/ecommerce-flash-sale-analysis",
+    },
+    {
+      title: "AR Financial Tracking System",
+      description: "End-to-end Accounts Receivable data engineering pipeline — synthetic data generation at scale (950K+ records), Power Query ETL transformation, Star Schema modeling, and collection follow-up simulation — built for real-world AR analytics scenarios.",
+      technologies: ["Power Query", "ETL", "Star Schema", "Python", "SQL"],
+      github_url: "https://github.com/Sohila-Khaled-Abbas/AR_Financial_Tracking_System",
+    },
+    {
       title: "FX Rate Pipeline: Dockerized In-Flight State Management",
       description: "An intentionally flawed ETL pipeline built with Apache NiFi and PostgreSQL inside Docker, designed to surface and demonstrate the architectural limitations of in-flight stateful transformation — and why the industry moved from ETL to ELT.",
       technologies: ["Apache NiFi", "PostgreSQL", "Docker", "ETL"],
