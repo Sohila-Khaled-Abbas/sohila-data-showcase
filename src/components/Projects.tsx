@@ -324,9 +324,19 @@ const Projects = () => {
                     </div>
                   </CardContent>
                   <CardFooter className="pt-2 flex flex-col gap-2">
-                    <Button variant="default" className="w-full bg-primary hover:bg-primary/90 text-primary-foreground" onClick={() => window.open(project.github_url, "_blank")}>
+                    {(project as any).live_url && (
+                      <Button variant="default" className="w-full bg-primary hover:bg-primary/90 text-primary-foreground" onClick={() => window.open((project as any).live_url, "_blank")}>
+                        <ExternalLink className="mr-2 h-4 w-4" />
+                        View Live Dashboard
+                      </Button>
+                    )}
+                    <Button
+                      variant={(project as any).live_url ? "outline" : "default"}
+                      className={`w-full ${(project as any).live_url ? "" : "bg-primary hover:bg-primary/90 text-primary-foreground"}`}
+                      onClick={() => window.open(project.github_url, "_blank")}
+                    >
                       <Github className="mr-2 h-4 w-4" />
-                      View on GitHub
+                      {(project as any).live_url ? "View Source Code" : "View on GitHub"}
                     </Button>
                     {project.presentation_url && (
                       <Button variant="outline" className="w-full" onClick={() => window.open(project.presentation_url, "_blank")}>
