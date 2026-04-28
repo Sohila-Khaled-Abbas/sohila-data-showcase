@@ -393,7 +393,7 @@ const Projects = () => {
           )}
           <div className="flex justify-end mt-4">
             <DialogClose asChild><Button variant="outline" className="mr-2">Close</Button></DialogClose>
-            <Button onClick={() => { window.open(selectedProject?.powerbi_url, "_blank"); setIsModalOpen(false); }}>Open in New Tab</Button>
+            <Button onClick={() => { window.open(selectedProject?.powerbi_url, "_blank", "noopener,noreferrer"); setIsModalOpen(false); }}>Open in New Tab</Button>
           </div>
         </DialogContent>
       </Dialog>
