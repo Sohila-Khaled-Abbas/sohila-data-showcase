@@ -33,6 +33,7 @@ const Header = () => {
     { name: "About", href: "/#about" },
     { name: "Skills", href: "/#skills" },
     { name: "Projects", href: "/#projects" },
+    { name: "Templates", href: "/templates" },
     { name: "Community", href: "/#community" },
     { name: "Credibility", href: "/#credibility" },
     { name: "Certifications", href: "/#certifications" },
@@ -40,11 +41,12 @@ const Header = () => {
   ];
 
   const handleNav = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
-    e.preventDefault();
-    if (href === "/") {
-      window.location.href = href;
+    if (href === "/" || !href.includes("#")) {
+      // Let react-router handle real routes
+      setIsMobileMenuOpen(false);
       return;
     }
+    e.preventDefault();
     if (location.pathname !== "/") {
       window.location.href = href;
       return;

@@ -18,11 +18,17 @@ const Hero = () => {
           transition={{ duration: 0.8 }}
         >
           <div className="relative">
-            <div className="absolute -inset-1 bg-gradient-to-r from-primary via-accent to-secondary rounded-2xl blur-lg opacity-40" />
+            <div className="absolute -inset-6 bg-gradient-to-br from-primary/20 via-secondary/20 to-accent/10 rounded-full blur-3xl opacity-70" />
             <motion.div
-              className="relative w-64 h-64 md:w-80 md:h-80 rounded-2xl overflow-hidden border-2 border-primary/30"
-              animate={{ y: [0, -12, 0] }}
-              transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+              className="relative w-64 h-64 md:w-96 md:h-96 rounded-full overflow-hidden"
+              animate={{ y: [0, -10, 0] }}
+              transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
+              style={{
+                WebkitMaskImage:
+                  "radial-gradient(circle at center, black 60%, transparent 100%)",
+                maskImage:
+                  "radial-gradient(circle at center, black 60%, transparent 100%)",
+              }}
             >
               <img
                 src="/images/sohila-hero.png"
