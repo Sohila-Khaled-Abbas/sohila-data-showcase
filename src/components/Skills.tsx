@@ -1,7 +1,6 @@
 import { motion } from "framer-motion";
 import { Badge } from "@/components/ui/badge";
 import {
-  SiPowerbi,
   SiPython,
   SiPostgresql,
   SiMysql,
@@ -32,7 +31,7 @@ const skillCategories: { name: string; Icon: ComponentType<{ className?: string 
     name: "BI & Visualization",
     Icon: BarChart2,
     skills: [
-      { name: "Power BI", Icon: SiPowerbi },
+      { name: "Power BI", Icon: BarChart2 },
       { name: "Plotly", Icon: SiPlotly },
       { name: "Streamlit", Icon: SiStreamlit },
       { name: "Metabase", Icon: SiMetabase },
