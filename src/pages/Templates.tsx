@@ -1,0 +1,105 @@
+import { motion } from "framer-motion";
+import { ExternalLink, BookOpen } from "lucide-react";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
+
+const templates = [
+  {
+    title: "Excel Learning Roadmap",
+    description:
+      "كتير بيبدأوا يتعلموا Excel بشكل عشوائي… فيديو هنا، مقالة هناك، وفي الآخر يلاقوا نفسهم حافظين شوية أوامر لكن مش عارفين يوصلوا لصورة كاملة. خريطة واضحة تمشي بيك من الأساسيات لحد ما تبني Dashboard تفاعلي كامل بناء على الـ Mindmap اللي عملها بشمهندس مصطفي.",
+    link: "https://data-management-track-roadmap.notion.site/Excel-Roadmap-25d3daee0ded806284d3e663fd7bd609?pvs=74",
+  },
+  {
+    title: "SQL Mastery Roadmap",
+    description:
+      "عايز/ة تتعلم SQL لكن مش عارف/ة تبدأ منين أو إيه الترتيب الصح؟ قالب متكامل يعلمك SQL خطوة بخطوة من الصفر للمستوى المتقدم (Joins, CTE, Window Functions). يشمل قائمة Topics، Projects Tracker، قسم Notes، ومكتبة Resources موثوقة.",
+    link: "https://sql-mastery-roadmap.super.site/",
+  },
+  {
+    title: "Python Web Scraping Specialist",
+    description:
+      "لو نفسك تبقى Web Scraping Specialist بالـ Python — دي الخطة اللي كنت بتدور عليها. بتاخدك خطوة بخطوة من الأساسيات (HTTP، HTML، APIs) لحد بناء مشاريع حقيقية زي E-commerce Tracker وJob Market Analyzer.",
+    link: "https://datawithsohila.notion.site/Python-Web-Scraping-Specialist-Roadmap-288bb8455a2880858ce9ef4422df9eba?source=copy_link",
+  },
+  {
+    title: "Master Data Engineering: From Junior to Expert",
+    description:
+      "بيجمع 6 Modules أساسية تبدأ من Fundamentals لحد Pipelines, Real-Time Processing, وCapstone Project عملي. الهدف منه يبقى دليل لأي Data Analyst عايز ياخد خطوة للـ Data Engineering بمشاريع حقيقية يضيفها للـ Portfolio.",
+    link: "https://datawithsohila.notion.site/Master-Data-Engineering-278bb8455a28802ebeb2db6df1e94c39?source=copy_link",
+  },
+];
+
+const Templates = () => {
+  return (
+    <div className="min-h-screen bg-background text-foreground">
+      <Header />
+      <section className="pt-32 pb-20">
+        <div className="container mx-auto px-4">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="text-center mb-12 max-w-3xl mx-auto"
+          >
+            <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-medium bg-primary/10 text-accent border border-primary/20 mb-4">
+              <BookOpen className="h-3.5 w-3.5" />
+              Curated Learning Paths
+            </span>
+            <h1 className="text-4xl md:text-5xl font-bold mb-4">
+              <span className="gradient-text">Notion Roadmaps & Templates</span>
+            </h1>
+            <p className="text-muted-foreground text-lg">
+              Structured roadmaps and ready-to-use Notion workspaces to guide your data journey — from Excel to Data Engineering.
+            </p>
+          </motion.div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto">
+            {templates.map((t, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.1, duration: 0.5 }}
+              >
+                <Card className="h-full bg-card border border-border rounded-2xl neon-glow-hover overflow-hidden">
+                  <CardHeader>
+                    <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-primary/30 to-accent/20 flex items-center justify-center mb-3">
+                      <BookOpen className="h-6 w-6 text-accent" />
+                    </div>
+                    <CardTitle className="text-xl font-bold text-foreground">{t.title}</CardTitle>
+                  </CardHeader>
+                  <CardContent className="flex flex-col gap-5">
+                    <p
+                      dir="rtl"
+                      lang="ar"
+                      className="text-sm text-muted-foreground leading-loose text-right"
+                      style={{ fontFamily: '"Plus Jakarta Sans", "Segoe UI", Tahoma, sans-serif' }}
+                    >
+                      {t.description}
+                    </p>
+                    <Button
+                      asChild
+                      className="bg-accent hover:bg-accent/90 text-accent-foreground w-full sm:w-auto self-start"
+                    >
+                      <a href={t.link} target="_blank" rel="noopener noreferrer">
+                        Open Template
+                        <ExternalLink className="ml-2 h-4 w-4" />
+                      </a>
+                    </Button>
+                  </CardContent>
+                </Card>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+      <Footer />
+    </div>
+  );
+};
+
+export default Templates;
