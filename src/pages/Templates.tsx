@@ -9,25 +9,25 @@ const templates = [
   {
     title: "Excel Learning Roadmap",
     description:
-      "كتير بيبدأوا يتعلموا Excel بشكل عشوائي… فيديو هنا، مقالة هناك، وفي الآخر يلاقوا نفسهم حافظين شوية أوامر لكن مش عارفين يوصلوا لصورة كاملة. خريطة واضحة تمشي بيك من الأساسيات لحد ما تبني Dashboard تفاعلي كامل بناء على الـ Mindmap اللي عملها بشمهندس مصطفي.",
+      "Many people start learning Excel randomly — a video here, an article there — and end up memorizing scattered commands without ever seeing the full picture. This roadmap walks you step by step from the fundamentals all the way to building a complete interactive dashboard, based on the mindmap created with Eng. Mostafa.",
     link: "https://data-management-track-roadmap.notion.site/Excel-Roadmap-25d3daee0ded806284d3e663fd7bd609?pvs=74",
   },
   {
     title: "SQL Mastery Roadmap",
     description:
-      "عايز/ة تتعلم SQL لكن مش عارف/ة تبدأ منين أو إيه الترتيب الصح؟ قالب متكامل يعلمك SQL خطوة بخطوة من الصفر للمستوى المتقدم (Joins, CTE, Window Functions). يشمل قائمة Topics، Projects Tracker، قسم Notes، ومكتبة Resources موثوقة.",
+      "Want to learn SQL but don't know where to start or what order to follow? A complete template that teaches you SQL step by step from zero to advanced (Joins, CTEs, Window Functions). Includes a Topics checklist, Projects Tracker, Notes section, and a curated library of trusted Resources.",
     link: "https://sql-mastery-roadmap.super.site/",
   },
   {
     title: "Python Web Scraping Specialist",
     description:
-      "لو نفسك تبقى Web Scraping Specialist بالـ Python — دي الخطة اللي كنت بتدور عليها. بتاخدك خطوة بخطوة من الأساسيات (HTTP، HTML، APIs) لحد بناء مشاريع حقيقية زي E-commerce Tracker وJob Market Analyzer.",
+      "If you want to become a Web Scraping Specialist with Python — this is the plan you've been looking for. It takes you step by step from the fundamentals (HTTP, HTML, APIs) all the way to building real-world projects like an E-commerce Tracker and a Job Market Analyzer.",
     link: "https://datawithsohila.notion.site/Python-Web-Scraping-Specialist-Roadmap-288bb8455a2880858ce9ef4422df9eba?source=copy_link",
   },
   {
     title: "Master Data Engineering: From Junior to Expert",
     description:
-      "بيجمع 6 Modules أساسية تبدأ من Fundamentals لحد Pipelines, Real-Time Processing, وCapstone Project عملي. الهدف منه يبقى دليل لأي Data Analyst عايز ياخد خطوة للـ Data Engineering بمشاريع حقيقية يضيفها للـ Portfolio.",
+      "Brings together 6 core modules starting from Fundamentals all the way to Pipelines, Real-Time Processing, and a hands-on Capstone Project. Designed as a guide for any Data Analyst looking to step into Data Engineering with real projects to add to their portfolio.",
     link: "https://datawithsohila.notion.site/Master-Data-Engineering-278bb8455a28802ebeb2db6df1e94c39?source=copy_link",
   },
 ];
@@ -73,12 +73,7 @@ const Templates = () => {
                     <CardTitle className="text-xl font-bold text-foreground">{t.title}</CardTitle>
                   </CardHeader>
                   <CardContent className="flex flex-col gap-5">
-                    <p
-                      dir="rtl"
-                      lang="ar"
-                      className="text-sm text-muted-foreground leading-loose text-right"
-                      style={{ fontFamily: '"Plus Jakarta Sans", "Segoe UI", Tahoma, sans-serif' }}
-                    >
+                    <p className="text-sm text-muted-foreground leading-relaxed">
                       {t.description}
                     </p>
                     <Button
