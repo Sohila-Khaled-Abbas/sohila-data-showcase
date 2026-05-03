@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700;800;900&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -6,39 +6,39 @@
 
 @layer base {
   :root {
-    --background: 40 20% 96%;
-    --foreground: 220 40% 13%;
+    --background: 40 30% 97%;
+    --foreground: 25 30% 18%;
 
-    --card: 40 15% 93%;
-    --card-foreground: 220 40% 13%;
+    --card: 35 28% 94%;
+    --card-foreground: 25 30% 18%;
 
-    --popover: 40 20% 96%;
-    --popover-foreground: 220 40% 13%;
+    --popover: 40 30% 97%;
+    --popover-foreground: 25 30% 18%;
 
-    --primary: 38 75% 50%;
-    --primary-foreground: 220 40% 8%;
+    --primary: 28 24% 58%;
+    --primary-foreground: 25 35% 14%;
 
-    --secondary: 220 45% 25%;
-    --secondary-foreground: 40 20% 96%;
+    --secondary: 30 20% 75%;
+    --secondary-foreground: 25 35% 18%;
 
-    --muted: 40 12% 90%;
-    --muted-foreground: 220 15% 42%;
+    --muted: 35 20% 90%;
+    --muted-foreground: 25 15% 38%;
 
-    --accent: 12 55% 55%;
-    --accent-foreground: 0 0% 100%;
+    --accent: 25 32% 38%;
+    --accent-foreground: 40 30% 97%;
 
-    --destructive: 0 84% 60%;
+    --destructive: 0 70% 50%;
     --destructive-foreground: 0 0% 98%;
 
-    --border: 40 10% 85%;
-    --input: 40 10% 85%;
-    --ring: 38 75% 50%;
+    --border: 30 18% 86%;
+    --input: 30 18% 86%;
+    --ring: 25 32% 38%;
 
-    --radius: 0.75rem;
+    --radius: 0.875rem;
 
-    --neon-teal: 38 75% 50%;
-    --neon-purple: 220 45% 25%;
-    --neon-blue: 12 55% 55%;
+    --neon-teal: 28 24% 58%;
+    --neon-purple: 25 32% 38%;
+    --neon-blue: 30 35% 70%;
   }
 
   .dark {
@@ -86,23 +86,26 @@
   }
 }
 
-/* BI Gradient Text */
+/* Warm Gradient Text */
 .gradient-text {
-  @apply bg-gradient-to-r from-[hsl(38,75%,50%)] via-[hsl(12,55%,55%)] to-[hsl(220,45%,25%)] bg-clip-text text-transparent;
+  @apply bg-gradient-to-r from-[hsl(28,30%,45%)] via-[hsl(25,32%,38%)] to-[hsl(25,40%,25%)] bg-clip-text text-transparent;
 }
 
-/* Neon glow effects */
+/* Soft warm shadows */
 .neon-glow {
-  box-shadow: 0 0 20px hsl(38 75% 50% / 0.15), 0 0 40px hsl(38 75% 50% / 0.05);
+  box-shadow: 0 4px 20px hsl(25 30% 30% / 0.06), 0 1px 3px hsl(25 30% 30% / 0.04);
 }
 
 .neon-glow-purple {
-  box-shadow: 0 0 20px hsl(220 45% 25% / 0.15), 0 0 40px hsl(220 45% 25% / 0.05);
+  box-shadow: 0 4px 20px hsl(25 32% 38% / 0.08), 0 1px 3px hsl(25 32% 38% / 0.04);
 }
 
+.neon-glow-hover {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
 .neon-glow-hover:hover {
-  box-shadow: 0 0 30px hsl(38 75% 50% / 0.25), 0 0 60px hsl(38 75% 50% / 0.1);
-  transform: translateY(-4px);
+  box-shadow: 0 12px 32px hsl(25 30% 25% / 0.10), 0 4px 12px hsl(25 30% 25% / 0.06);
+  transform: translateY(-3px) scale(1.02);
 }
 
 /* Custom scrollbar */
