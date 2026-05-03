@@ -1,54 +1,167 @@
 import { motion } from "framer-motion";
 import { Badge } from "@/components/ui/badge";
-import { Code, BarChart2, Database, FileSpreadsheet, Cloud, FlaskConical, LayoutDashboard } from "lucide-react";
+import {
+  SiPowerbi,
+  SiPython,
+  SiPostgresql,
+  SiMysql,
+  SiApachespark,
+  SiDatabricks,
+  SiSnowflake,
+  SiGooglebigquery,
+  SiPandas,
+  SiNumpy,
+  SiSelenium,
+  SiR,
+  SiNotion,
+  SiMetabase,
+  SiN8N,
+  SiApacheairflow,
+  SiDocker,
+  SiPlotly,
+  SiStreamlit,
+  SiApachekafka,
+} from "react-icons/si";
+import { FileSpreadsheet, Code2, FlaskConical, LayoutDashboard, Database, BarChart2, Cloud } from "lucide-react";
+import type { ComponentType } from "react";
 
-const skillCategories = [
-  { name: "BI & Visualization", icon: BarChart2, skills: ["Power BI", "Advanced DAX", "Star Schema", "Excel Charts", "Metabase"] },
-  { name: "Data Engineering & ETL", icon: Database, skills: ["SQL (PostgreSQL, T-SQL)", "Python (Pandas, NumPy, Selenium)", "n8n", "API Integration", "Apache Spark"] },
-  { name: "Cloud & Modern Data Stack", icon: Cloud, skills: ["Databricks", "Snowflake", "MinIO", "Google BigQuery", "Web Scraping"] },
-  { name: "Programming & Querying", icon: Code, skills: ["Python", "SQL", "R", "VBA"] },
-  { name: "Spreadsheet Skills", icon: FileSpreadsheet, skills: ["Excel", "Power Query", "Pivot Tables", "Macros", "VBA"] },
-  { name: "Methodologies", icon: FlaskConical, skills: ["A/B Testing", "Statistical Modeling", "OLS Regression", "Hypothesis Testing", "Agile"] },
-  { name: "Dashboard Creation", icon: LayoutDashboard, skills: ["Interactive Reports", "KPI Tracking", "Automated Dashboards", "Data Storytelling"] },
+type Skill = { name: string; Icon: ComponentType<{ className?: string }> };
+
+const skillCategories: { name: string; Icon: ComponentType<{ className?: string }>; skills: Skill[] }[] = [
+  {
+    name: "BI & Visualization",
+    Icon: BarChart2,
+    skills: [
+      { name: "Power BI", Icon: SiPowerbi },
+      { name: "Plotly", Icon: SiPlotly },
+      { name: "Streamlit", Icon: SiStreamlit },
+      { name: "Metabase", Icon: SiMetabase },
+      { name: "Excel Charts", Icon: FileSpreadsheet },
+    ],
+  },
+  {
+    name: "Data Engineering & ETL",
+    Icon: Database,
+    skills: [
+      { name: "PostgreSQL", Icon: SiPostgresql },
+      { name: "MySQL", Icon: SiMysql },
+      { name: "Apache Spark", Icon: SiApachespark },
+      { name: "Apache Kafka", Icon: SiApachekafka },
+      { name: "Airflow", Icon: SiApacheairflow },
+      { name: "n8n", Icon: SiN8N },
+      { name: "Docker", Icon: SiDocker },
+    ],
+  },
+  {
+    name: "Cloud & Modern Data Stack",
+    Icon: Cloud,
+    skills: [
+      { name: "Databricks", Icon: SiDatabricks },
+      { name: "Snowflake", Icon: SiSnowflake },
+      { name: "BigQuery", Icon: SiGooglebigquery },
+    ],
+  },
+  {
+    name: "Programming & Querying",
+    Icon: Code2,
+    skills: [
+      { name: "Python", Icon: SiPython },
+      { name: "Pandas", Icon: SiPandas },
+      { name: "NumPy", Icon: SiNumpy },
+      { name: "Selenium", Icon: SiSelenium },
+      { name: "R", Icon: SiR },
+    ],
+  },
+  {
+    name: "Spreadsheet Skills",
+    Icon: FileSpreadsheet,
+    skills: [
+      { name: "Excel", Icon: FileSpreadsheet },
+      { name: "Power Query", Icon: FileSpreadsheet },
+      { name: "Pivot Tables", Icon: FileSpreadsheet },
+      { name: "Macros / VBA", Icon: Code2 },
+    ],
+  },
+  {
+    name: "Methodologies",
+    Icon: FlaskConical,
+    skills: [
+      { name: "A/B Testing", Icon: FlaskConical },
+      { name: "Statistical Modeling", Icon: FlaskConical },
+      { name: "OLS Regression", Icon: FlaskConical },
+      { name: "Hypothesis Testing", Icon: FlaskConical },
+      { name: "Agile", Icon: FlaskConical },
+    ],
+  },
+  {
+    name: "Workflow & Tools",
+    Icon: LayoutDashboard,
+    skills: [
+      { name: "Notion", Icon: SiNotion },
+      { name: "KPI Tracking", Icon: LayoutDashboard },
+      { name: "Data Storytelling", Icon: LayoutDashboard },
+    ],
+  },
 ];
+
+const containerVariants = {
+  hidden: {},
+  show: { transition: { staggerChildren: 0.06 } },
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 24 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.45, ease: [0.22, 1, 0.36, 1] as const } },
+};
 
 const Skills = () => {
   return (
-    <section id="skills" className="py-16 bg-muted/30">
+    <section id="skills" className="py-20 bg-muted/40">
       <div className="container mx-auto px-4">
         <motion.h2
-          className="text-3xl md:text-4xl font-bold text-center mb-12"
+          className="text-3xl md:text-4xl font-bold text-center mb-3"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
         >
           <span className="gradient-text">Technical Skills</span>
         </motion.h2>
+        <p className="text-center text-muted-foreground mb-12">Tools and technologies powering the work</p>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 max-w-7xl mx-auto">
+        <motion.div
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 max-w-7xl mx-auto"
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, amount: 0.15 }}
+        >
           {skillCategories.map((cat, i) => (
             <motion.div
               key={i}
-              className="bg-card border border-border rounded-xl p-5 neon-glow-hover transition-all duration-300"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.05 }}
+              variants={itemVariants}
+              className="bg-card border border-border rounded-2xl p-6 neon-glow-hover"
             >
-              <div className="flex items-center gap-3 mb-3">
-                <cat.icon className="h-5 w-5 text-primary" />
+              <div className="flex items-center gap-3 mb-4">
+                <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-primary/25 to-accent/15 flex items-center justify-center">
+                  <cat.Icon className="h-5 w-5 text-accent" />
+                </div>
                 <h3 className="font-semibold text-foreground">{cat.name}</h3>
               </div>
               <div className="flex flex-wrap gap-2">
                 {cat.skills.map((skill, j) => (
-                  <Badge key={j} variant="outline" className="bg-muted text-muted-foreground text-xs">
-                    {skill}
+                  <Badge
+                    key={j}
+                    variant="outline"
+                    className="bg-background/60 border-border text-foreground/80 text-xs px-2.5 py-1.5 flex items-center gap-1.5 hover:bg-primary/10 hover:text-accent transition-colors"
+                  >
+                    <skill.Icon className="h-3.5 w-3.5 opacity-80" />
+                    {skill.name}
                   </Badge>
                 ))}
               </div>
             </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );
