@@ -80,6 +80,13 @@ const Projects = () => {
       live_url: "https://global-horizon-bank-dwh-project.streamlit.app/",
     },
     {
+      title: "DeepClean OS",
+      description: "An automated data engineering pipeline that transforms raw datasets into ML-ready assets via a strict Sequential Dependency Chain (including statistical imputation, Winsorization, and feature scaling).",
+      technologies: ["Python", "Pandas", "Scikit-Learn", "Streamlit"],
+      github_url: "",
+      live_url: "https://deep-clean-os.streamlit.app",
+    },
+    {
       title: "NovaTel: End-to-End Telecom Big Data Ecosystem",
       description: "High-fidelity data engineering simulation of a Mobile Network Operator at the scale of the Egyptian market (100M+ subscribers). Demonstrates a production-grade transition from legacy RDBMS to a modern Big Data Analytical Platform — processing billions of events with sub-second query latency and addressing 'High Write Velocity' during peak events (Ramadan, football matches).",
       technologies: ["Apache Kafka", "PostgreSQL", "PySpark", "ClickHouse", "Airflow", "Apache Superset"],
