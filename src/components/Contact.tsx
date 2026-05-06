@@ -7,7 +7,14 @@ import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import { Mail, Phone, MapPin, Linkedin, Github, Globe } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
-import { supabase } from "@/lib/supabase";
+import { supabase } from "@/integrations/supabase/client";
+import { z } from "zod";
+
+const contactSchema = z.object({
+  name: z.string().trim().min(1, "Name is required").max(100, "Name must be less than 100 characters"),
+  email: z.string().trim().email("Invalid email address").max(255, "Email must be less than 255 characters"),
+  message: z.string().trim().min(1, "Message is required").max(2000, "Message must be less than 2000 characters"),
+});
 
 const Contact = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -18,11 +25,21 @@ const Contact = () => {
     setIsSubmitting(true);
     const form = e.currentTarget;
     const formData = new FormData(form);
+    const parsed = contactSchema.safeParse({
+      name: formData.get("name"),
+      email: formData.get("email"),
+      message: formData.get("message"),
+    });
+    if (!parsed.success) {
+      toast({ variant: "destructive", title: "Invalid input", description: parsed.error.issues[0].message });
+      setIsSubmitting(false);
+      return;
+    }
     try {
       const { error } = await supabase.from("contact_submissions").insert([{
-        full_name: formData.get("name"),
-        email: formData.get("email"),
-        message: formData.get("message"),
+        full_name: parsed.data.name,
+        email: parsed.data.email,
+        message: parsed.data.message,
         submitted_at: new Date().toISOString(),
       }]);
       if (error) throw error;
