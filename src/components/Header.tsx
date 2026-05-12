@@ -37,7 +37,7 @@ const Header = () => {
     { name: "Community", href: "/#community" },
     { name: "Credibility", href: "/#credibility" },
     { name: "Certifications", href: "/#certifications" },
-    { name: "Contact", href: "/#contact" },
+    { name: "Inquiry", href: "/intake" },
   ];
 
   const handleNav = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
