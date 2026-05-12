@@ -83,9 +83,9 @@ const Hero = () => {
               </a>
             </Button>
             <Button size="lg" variant="outline" className="border-primary/30 text-foreground hover:bg-primary/10" asChild>
-              <a href="#contact">
+              <a href="/intake">
                 <Mail className="mr-2 h-4 w-4" />
-                Contact Me
+                Work With Me
               </a>
             </Button>
           </motion.div>

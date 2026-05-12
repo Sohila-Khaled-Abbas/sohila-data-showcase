@@ -7,7 +7,6 @@ import Projects from "@/components/Projects";
 import Community from "@/components/Community";
 import Credibility from "@/components/Credibility";
 import Certifications from "@/components/Certifications";
-import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 
 const Index = () => {
@@ -22,7 +21,6 @@ const Index = () => {
       <Community />
       <Credibility />
       <Certifications />
-      <Contact />
       <Footer />
     </div>
   );
