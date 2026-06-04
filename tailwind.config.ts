@@ -70,8 +70,8 @@ export default {
         },
       },
       fontFamily: {
-        sans: ['"Plus Jakarta Sans"', 'Inter', 'sans-serif'],
-        display: ['"Plus Jakarta Sans"', 'Inter', 'sans-serif'],
+        sans: ['Inter', 'system-ui', 'sans-serif'],
+        display: ['Inter', 'system-ui', 'sans-serif'],
         mono: ['JetBrains Mono', 'monospace'],
       },
       borderRadius: {
