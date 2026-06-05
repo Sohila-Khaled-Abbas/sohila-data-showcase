@@ -77,16 +77,34 @@ const Header = () => {
           ))}
           <div className="flex items-center space-x-2 ml-2">
             <Sun className="h-3.5 w-3.5 text-muted-foreground" />
-            <Switch checked={isDarkMode} onCheckedChange={toggleDarkMode} className="data-[state=checked]:bg-primary" />
+            <Switch
+              checked={isDarkMode}
+              onCheckedChange={toggleDarkMode}
+              aria-label="Toggle dark mode"
+              className="data-[state=checked]:bg-primary"
+            />
             <Moon className="h-3.5 w-3.5 text-muted-foreground" />
           </div>
         </nav>
 
         <div className="flex items-center space-x-2 md:hidden">
-          <Button variant="ghost" size="icon" onClick={toggleDarkMode} className="text-muted-foreground">
+          <Button
+            variant="ghost"
+            size="icon"
+            onClick={toggleDarkMode}
+            className="text-muted-foreground"
+            aria-label={isDarkMode ? "Switch to light mode" : "Switch to dark mode"}
+          >
             {isDarkMode ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
           </Button>
-          <Button variant="ghost" size="icon" className="text-foreground" onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
+          <Button
+            variant="ghost"
+            size="icon"
+            className="text-foreground"
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
+            aria-expanded={isMobileMenuOpen}
+          >
             <Menu />
           </Button>
         </div>

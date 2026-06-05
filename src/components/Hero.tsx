@@ -32,8 +32,12 @@ const Hero = () => {
             >
               <img
                 src="/images/sohila-hero.png"
-                alt="Sohila Khaled Abbas"
+                alt="Sohila Khaled Abbas — BI Developer and Data Analytics Engineer"
                 className="w-full h-full object-cover"
+                width={384}
+                height={384}
+                fetchPriority="high"
+                decoding="async"
               />
             </motion.div>
           </div>
@@ -57,8 +61,10 @@ const Hero = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1 }}
           >
-            <span className="block text-foreground">Sohila Khaled</span>
-            <span className="gradient-text">Abbas</span>
+            <span className="block text-foreground">Sohila Khaled Abbas</span>
+            <span className="gradient-text block text-2xl md:text-3xl lg:text-4xl font-bold mt-2">
+              BI Developer & Data Analytics Engineer
+            </span>
           </motion.h1>
 
           <motion.p
