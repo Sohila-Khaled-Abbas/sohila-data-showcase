@@ -268,7 +268,7 @@ const Projects = () => {
               className="pl-10 bg-card border-border"
             />
             {searchQuery && (
-              <Button variant="ghost" size="icon" className="absolute right-1 top-1/2 -translate-y-1/2 h-6 w-6" onClick={() => setSearchQuery("")}>
+              <Button variant="ghost" size="icon" aria-label="Clear search" className="absolute right-1 top-1/2 -translate-y-1/2 h-6 w-6" onClick={() => setSearchQuery("")}>
                 <X className="h-3 w-3" />
               </Button>
             )}

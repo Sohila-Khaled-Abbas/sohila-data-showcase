@@ -8,19 +8,27 @@ import Community from "@/components/Community";
 import Credibility from "@/components/Credibility";
 import Certifications from "@/components/Certifications";
 import Footer from "@/components/Footer";
+import SEO from "@/components/SEO";
 
 const Index = () => {
   return (
     <div className="min-h-screen bg-background text-foreground">
+      <SEO
+        title="Sohila Khaled Abbas — BI Developer & Data Analytics Portfolio"
+        description="BI dashboards, data engineering projects, and analytics work by Sohila Khaled Abbas — SQL, Python, Power BI, and scalable data architectures."
+        path="/"
+      />
       <Header />
-      <Hero />
-      <Stats />
-      <About />
-      <Skills />
-      <Projects />
-      <Community />
-      <Credibility />
-      <Certifications />
+      <main>
+        <Hero />
+        <Stats />
+        <About />
+        <Skills />
+        <Projects />
+        <Community />
+        <Credibility />
+        <Certifications />
+      </main>
       <Footer />
     </div>
   );

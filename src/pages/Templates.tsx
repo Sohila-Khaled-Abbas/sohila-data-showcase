@@ -4,6 +4,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import SEO from "@/components/SEO";
 
 const templates = [
   {
@@ -35,8 +36,13 @@ const templates = [
 const Templates = () => {
   return (
     <div className="min-h-screen bg-background text-foreground">
+      <SEO
+        title="Notion Roadmaps & Data Learning Templates — Sohila Khaled Abbas"
+        description="Curated Notion roadmaps for Excel, SQL, Python web scraping, and Data Engineering — structured paths from fundamentals to advanced projects."
+        path="/templates"
+      />
       <Header />
-      <section className="pt-32 pb-20">
+      <main className="pt-32 pb-20">
         <div className="container mx-auto px-4">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -55,6 +61,10 @@ const Templates = () => {
               Structured roadmaps and ready-to-use Notion workspaces to guide your data journey — from Excel to Data Engineering.
             </p>
           </motion.div>
+
+          <h2 className="text-2xl md:text-3xl font-semibold text-center mb-8 text-foreground">
+            Featured Learning Paths
+          </h2>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto">
             {templates.map((t, i) => (
@@ -91,7 +101,7 @@ const Templates = () => {
             ))}
           </div>
         </div>
-      </section>
+      </main>
       <Footer />
     </div>
   );
