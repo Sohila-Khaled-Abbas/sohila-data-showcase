@@ -91,7 +91,7 @@
 
 /* Warm Gradient Text */
 .gradient-text {
-  @apply bg-gradient-to-r from-[hsl(28,30%,45%)] via-[hsl(25,32%,38%)] to-[hsl(25,40%,25%)] bg-clip-text text-transparent;
+  @apply bg-gradient-to-r from-foreground via-foreground to-foreground/70 bg-clip-text text-transparent;
 }
 
 /* Soft warm shadows */
