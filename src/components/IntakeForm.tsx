@@ -90,8 +90,23 @@ export default function IntakeForm() {
     });
   };
 
+  const LIMITS = { fullName: 100, email: 255, company: 200, problem: 3000, budget: 50 };
+
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
+    // Client-side length validation to prevent oversized payloads
+    if (
+      formData.fullName.trim().length === 0 || formData.fullName.length > LIMITS.fullName ||
+      formData.email.trim().length === 0 || formData.email.length > LIMITS.email ||
+      formData.company.length > LIMITS.company ||
+      formData.problem.trim().length === 0 || formData.problem.length > LIMITS.problem ||
+      formData.budget.length > LIMITS.budget
+    ) {
+      setStatus('error');
+      return;
+    }
+
     setStatus('submitting');
     const payload = {
       ...formData,
@@ -180,15 +195,15 @@ export default function IntakeForm() {
                 <div className="grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-2">
                   <div>
                     <label className="block text-sm font-medium text-slate-700">{t.lblName}</label>
-                    <input type="text" name="fullName" required value={formData.fullName} onChange={handleInputChange} className="mt-1 block w-full rounded-md border-slate-300 px-4 py-3 border outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 bg-white" />
+                    <input type="text" name="fullName" required maxLength={100} value={formData.fullName} onChange={handleInputChange} className="mt-1 block w-full rounded-md border-slate-300 px-4 py-3 border outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 bg-white" />
                   </div>
                   <div>
                     <label className="block text-sm font-medium text-slate-700">{t.lblEmail}</label>
-                    <input type="email" name="email" required value={formData.email} onChange={handleInputChange} className="mt-1 block w-full rounded-md border-slate-300 px-4 py-3 border outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 bg-white" />
+                    <input type="email" name="email" required maxLength={255} value={formData.email} onChange={handleInputChange} className="mt-1 block w-full rounded-md border-slate-300 px-4 py-3 border outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 bg-white" />
                   </div>
                   <div className="sm:col-span-2">
                     <label className="block text-sm font-medium text-slate-700">{t.lblCompany}</label>
-                    <input type="text" name="company" value={formData.company} onChange={handleInputChange} className="mt-1 block w-full rounded-md border-slate-300 px-4 py-3 border outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 bg-white" />
+                    <input type="text" name="company" maxLength={200} value={formData.company} onChange={handleInputChange} className="mt-1 block w-full rounded-md border-slate-300 px-4 py-3 border outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 bg-white" />
                   </div>
                 </div>
               </div>
@@ -223,7 +238,7 @@ export default function IntakeForm() {
                 <div className="space-y-6">
                   <div>
                     <label className="block text-sm font-medium text-slate-700">{t.lblProblem}</label>
-                    <textarea name="problem" rows={4} required value={formData.problem} onChange={handleInputChange} className="mt-1 block w-full rounded-md border-slate-300 px-4 py-3 border outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 bg-white" />
+                    <textarea name="problem" rows={4} required maxLength={3000} value={formData.problem} onChange={handleInputChange} className="mt-1 block w-full rounded-md border-slate-300 px-4 py-3 border outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 bg-white" />
                   </div>
                 </div>
               </div>
