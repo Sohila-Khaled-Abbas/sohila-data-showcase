@@ -30,14 +30,10 @@ const Header = () => {
 
   const mainNavLinks = [
     { name: "Home", href: "/" },
+    { name: "Case Studies", href: "/#case-studies" },
     { name: "About", href: "/#about" },
-    { name: "Skills", href: "/#skills" },
-    { name: "Projects", href: "/#projects" },
     { name: "Templates", href: "/templates" },
-    { name: "Community", href: "/#community" },
-    { name: "Credibility", href: "/#credibility" },
-    { name: "Certifications", href: "/#certifications" },
-    { name: "Inquiry", href: "/intake" },
+    { name: "Book Audit", href: "/intake" },
   ];
 
   const handleNav = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {

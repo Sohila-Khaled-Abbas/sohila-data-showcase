@@ -53,6 +53,10 @@ export default {
           DEFAULT: 'hsl(var(--card))',
           foreground: 'hsl(var(--card-foreground))',
         },
+        cta: {
+          DEFAULT: 'hsl(var(--cta))',
+          foreground: 'hsl(var(--cta-foreground))',
+        },
         neon: {
           teal: 'hsl(var(--neon-teal))',
           purple: 'hsl(var(--neon-purple))',
