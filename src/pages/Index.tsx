@@ -1,9 +1,12 @@
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import Stats from "@/components/Stats";
-import CaseStudies from "@/components/CaseStudies";
-import Authority from "@/components/Authority";
-import FinalCTA from "@/components/FinalCTA";
+import About from "@/components/About";
+import Skills from "@/components/Skills";
+import Projects from "@/components/Projects";
+import Community from "@/components/Community";
+import Credibility from "@/components/Credibility";
+import Certifications from "@/components/Certifications";
 import Footer from "@/components/Footer";
 import SEO from "@/components/SEO";
 
@@ -12,16 +15,19 @@ const Index = () => {
     <div className="min-h-screen bg-background text-foreground">
       <SEO
         title="Sohila Khaled Abbas — BI Developer & Data Analytics Portfolio"
-        description="BI dashboards, automated ETL pipelines, and analytics work by Sohila Khaled Abbas — turning fragmented data into executive clarity."
+        description="BI dashboards, data engineering projects, and analytics work by Sohila Khaled Abbas — SQL, Python, Power BI, and scalable data architectures."
         path="/"
       />
       <Header />
       <main>
         <Hero />
         <Stats />
-        <CaseStudies />
-        <Authority />
-        <FinalCTA />
+        <About />
+        <Skills />
+        <Projects />
+        <Community />
+        <Credibility />
+        <Certifications />
       </main>
       <Footer />
     </div>
