@@ -90,10 +90,21 @@
   }
 }
 
-/* Warm Gradient Text */
+/* Charcoal Gradient Text */
 .gradient-text {
-  @apply bg-gradient-to-r from-[hsl(28,30%,45%)] via-[hsl(25,32%,38%)] to-[hsl(25,40%,25%)] bg-clip-text text-transparent;
+  @apply bg-gradient-to-r from-[hsl(220,14%,11%)] via-[hsl(220,14%,20%)] to-[hsl(25,10%,40%)] bg-clip-text text-transparent;
 }
+
+/* CTA button — Crimson, primary actions only */
+.btn-cta {
+  background-color: hsl(var(--cta));
+  color: hsl(var(--cta-foreground));
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+.btn-cta:hover {
+  background-color: hsl(var(--cta) / 0.92);
+}
+
 
 /* Soft warm shadows */
 .neon-glow {
