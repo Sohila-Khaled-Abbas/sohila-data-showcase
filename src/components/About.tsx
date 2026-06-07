@@ -4,8 +4,8 @@ import { ChartBar, Code, Award, Users, Zap, Database } from "lucide-react";
 const highlights = [
   { icon: ChartBar, text: "Architected 10+ interactive Power BI dashboards using star-schema modeling, reducing time-to-insight from days to minutes" },
   { icon: Code, text: "Reduced manual reporting overhead by 40% for 5+ clients via automated ETL pipelines using Python and SQL" },
-  { icon: Award, text: "Top 3 Data Science Creator in Egypt (Favikon, 2026) & Top 200 Arabic-Speaking Influencer" },
-  { icon: Users, text: "55,000+ LinkedIn followers reached via original dashboard insights and data education content" },
+  { icon: Award, text: "Top 2 Data Science Creator in Egypt (Favikon, 2026) & Top 200 Arabic-Speaking Influencer" },
+  { icon: Users, text: "60,000+ LinkedIn followers reached via original dashboard insights and data education content" },
   { icon: Database, text: "Optimized query performance by 25% through refactored SQL scripts and indexing strategies for large-scale datasets" },
   { icon: Zap, text: "Increased project success rates by 35% for 50+ professionals through structured mentoring frameworks" },
 ];
