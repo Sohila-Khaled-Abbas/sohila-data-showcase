@@ -98,6 +98,10 @@
 .gradient-text {
   @apply bg-gradient-to-r from-[hsl(220,14%,11%)] via-[hsl(220,14%,20%)] to-[hsl(25,10%,40%)] bg-clip-text text-transparent;
 }
+.dark .gradient-text {
+  @apply bg-gradient-to-r from-[hsl(30,12%,96%)] via-[hsl(30,10%,82%)] to-[hsl(25,12%,62%)] bg-clip-text text-transparent;
+}
+
 
 /* CTA button — Crimson, primary actions only */
 .btn-cta {
