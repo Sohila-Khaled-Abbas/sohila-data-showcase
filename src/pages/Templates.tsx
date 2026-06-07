@@ -19,19 +19,8 @@ const templates = [
       "Want to learn SQL but don't know where to start or what order to follow? A complete template that teaches you SQL step by step from zero to advanced (Joins, CTEs, Window Functions). Includes a Topics checklist, Projects Tracker, Notes section, and a curated library of trusted Resources.",
     link: "https://sql-mastery-roadmap.super.site/",
   },
-  {
-    title: "Python Web Scraping Specialist",
-    description:
-      "If you want to become a Web Scraping Specialist with Python — this is the plan you've been looking for. It takes you step by step from the fundamentals (HTTP, HTML, APIs) all the way to building real-world projects like an E-commerce Tracker and a Job Market Analyzer.",
-    link: "https://datawithsohila.notion.site/Python-Web-Scraping-Specialist-Roadmap-288bb8455a2880858ce9ef4422df9eba?source=copy_link",
-  },
-  {
-    title: "Master Data Engineering: From Junior to Expert",
-    description:
-      "Brings together 6 core modules starting from Fundamentals all the way to Pipelines, Real-Time Processing, and a hands-on Capstone Project. Designed as a guide for any Data Analyst looking to step into Data Engineering with real projects to add to their portfolio.",
-    link: "https://datawithsohila.notion.site/Master-Data-Engineering-278bb8455a28802ebeb2db6df1e94c39?source=copy_link",
-  },
 ];
+
 
 const Templates = () => {
   return (
