@@ -1,9 +1,8 @@
 import { motion } from "framer-motion";
-import { Award, Users, TrendingUp, Clock, Star, Quote } from "lucide-react";
+import { TrendingUp, Clock, Star, Quote, Linkedin, Trophy } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 
 const metrics = [
-  { icon: Users, value: "60K+", label: "LinkedIn Followers", desc: "Engaging with dashboards, career tips, and Python use cases" },
   { icon: TrendingUp, value: "200+", label: "Dashboard Users", desc: "Explored Wuzzuf Job Market Dashboard to identify hiring trends" },
   { icon: Clock, value: "40%", label: "Time Reduction", desc: "In reporting time through Python automation" },
   { icon: Star, value: "25%", label: "Speed Improvement", desc: "In SQL data retrieval performance" },
@@ -28,22 +27,46 @@ const Credibility = () => {
         </motion.h2>
         <p className="text-center text-muted-foreground mb-12">Measurable impact, community leadership, and proven results</p>
 
-        {/* Recognition badge */}
-        <motion.div
-          className="max-w-xl mx-auto mb-12 bg-card border border-border rounded-xl p-6 neon-glow text-center"
-          initial={{ opacity: 0, scale: 0.95 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          viewport={{ once: true }}
-        >
-          <Award className="h-8 w-8 text-primary mx-auto mb-3" />
-          <Badge className="bg-primary text-primary-foreground mb-2">Top 2 Data Science Creator</Badge>
-          <p className="text-sm text-muted-foreground">
-            Egypt — Favikon (2026). Recognized for leading a 60K+ follower community focused on impactful Power BI and analytics content.
-          </p>
-        </motion.div>
+        {/* Prominent badges — LinkedIn + Favikon */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto mb-12">
+          <motion.div
+            className="bg-card border border-border rounded-2xl p-8 neon-glow text-center flex flex-col items-center"
+            initial={{ opacity: 0, x: -20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+          >
+            <div className="w-14 h-14 rounded-full bg-secondary flex items-center justify-center mb-4">
+              <Linkedin className="h-7 w-7 text-foreground" />
+            </div>
+            <p className="text-5xl md:text-6xl font-extrabold text-foreground font-mono tracking-tight">60K+</p>
+            <p className="text-base font-semibold text-foreground mt-2">LinkedIn Followers</p>
+            <p className="text-sm text-muted-foreground mt-1 max-w-xs">
+              Engaging with dashboards, career tips, and Python use cases
+            </p>
+          </motion.div>
+
+          <motion.div
+            className="bg-card border border-border rounded-2xl p-8 neon-glow text-center flex flex-col items-center"
+            initial={{ opacity: 0, x: 20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+          >
+            <div className="w-14 h-14 rounded-full bg-secondary flex items-center justify-center mb-4">
+              <Trophy className="h-7 w-7 text-foreground" />
+            </div>
+            <Badge className="bg-primary text-primary-foreground mb-3 text-sm px-3 py-1">Favikon 2026</Badge>
+            <p className="text-4xl md:text-5xl font-extrabold text-foreground font-mono tracking-tight">Top 2</p>
+            <p className="text-base font-semibold text-foreground mt-2">Data Science Creator</p>
+            <p className="text-sm text-muted-foreground mt-1 max-w-xs">
+              Egypt — recognized for leading a 60K+ community focused on Power BI and analytics
+            </p>
+          </motion.div>
+        </div>
 
         {/* Metrics grid */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12 max-w-4xl mx-auto">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-12 max-w-4xl mx-auto">
           {metrics.map((m, i) => (
             <motion.div
               key={i}
@@ -87,7 +110,7 @@ const Credibility = () => {
           <div className="flex justify-center gap-3 flex-wrap">
             <Badge variant="outline" className="px-3 py-1 font-mono text-xs">6+ Hours Weekly Saved</Badge>
             <Badge variant="outline" className="px-3 py-1 font-mono text-xs">40% Faster Reporting</Badge>
-            <Badge variant="outline" className="px-3 py-1 font-mono text-xs">60K+ Community</Badge>
+            <Badge variant="outline" className="px-3 py-1 font-mono text-xs">50+ Mentored</Badge>
           </div>
         </div>
       </div>
