@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 const content = {
   en: {
-    title: "Data & BI Project Inquiry",
+    title: "Data & BI Project Inquiry — Sohila Khaled Abbas",
     desc: "Please provide the details below to help me understand your data infrastructure and business objectives.",
     sec1: "1. Client Identity",
     lblName: "Full Name & Job Title *",
