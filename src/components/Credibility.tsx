@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Award, Users, TrendingUp, Clock, Star, Quote, Linkedin, Trophy } from "lucide-react";
+import { TrendingUp, Clock, Star, Quote, Linkedin, Trophy } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 
 const metrics = [
