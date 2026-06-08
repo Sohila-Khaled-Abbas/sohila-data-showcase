@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { ExternalLink, BookOpen } from "lucide-react";
+import { Helmet } from "react-helmet-async";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import Header from "@/components/Header";
@@ -30,6 +31,20 @@ const Templates = () => {
         description="Curated Notion roadmaps for Excel, SQL, Python web scraping, and Data Engineering — structured paths from fundamentals to advanced projects."
         path="/templates"
       />
+      <Helmet>
+        <script type="application/ld+json">{JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "CollectionPage",
+          name: "Notion Roadmaps & Data Learning Templates",
+          url: "https://sohilakhaled-portfolio.lovable.app/templates",
+          hasPart: templates.map((t) => ({
+            "@type": "CreativeWork",
+            name: t.title,
+            description: t.description,
+            url: t.link,
+          })),
+        })}</script>
+      </Helmet>
       <Header />
       <main className="pt-32 pb-20">
         <div className="container mx-auto px-4">

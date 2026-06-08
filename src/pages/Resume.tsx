@@ -3,10 +3,35 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { MapPin, Mail, Phone, Linkedin, Github, Globe, Download, Printer, Eye } from "lucide-react";
+import { Helmet } from "react-helmet-async";
+import SEO from "@/components/SEO";
+
+const profileJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "ProfilePage",
+  mainEntity: {
+    "@type": "Person",
+    name: "Sohila Khaled Abbas",
+    jobTitle: "BI Developer & Data Analytics Engineer",
+    url: "https://sohilakhaled-portfolio.lovable.app/resume",
+    sameAs: [
+      "https://linkedin.com/in/sohilakabbas",
+      "https://github.com/Sohila-Khaled-Abbas",
+    ],
+  },
+};
 
 const Resume = () => {
   return (
     <div className="min-h-screen bg-background dark:bg-background-dark text-foreground dark:text-foreground-dark">
+      <SEO
+        title="Résumé — Sohila Khaled Abbas, Data Analyst"
+        description="Full résumé of Sohila Khaled Abbas: BI dashboards, ETL automation, SQL, Python and Power BI experience. Available to view, download, or print."
+        path="/resume"
+      />
+      <Helmet>
+        <script type="application/ld+json">{JSON.stringify(profileJsonLd)}</script>
+      </Helmet>
       <style>
         {`
           @media print {

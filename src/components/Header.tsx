@@ -64,8 +64,9 @@ const Header = () => {
       isScrolled ? "bg-background/80 backdrop-blur-md border-b border-border shadow-sm py-2" : "bg-transparent py-4"
     )}>
       <div className="container mx-auto px-4 flex justify-between items-center">
-        <Link to="/" className="text-xl font-bold font-mono">
-          <span className="gradient-text">S.K.A</span>
+        <Link to="/" aria-label="Sohila Khaled Abbas — Home" className="text-xl font-bold font-mono">
+          <span className="gradient-text" aria-hidden="true">S.K.A</span>
+          <span className="sr-only">Sohila Khaled Abbas</span>
         </Link>
 
         <nav className="hidden md:flex items-center space-x-6">
