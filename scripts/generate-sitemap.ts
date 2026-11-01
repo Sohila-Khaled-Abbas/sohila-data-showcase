@@ -1,7 +1,18 @@
 import { writeFileSync } from "fs";
 import { resolve } from "path";
 
-const BASE_URL = "https://sohilakhaled-portfolio.lovable.app";
+// Allow an explicit HTTPS origin when publishing this legacy showcase on another host.
+const SITE_URL = new URL(process.env.SITEMAP_BASE_URL || "https://sohilakhaled-portfolio.lovable.app");
+if (
+  SITE_URL.protocol !== "https:" ||
+  SITE_URL.username ||
+  SITE_URL.password ||
+  SITE_URL.search ||
+  SITE_URL.hash
+) {
+  throw new Error("SITEMAP_BASE_URL must be a clean HTTPS URL without credentials or query parameters.");
+}
+const BASE_URL = SITE_URL.href.endsWith("/") ? SITE_URL.href.slice(0, -1) : SITE_URL.href;
 
 interface SitemapEntry {
   path: string;
