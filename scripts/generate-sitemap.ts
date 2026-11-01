@@ -1,7 +1,11 @@
 import { writeFileSync } from "fs";
 import { resolve } from "path";
 
-const BASE_URL = "https://sohilakhaled-portfolio.lovable.app";
+// Override for the actual deployment host; keep existing hostname as a backward-compatible fallback.
+const BASE_URL = (process.env.SITEMAP_BASE_URL || "https://sohilakhaled-portfolio.lovable.app").replace(/\\/$/, "");
+if (!/^https:\\/\\/[^/\\s]+(?:\\:\\d+)?(?:\\/[^\\s]*)?$/.test(BASE_URL)) {
+  throw new Error("SITEMAP_BASE_URL must be an absolute HTTPS URL.");
+}
 
 interface SitemapEntry {
   path: string;

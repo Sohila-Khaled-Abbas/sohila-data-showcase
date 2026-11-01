@@ -2,7 +2,7 @@
 
 # ✦ Sohila Khaled Abbas — Data Showcase Portfolio
 
-> **BI Developer & Data Analytics Engineer**  
+> **Legacy Data Showcase — React/Vite portfolio prototype**  
 > Transforming fragmented datasets into scalable, decision-ready architectures.
 
 [![Live Demo](https://img.shields.io/badge/Live%20Demo-Visit%20Site-6366f1?style=for-the-badge&logo=vercel&logoColor=white)](https://lovable.dev/projects/c0e6080c-79df-4076-9239-e53c9b548b64)
@@ -18,7 +18,7 @@
 
 ## 📖 Project Overview
 
-This repository contains the source code for a **personal data portfolio website** built for **Sohila Khaled Abbas** — a recognized BI Developer, Data Analytics Engineer, and Top 200 Arabic-Speaking Influencer in data education.
+This repository contains the source code for a **personal data portfolio website** built for **Sohila Khaled Abbas** — a data and analytics engineering portfolio maintained as a legacy showcase project.
 
 The site is designed to function as a living, interactive CV: showcasing real dashboards, certifications, technical skills, community contributions, and contact information — all in a single, performant single-page application.
 
@@ -26,9 +26,9 @@ The site is designed to function as a living, interactive CV: showcasing real da
 
 | Area | Detail |
 |---|---|
-| 🏆 Certifications | 40+ technical certifications displayed with full metadata |
-| 👥 Community | 1,000+ community members mentored |
-| 📣 Influence | 60K+ LinkedIn followers; Top 200 Arabic data educators |
+| 🏆 Certifications | Certification content displayed in the app (verify any claimed counts against the current data source) |
+| 👥 Community | Mentoring and community content (quantified claims are not independently verified) |
+| 📣 Influence | Social profile links and career highlights (no independently verified public ranking/count) |
 | 📊 Projects | Curated BI dashboards and data engineering case studies |
 | 🎨 Design | Dark-themed, animated UI with glassmorphism and ambient glow effects |
 
@@ -88,7 +88,7 @@ The portfolio is organized as a single-page application with smooth scroll navig
 
 ### Prerequisites
 
-Ensure you have **one** of the following installed:
+The `predev` and `prebuild` scripts currently call `bunx`, so **Bun is required even when running npm commands**. Install Bun first. Supported package-manager choices:
 
 - **Node.js ≥ 18** with `npm` — [Install via nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
 - **Bun ≥ 1.0** — [Install Bun](https://bun.sh/)
@@ -112,7 +112,7 @@ bun install
 
 ### 3. Configure Environment Variables
 
-Copy the example env file and fill in your Supabase credentials:
+Copy the example env file and enter your *public* Supabase project URL and publishable key. The frontend deliberately receives those values; never use a Supabase service-role key in any `VITE_` variable:
 
 ```bash
 cp .env.example .env
@@ -121,7 +121,7 @@ cp .env.example .env
 ```env
 # .env
 VITE_SUPABASE_URL=https://<your-project>.supabase.co
-VITE_SUPABASE_ANON_KEY=<your-anon-key>
+VITE_SUPABASE_PUBLISHABLE_KEY=<your-publishable-key>
 ```
 
 > **Note:** You can find these values in your [Supabase project dashboard](https://app.supabase.com/) under **Project Settings → API**.
@@ -297,3 +297,10 @@ This project is licensed under the **MIT License** — see the [LICENSE](./LICEN
 *Built with ❤️ by Sohila Khaled Abbas*
 
 </div>
+
+
+## Deployment and SEO notes (2026 maintenance)
+
+This repository is a **legacy showcase**, separate from the primary portfolio at [sohila-khaled-abbas.vercel.app](https://sohila-khaled-abbas.vercel.app/). Avoid treating two sites as interchangeable without reviewing search-engine canonical URLs. The sitemap generator accepts `SITEMAP_BASE_URL` for this deployment and defaults to the older Lovable hostname, which may not match your current host; set it explicitly in the build environment when publishing. Verify the output `public/sitemap.xml` after building.
+
+The Git-tracked `.env` currently contains only `VITE_SUPABASE_*` **publishable browser configuration**, not a server-side service-role key. Supabase publishable keys are designed to appear in browser bundles; security depends on correct Row Level Security (RLS), authentication and database policies. This maintenance PR adds an example file without removing the existing public config or changing production behavior. **Do not put passwords, service-role keys or other sensitive information in a `VITE_` variable or Git-tracked environment file.**
